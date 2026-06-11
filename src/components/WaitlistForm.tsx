@@ -79,7 +79,7 @@ export function WaitlistForm({
   );
 
   const buttonClass = cn(
-    "shrink-0 rounded-xl px-6 font-ui font-semibold tracking-[-0.02em] transition-all duration-300",
+    "shrink-0 cursor-pointer rounded-xl px-6 font-ui font-semibold tracking-[-0.02em] transition-all duration-300",
     fieldHeight,
     buttonText,
     "disabled:cursor-not-allowed disabled:opacity-50",
