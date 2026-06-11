@@ -12,7 +12,6 @@ import { Testimonial } from "./components/Testimonial";
 import { SocialProofBar } from "./components/SocialProofBar";
 import { ProblemSection } from "./components/ProblemSection";
 import { WhySection } from "./components/WhySection";
-import { FeatureDeepDive } from "./components/FeatureDeepDive";
 import { HowSection } from "./components/HowSection";
 import { StatsBand } from "./components/StatsBand";
 import { FounderQuote } from "./components/FounderQuote";
@@ -48,7 +47,6 @@ export default function App() {
           <Testimonial />
           <ProblemSection />
           <WhySection />
-          <FeatureDeepDive />
           <HowSection />
           <StatsBand />
           <FounderQuote />
