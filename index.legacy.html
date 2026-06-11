@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Regrade — Find the points your professor missed</title>
+<meta name="description" content="Regrade reads your graded work against the rubric, flags deductions that don't hold up, and drafts a respectful appeal email. Built for students, after grades come back." />
+<meta property="og:title" content="Regrade — Find the points your professor missed" />
+<meta property="og:description" content="AI that checks your grade against the rubric and helps you appeal, respectfully. Private beta. First 100 get Pro Max free for 12 months." />
+<meta property="og:url" content="https://regradeapp.tech" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 12'%3E%3Crect x='4' y='2' width='7' height='1' fill='%231E4FFF'/%3E%3Crect x='3' y='3' width='9' height='1' fill='%231E4FFF'/%3E%3Crect x='2' y='4' width='11' height='1' fill='%231E4FFF'/%3E%3Crect x='2' y='5' width='11' height='1' fill='%231E4FFF'/%3E%3Crect x='3' y='6' width='9' height='1' fill='%237FA3FF'/%3E%3Crect x='13' y='4' width='1' height='1' fill='%231E4FFF'/%3E%3Crect x='14' y='3' width='1' height='1' fill='%231E4FFF'/%3E%3Crect x='15' y='2' width='1' height='1' fill='%231E4FFF'/%3E%3Crect x='14' y='5' width='1' height='1' fill='%231E4FFF'/%3E%3Crect x='15' y='6' width='1' height='1' fill='%231E4FFF'/%3E%3Crect x='6' y='1' width='1' height='1' fill='%237FA3FF'/%3E%3Crect x='5' y='0' width='1' height='1' fill='%237FA3FF'/%3E%3Crect x='7' y='0' width='1' height='1' fill='%237FA3FF'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%230B1220'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --ink: #09090B;
+    --ink-2: #18181B;
+    --muted: #71717A;
+    --faint: #A1A1AA;
+    --line: rgba(9, 9, 11, 0.08);
+    --line-strong: rgba(9, 9, 11, 0.12);
+    --blue: #1E4FFF;
+    --blue-glow: rgba(30, 79, 255, 0.45);
+    --blue-soft: rgba(30, 79, 255, 0.08);
+    --green: #10B981;
+    --green-soft: rgba(16, 185, 129, 0.1);
+    --rose: #F43F5E;
+    --dark: #09090B;
+    --dark-2: #18181B;
+    --radius: 14px;
+    --radius-lg: 20px;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--ink-2);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--blue); color: #fff; }
+  a { color: inherit; text-decoration: none; }
+
+  :focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  section { scroll-margin-top: 88px; }
+
+  /* ── Grain overlay ── */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.028;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 128px;
+  }
+
+  /* ── Buttons ── */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 14px;
+    padding: 11px 20px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+    transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), background 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.18) 50%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.6s var(--ease-out);
+  }
+  .btn:hover::after { transform: translateX(120%); }
+  .btn-primary {
+    background: var(--ink);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(9,9,11,0.1), 0 4px 16px rgba(9,9,11,0.12);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(9,9,11,0.1), 0 12px 32px rgba(9,9,11,0.18);
+  }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:disabled { opacity: 0.55; cursor: default; transform: none; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--line-strong);
+  }
+  .btn-ghost:hover { color: var(--ink); border-color: rgba(9,9,11,0.2); }
+  .btn-accent {
+    background: var(--blue);
+    color: #fff;
+    box-shadow: 0 1px 2px rgba(30,79,255,0.2), 0 8px 28px rgba(30,79,255,0.35);
+  }
+  .btn-accent:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(30,79,255,0.25), 0 16px 40px rgba(30,79,255,0.4);
+  }
+  .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: 9px; }
+
+  /* ── Nav ── */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background 0.4s var(--ease-out), border-color 0.4s var(--ease-out), backdrop-filter 0.4s;
+    border-bottom: 1px solid transparent;
+  }
+  .nav.scrolled {
+    background: rgba(250, 250, 250, 0.72);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom-color: var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .brand svg { display: block; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+  .nav-links a:not(.btn) {
+    transition: color 0.2s ease;
+    letter-spacing: -0.01em;
+  }
+  .nav-links a:not(.btn):hover { color: var(--ink); }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    padding: 140px 0 0;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    will-change: transform;
+  }
+  .hero-glow.a {
+    width: 600px; height: 600px;
+    top: -200px; left: 50%;
+    transform: translateX(-60%);
+    background: radial-gradient(circle, rgba(30,79,255,0.14) 0%, transparent 70%);
+    animation: drift-a 18s ease-in-out infinite;
+  }
+  .hero-glow.b {
+    width: 400px; height: 400px;
+    top: 100px; right: -100px;
+    background: radial-gradient(circle, rgba(30,79,255,0.08) 0%, transparent 70%);
+    animation: drift-b 22s ease-in-out infinite;
+  }
+  @keyframes drift-a {
+    0%, 100% { transform: translateX(-60%) translateY(0); }
+    50% { transform: translateX(-40%) translateY(30px); }
+  }
+  @keyframes drift-b {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-40px) scale(1.1); }
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--blue);
+    background: var(--blue-soft);
+    border: 1px solid rgba(30,79,255,0.15);
+    border-radius: 999px;
+    padding: 5px 14px 5px 10px;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(12px);
+    animation: rise 0.8s var(--ease-out) 0.1s forwards;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue);
+    box-shadow: 0 0 0 0 rgba(30,79,255,0.5);
+    animation: pulse-ring 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse-ring {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(30,79,255,0.4); }
+    50% { box-shadow: 0 0 0 5px rgba(30,79,255,0); }
+  }
+  @keyframes rise {
+    to { opacity: 1; transform: none; }
+  }
+
+  h1 {
+    font-weight: 600;
+    font-size: clamp(2.75rem, 6.5vw, 4.75rem);
+    line-height: 1.0;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+    max-width: 820px;
+    margin: 0 auto 24px;
+  }
+  h1 .line {
+    display: block;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: rise 0.9s var(--ease-out) forwards;
+  }
+  h1 .line:nth-child(1) { animation-delay: 0.2s; }
+  h1 .line:nth-child(2) { animation-delay: 0.32s; }
+  h1 .accent {
+    background: linear-gradient(135deg, var(--blue) 0%, #5B8AFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 36px;
+    line-height: 1.65;
+    letter-spacing: -0.015em;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: rise 0.9s var(--ease-out) 0.45s forwards;
+  }
+
+  .hero-cta {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: rise 0.9s var(--ease-out) 0.55s forwards;
+  }
+
+  .wl-wrap { max-width: 440px; margin: 0 auto; text-align: left; }
+  .wl-form {
+    display: flex;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    padding: 5px;
+    box-shadow: 0 1px 2px rgba(9,9,11,0.04), 0 8px 32px rgba(9,9,11,0.06);
+    transition: box-shadow 0.3s var(--ease-out), border-color 0.3s;
+  }
+  .wl-form:focus-within {
+    border-color: rgba(30,79,255,0.35);
+    box-shadow: 0 1px 2px rgba(30,79,255,0.06), 0 8px 32px rgba(30,79,255,0.12);
+  }
+  .wl-form input[type="email"] {
+    flex: 1; min-width: 0;
+    font-family: var(--font);
+    font-size: 14px;
+    padding: 10px 14px;
+    border: none;
+    background: transparent;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .wl-form input[type="email"]::placeholder { color: var(--faint); }
+  .wl-form input[type="email"]:focus { outline: none; }
+  .wl-form .hp { position: absolute; left: -9999px; opacity: 0; pointer-events: none; }
+  .wl-form .btn { border-radius: 8px; flex-shrink: 0; }
+
+  .wl-error {
+    display: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--rose);
+    margin-top: 10px;
+    padding-left: 4px;
+  }
+  .wl-success {
+    display: none;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--green-soft);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #065F46;
+  }
+  .wl-success strong { display: block; font-weight: 600; margin-bottom: 2px; }
+
+  .hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 20px;
+    margin-top: 20px;
+    font-size: 12.5px;
+    color: var(--faint);
+    letter-spacing: -0.01em;
+    opacity: 0;
+    animation: rise 0.9s var(--ease-out) 0.65s forwards;
+  }
+  .hero-trust span { display: inline-flex; align-items: center; gap: 5px; }
+
+  /* ── Product showcase ── */
+  .showcase {
+    position: relative;
+    margin-top: clamp(56px, 7vw, 88px);
+    padding-bottom: clamp(64px, 8vw, 100px);
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+    animation: showcase-in 1.2s var(--ease-out) 0.75s forwards;
+  }
+  @keyframes showcase-in {
+    to { opacity: 1; transform: none; }
+  }
+
+  .showcase-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(30,79,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .app-window {
+    position: relative;
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius-lg);
+    box-shadow:
+      0 0 0 1px rgba(9,9,11,0.03),
+      0 2px 4px rgba(9,9,11,0.04),
+      0 24px 64px rgba(9,9,11,0.1),
+      0 64px 120px rgba(9,9,11,0.08);
+    overflow: hidden;
+    text-align: left;
+    transform-style: preserve-3d;
+    transition: transform 0.1s linear;
+  }
+
+  .window-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(250,250,250,0.8);
+  }
+  .window-dots { display: flex; gap: 7px; }
+  .window-dots i {
+    display: block;
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: #E4E4E7;
+  }
+  .window-dots i:first-child { background: #FCA5A5; }
+  .window-dots i:nth-child(2) { background: #FDE68A; }
+  .window-dots i:nth-child(3) { background: #86EFAC; }
+  .window-url {
+    flex: 1;
+    max-width: 280px;
+    margin: 0 auto;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--faint);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 4px 12px;
+    text-align: center;
+    letter-spacing: 0.01em;
+  }
+
+  .app-layout {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+  }
+  .app-main { padding: 24px 28px 28px; border-right: 1px solid var(--line); }
+
+  .app-meta {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 4px;
+  }
+  .app-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .app-score { font-size: 14px; font-weight: 600; color: var(--rose); }
+
+  .app-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--blue-soft);
+    border: 1px solid rgba(30,79,255,0.12);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--blue);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .gaps { display: flex; flex-direction: column; gap: 10px; }
+  .gap {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 13px 15px;
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out), border-color 0.2s, box-shadow 0.2s;
+  }
+  .gap.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .gap:hover {
+    border-color: rgba(30,79,255,0.2);
+    box-shadow: 0 4px 16px rgba(9,9,11,0.05);
+  }
+  .gap-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .gap-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .gap-pts {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--green);
+    background: var(--green-soft);
+    padding: 2px 9px;
+    border-radius: 999px;
+  }
+  .gap p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+  .gap p strong { color: var(--ink-2); font-weight: 600; }
+
+  .app-panel {
+    padding: 24px 22px 28px;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .panel-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 16px 18px;
+    transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+  }
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(9,9,11,0.06);
+  }
+  .stat-val {
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .stat-val.green { color: var(--green); }
+  .stat-desc { font-size: 12px; color: var(--faint); margin-top: 3px; letter-spacing: -0.01em; }
+
+  .panel-cta {
+    margin-top: auto;
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 13px;
+    padding: 12px;
+    letter-spacing: -0.01em;
+    cursor: default;
+    box-shadow: 0 4px 16px rgba(30,79,255,0.3);
+  }
+  .panel-note {
+    font-size: 11px;
+    color: var(--faint);
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Marquee ── */
+  .marquee-wrap {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
+    padding: 18px 0;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 48px;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .marquee-track:hover { animation-play-state: paused; }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--faint);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .marquee-item svg { opacity: 0.5; }
+
+  /* ── Sections ── */
+  .section { padding: clamp(88px, 11vw, 140px) 0; }
+  .section-dark {
+    background: var(--dark);
+    color: #FAFAFA;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 20px;
+  }
+  .section-dark .section-label { color: rgba(91,138,255,0.9); }
+
+  h2 {
+    font-weight: 600;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    max-width: 580px;
+    margin-bottom: 16px;
+  }
+  .section-dark h2 { color: #FAFAFA; }
+
+  .section-lead {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.65;
+    letter-spacing: -0.015em;
+    margin-bottom: 56px;
+  }
+  .section-dark .section-lead { color: rgba(250,250,250,0.55); }
+
+  /* ── Positioning cards ── */
+  .pos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .pos-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), border-color 0.3s;
+  }
+  .pos-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(9,9,11,0.08);
+  }
+  .pos-card.featured {
+    background: linear-gradient(160deg, rgba(30,79,255,0.06) 0%, rgba(30,79,255,0.02) 100%);
+    border-color: rgba(30,79,255,0.2);
+    box-shadow: 0 20px 60px rgba(30,79,255,0.12);
+  }
+  .pos-card.featured:hover {
+    box-shadow: 0 24px 72px rgba(30,79,255,0.18);
+  }
+  .pos-when {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--faint);
+    margin-bottom: 14px;
+  }
+  .pos-card.featured .pos-when { color: var(--blue); }
+  .pos-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .pos-card.featured h3 { color: var(--blue); }
+  .pos-card p { font-size: 14px; color: var(--muted); line-height: 1.6; letter-spacing: -0.01em; }
+
+  .pos-note {
+    margin-top: 36px;
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 640px;
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Steps (horizontal) ── */
+  .steps-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .step-item {
+    padding: 36px 32px;
+    border-right: 1px solid var(--line);
+    position: relative;
+    transition: background 0.3s ease;
+  }
+  .step-item:last-child { border-right: none; }
+  .step-item:hover { background: var(--bg); }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--blue-soft);
+    border: 1px solid rgba(30,79,255,0.15);
+    color: var(--blue);
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .step-item h3 {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .step-item p { font-size: 14px; color: var(--muted); line-height: 1.6; letter-spacing: -0.01em; }
+
+  /* ── Bento trust grid ── */
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 14px;
+  }
+  .bento-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 28px;
+    transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+  }
+  .bento-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(9,9,11,0.07);
+  }
+  .bento-card.span-6 { grid-column: span 6; }
+  .bento-card.span-4 { grid-column: span 4; }
+  .bento-card.span-8 { grid-column: span 8; }
+  .bento-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: var(--blue-soft);
+    border: 1px solid rgba(30,79,255,0.12);
+    display: grid;
+    place-items: center;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .bento-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .bento-card p { font-size: 14px; color: var(--muted); line-height: 1.6; letter-spacing: -0.01em; }
+
+  /* ── Stats band ── */
+  .stats-band {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .stat-block {
+    background: var(--surface);
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .stat-block .num {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-block .lbl {
+    font-size: 13px;
+    color: var(--faint);
+    letter-spacing: -0.01em;
+  }
+
+  /* ── Founder ── */
+  .quote-block {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .quote-block blockquote {
+    font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+    font-weight: 500;
+    line-height: 1.55;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 32px;
+  }
+  .quote-block blockquote::before { content: "\201C"; color: var(--blue); }
+  .quote-sig {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .quote-avatar {
+    width: 40px; height: 40px;
+    border-radius: 11px;
+    background: var(--ink);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .quote-name { font-weight: 600; font-size: 14px; letter-spacing: -0.02em; color: var(--ink); }
+  .quote-role { font-size: 13px; color: var(--faint); letter-spacing: -0.01em; }
+
+  /* ── CTA band ── */
+  .cta-band {
+    position: relative;
+    background: var(--dark);
+    border-radius: 24px;
+    padding: clamp(56px, 7vw, 88px) clamp(28px, 5vw, 72px);
+    text-align: center;
+    overflow: hidden;
+  }
+  .cta-band::before {
+    content: "";
+    position: absolute;
+    top: -120px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, var(--blue-glow) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-band > * { position: relative; }
+  .cta-band h2 { color: #FAFAFA; max-width: 560px; margin: 0 auto 14px; }
+  .cta-band .section-lead { color: rgba(250,250,250,0.5); margin: 0 auto 36px; }
+  .cta-band .wl-form {
+    background: rgba(255,255,255,0.06);
+    border-color: rgba(255,255,255,0.1);
+    box-shadow: none;
+  }
+  .cta-band .wl-form:focus-within {
+    border-color: rgba(30,79,255,0.5);
+    box-shadow: 0 0 0 4px rgba(30,79,255,0.15);
+  }
+  .cta-band .wl-form input[type="email"] { color: #fff; }
+  .cta-band .wl-form input[type="email"]::placeholder { color: rgba(255,255,255,0.35); }
+  .cta-band .btn-primary { background: var(--blue); box-shadow: 0 4px 24px rgba(30,79,255,0.4); }
+  .cta-band .wl-error { color: #FDA4AF; }
+  .cta-band .wl-success { background: rgba(16,185,129,0.15); border-color: rgba(16,185,129,0.25); color: #6EE7B7; }
+  .cta-band .wl-success strong { color: #A7F3D0; }
+
+  /* ── FAQ ── */
+  .faq { max-width: 680px; }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-align: left;
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--blue); }
+  .faq-icon {
+    flex: none;
+    width: 24px; height: 24px;
+    border-radius: 7px;
+    background: var(--blue-soft);
+    color: var(--blue);
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform 0.35s var(--ease-out), background 0.2s;
+  }
+  .faq-item.open .faq-icon {
+    transform: rotate(45deg);
+    background: var(--blue);
+    color: #fff;
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s var(--ease-out), padding 0.45s var(--ease-out);
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding-bottom: 22px; }
+  .faq-a p {
+    font-size: 14.5px;
+    color: var(--muted);
+    line-height: 1.65;
+    letter-spacing: -0.01em;
+    max-width: 560px;
+  }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0 56px;
+    background: var(--surface);
+  }
+  .foot-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 28px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .foot-tag { margin-top: 12px; font-size: 13px; color: var(--faint); max-width: 260px; letter-spacing: -0.01em; }
+  .foot-links {
+    display: flex;
+    gap: 28px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    flex-wrap: wrap;
+    letter-spacing: -0.01em;
+  }
+  .foot-links a { transition: color 0.2s; }
+  .foot-links a:hover { color: var(--ink); }
+  .foot-base {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--faint);
+    letter-spacing: -0.01em;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ── Scroll reveal ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal[data-delay="1"] { transition-delay: 0.08s; }
+  .reveal[data-delay="2"] { transition-delay: 0.16s; }
+  .reveal[data-delay="3"] { transition-delay: 0.24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .reveal, .gap, .badge, h1 .line, .hero-sub, .hero-cta, .hero-trust, .showcase {
+      opacity: 1; transform: none;
+    }
+    .marquee-track { animation: none; }
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .app-layout { grid-template-columns: 1fr; }
+    .app-main { border-right: none; border-bottom: 1px solid var(--line); }
+    .pos-grid, .steps-row, .stats-band { grid-template-columns: 1fr; }
+    .step-item { border-right: none; border-bottom: 1px solid var(--line); }
+    .step-item:last-child { border-bottom: none; }
+    .bento-card.span-6, .bento-card.span-4, .bento-card.span-8 { grid-column: span 12; }
+    .nav-links .nav-a { display: none; }
+  }
+  @media (max-width: 520px) {
+    .wl-form { flex-direction: column; padding: 8px; }
+    .wl-form .btn { width: 100%; }
+    .window-url { display: none; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="Regrade home">
+      <svg width="24" height="18" viewBox="0 0 16 12" aria-hidden="true">
+        <rect x="4" y="2" width="7" height="1" fill="#1E4FFF"/>
+        <rect x="3" y="3" width="9" height="1" fill="#1E4FFF"/>
+        <rect x="2" y="4" width="11" height="1" fill="#1E4FFF"/>
+        <rect x="2" y="5" width="11" height="1" fill="#1E4FFF"/>
+        <rect x="3" y="6" width="9" height="1" fill="#7FA3FF"/>
+        <rect x="13" y="4" width="1" height="1" fill="#1E4FFF"/>
+        <rect x="14" y="3" width="1" height="1" fill="#1E4FFF"/>
+        <rect x="15" y="2" width="1" height="1" fill="#1E4FFF"/>
+        <rect x="14" y="5" width="1" height="1" fill="#1E4FFF"/>
+        <rect x="15" y="6" width="1" height="1" fill="#1E4FFF"/>
+        <rect x="6" y="1" width="1" height="1" fill="#7FA3FF"/>
+        <rect x="5" y="0" width="1" height="1" fill="#7FA3FF"/>
+        <rect x="7" y="0" width="1" height="1" fill="#7FA3FF"/>
+        <rect x="4" y="4" width="1" height="1" fill="#09090B"/>
+      </svg>
+      Regrade
+    </a>
+    <div class="nav-links">
+      <a class="nav-a" href="#how">How it works</a>
+      <a class="nav-a" href="#why">Why Regrade</a>
+      <a class="nav-a" href="#faq">FAQ</a>
+      <a class="btn btn-primary btn-sm" href="#waitlist">Join waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-glow a" aria-hidden="true"></div>
+  <div class="hero-glow b" aria-hidden="true"></div>
+
+  <div class="container hero-content">
+    <div class="badge"><span class="badge-dot"></span>Private beta · First 100 get Pro Max free for 12 months</div>
+
+    <h1>
+      <span class="line">Find the points your</span>
+      <span class="line">professor <span class="accent">missed.</span></span>
+    </h1>
+
+    <p class="hero-sub">Regrade reads your graded work against the rubric, flags deductions that don't hold up, and drafts a respectful appeal. You review and send everything yourself.</p>
+
+    <div class="hero-cta">
+      <div class="wl-wrap">
+        <form class="wl-form" data-source="hero" novalidate>
+          <input type="text" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="email" name="email" placeholder="you@school.edu" autocomplete="email" aria-label="Email address" required />
+          <button class="btn btn-primary" type="submit">Join waitlist</button>
+        </form>
+        <p class="wl-error" role="alert">That email doesn't look right. Mind checking it?</p>
+        <div class="wl-success" role="status">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#10B981"/><path d="M8 12.5l2.6 2.6L16 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>You're on the list.</strong>Spot reserved. Watch your inbox for your invite.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-trust">
+      <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Free during beta</span>
+      <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No spam, just your invite</span>
+      <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Built by a student, for students</span>
+    </div>
+
+    <!-- Product showcase -->
+    <div class="showcase" id="showcase">
+      <div class="showcase-glow" aria-hidden="true"></div>
+      <div class="app-window" id="appWindow">
+        <div class="window-bar">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <div class="window-url">app.regradeapp.tech/analysis</div>
+        </div>
+        <div class="app-layout">
+          <div class="app-main">
+            <div class="app-meta">ENGL 1A · Spring 2026</div>
+            <div class="app-heading">Essay 2 · Rhetorical Analysis <span class="app-score">82/100</span></div>
+            <div class="app-banner">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><path d="M12 7v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="16.5" r="1" fill="currentColor"/></svg>
+              3 rubric gaps found · up to +9 pts recoverable
+            </div>
+            <div class="gaps">
+              <div class="gap" data-gap="0">
+                <div class="gap-head"><span class="gap-label">C3 · Evidence &amp; sources</span><span class="gap-pts">+5 pts</span></div>
+                <p>Rubric awards 10 pts for <strong>3+ credible sources</strong>. You cited 4 and scored 5/10.</p>
+              </div>
+              <div class="gap" data-gap="1">
+                <div class="gap-head"><span class="gap-label">C5 · Structure</span><span class="gap-pts">+2 pts</span></div>
+                <p>The same intro issue was deducted twice, under <strong>Structure</strong> and again under <strong>Clarity</strong>.</p>
+              </div>
+              <div class="gap" data-gap="2">
+                <div class="gap-head"><span class="gap-label">C7 · Formatting</span><span class="gap-pts">+2 pts</span></div>
+                <p>Docked for MLA style. Syllabus §4 accepts <strong>MLA or APA</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <div class="app-panel">
+            <span class="panel-label">Case summary</span>
+            <div class="stat-card">
+              <div class="stat-val green">+9 pts</div>
+              <div class="stat-desc">Recoverable, backed by rubric lines</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-val">82 → 91</div>
+              <div class="stat-desc">Projected grade if appeal lands</div>
+            </div>
+            <button class="panel-cta" tabindex="-1" aria-hidden="true">Draft appeal email</button>
+            <p class="panel-note">Every claim cites the rubric, syllabus, or your submission. You send it yourself.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5"/></svg>PDF</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5"/></svg>Google Docs</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.5"/><path d="M8 8h8v8H8z" stroke="currentColor" stroke-width="1.5"/></svg>Microsoft Word</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5"/></svg>Screenshots</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/></svg>Canvas</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/></svg>Blackboard</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5"/></svg>Gradescope exports</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.5"/></svg>Any LMS export</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5"/></svg>PDF</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5"/></svg>Google Docs</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.5"/><path d="M8 8h8v8H8z" stroke="currentColor" stroke-width="1.5"/></svg>Microsoft Word</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><path d="M21 15l-5-5L5 21" stroke="currentColor" stroke-width="1.5"/></svg>Screenshots</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/></svg>Canvas</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.5"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5"/></svg>Blackboard</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.5"/></svg>Gradescope exports</span>
+    <span class="marquee-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="currentColor" stroke-width="1.5"/></svg>Any LMS export</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section class="section" id="why">
+  <div class="container">
+    <span class="section-label reveal">The gap</span>
+    <h2 class="reveal" data-delay="1">Every tool grades you.<br/>Nothing defends you.</h2>
+    <p class="section-lead reveal" data-delay="2">Writing assistants help before you submit. Grading platforms work for professors. Once the grade is posted, you're on your own.</p>
+
+    <div class="pos-grid">
+      <div class="pos-card reveal" data-delay="1">
+        <div class="pos-when">Before you submit</div>
+        <h3>Writing tools</h3>
+        <p>Grammar checkers, AI detectors, tutors. All help you write. None help once the grade is in.</p>
+      </div>
+      <div class="pos-card reveal" data-delay="2">
+        <div class="pos-when">While it's graded</div>
+        <h3>Grading platforms</h3>
+        <p>Gradescope, Turnitin, LMS rubrics. Built for professors. You're the subject, not the user.</p>
+      </div>
+      <div class="pos-card featured reveal" data-delay="3">
+        <div class="pos-when">After grades drop</div>
+        <h3>Regrade</h3>
+        <p>The only tool on your side after the grade comes back. It checks the grading, not your writing.</p>
+      </div>
+    </div>
+    <p class="pos-note reveal">Regrade requests are a normal part of academic policy at most schools. Most students never file one because building the case takes hours. Regrade makes it take minutes.</p>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section" id="how" style="background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+  <div class="container">
+    <span class="section-label reveal">How it works</span>
+    <h2 class="reveal" data-delay="1">Posted grade to polished appeal<br/>in three steps.</h2>
+    <p class="section-lead reveal" data-delay="2">No integrations, no school login. If you can screenshot it, Regrade can read it.</p>
+
+    <div class="steps-row reveal" data-delay="2">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h3>Upload</h3>
+        <p>Your graded work, the rubric or assignment instructions, and any feedback your professor left.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h3>Analyze</h3>
+        <p>Regrade checks every criterion against what you submitted and shows evidence line by line. No gaps, no case.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h3>Appeal</h3>
+        <p>Get a respectful draft that cites the rubric, not feelings. Edit it, then send from your own email.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BENTO -->
+<section class="section">
+  <div class="container">
+    <span class="section-label reveal">Built for trust</span>
+    <h2 class="reveal" data-delay="1">Professor-safe by design.</h2>
+    <p class="section-lead reveal" data-delay="2">An appeal only works if your professor takes it seriously. Regrade is built to keep it that way.</p>
+
+    <div class="bento">
+      <div class="bento-card span-6 reveal" data-delay="1">
+        <div class="bento-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 2L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M22 2l-7 20-4-9-9-4 20-7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></div>
+        <h3>You send everything</h3>
+        <p>Regrade never emails anyone. Every appeal leaves from your inbox, with your name on it, only if you choose to send it.</p>
+      </div>
+      <div class="bento-card span-6 reveal" data-delay="2">
+        <div class="bento-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3 8-8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Evidence only</h3>
+        <p>Every claim points to a rubric line, the syllabus, or your submitted work. Regrade doesn't argue with academic judgment.</p>
+      </div>
+      <div class="bento-card span-4 reveal" data-delay="1">
+        <div class="bento-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Tone-checked</h3>
+        <p>Drafts are respectful by default. If it reads entitled or accusatory, it doesn't ship.</p>
+      </div>
+      <div class="bento-card span-8 reveal" data-delay="2">
+        <div class="bento-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="2"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+        <h3>Yours, then gone</h3>
+        <p>Your files are used to analyze your grade and nothing else. Delete them anytime from your account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="stats-band reveal">
+      <div class="stat-block">
+        <div class="num" data-count="100">0</div>
+        <div class="lbl">Early access spots</div>
+      </div>
+      <div class="stat-block">
+        <div class="num" data-count="3">0</div>
+        <div class="lbl">Steps to appeal</div>
+      </div>
+      <div class="stat-block">
+        <div class="num" data-count="5" data-suffix=" min">0</div>
+        <div class="lbl">Average case build time</div>
+      </div>
+      <div class="stat-block">
+        <div class="num" data-count="0" data-prefix="$">$0</div>
+        <div class="lbl">Cost during beta</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="section" style="background: var(--surface); border-top: 1px solid var(--line);">
+  <div class="container">
+    <div class="quote-block reveal">
+      <blockquote>I built Regrade after losing points to a rubric line that was applied twice. The regrade request took me four hours to write. It worked, and it shouldn't have taken four hours. Most students just eat the grade. Regrade exists so they don't have to.</blockquote>
+      <div class="quote-sig">
+        <div class="quote-avatar">PS</div>
+        <div>
+          <div class="quote-name">Preston Susanto</div>
+          <div class="quote-role">Founder, Regrade · EECS student</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" id="waitlist">
+  <div class="container">
+    <div class="cta-band reveal">
+      <span class="section-label">Early access</span>
+      <h2>The first 100 students get Pro Max free for 12 months.</h2>
+      <p class="section-lead">Waitlist spots are numbered. Earlier means a better deal and an earlier invite.</p>
+      <div class="wl-wrap">
+        <form class="wl-form" data-source="offer" novalidate>
+          <input type="text" class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="email" name="email" placeholder="you@school.edu" autocomplete="email" aria-label="Email address" required />
+          <button class="btn btn-primary" type="submit">Claim my spot</button>
+        </form>
+        <p class="wl-error" role="alert">That email doesn't look right. Mind checking it?</p>
+        <div class="wl-success" role="status">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#10B981"/><path d="M8 12.5l2.6 2.6L16 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div><strong>You're on the list.</strong>Spot reserved. Watch your inbox for your invite.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="padding-top: 0;">
+  <div class="container">
+    <span class="section-label reveal">FAQ</span>
+    <h2 class="reveal" data-delay="1" style="margin-bottom: 40px;">Fair questions.</h2>
+    <div class="faq reveal" data-delay="2">
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is this allowed?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Yes. Regrade requests and grade appeals are standard academic processes, documented in most syllabi and college policies. Regrade helps you use a process you already have, with evidence instead of frustration.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Is it cheating?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>No. Regrade never writes or edits assignments. It only reviews work that has already been graded and checks the grading against the rubric.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">Will it spam my professor?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Never. Regrade doesn't send anything. You get a draft, you edit it, and you send it from your own email if you decide the case is worth making. If there's no real gap, Regrade tells you to let it go.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What does it cost?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Free during the private beta. The first 100 waitlist members get Pro Max free for 12 months at launch.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What do I need to use it?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>Your graded work, the rubric or assignment instructions, and any feedback you got. PDFs, docs, and screenshots all work. No school login or LMS integration required.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">What happens to my files?<span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>They're used to analyze your grade and draft your appeal, nothing else. You can delete them from your account at any time.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="foot-top">
+      <div>
+        <a class="brand" href="#top">
+          <svg width="24" height="18" viewBox="0 0 16 12" aria-hidden="true">
+            <rect x="4" y="2" width="7" height="1" fill="#1E4FFF"/>
+            <rect x="3" y="3" width="9" height="1" fill="#1E4FFF"/>
+            <rect x="2" y="4" width="11" height="1" fill="#1E4FFF"/>
+            <rect x="2" y="5" width="11" height="1" fill="#1E4FFF"/>
+            <rect x="3" y="6" width="9" height="1" fill="#7FA3FF"/>
+            <rect x="13" y="4" width="1" height="1" fill="#1E4FFF"/>
+            <rect x="14" y="3" width="1" height="1" fill="#1E4FFF"/>
+            <rect x="15" y="2" width="1" height="1" fill="#1E4FFF"/>
+            <rect x="14" y="5" width="1" height="1" fill="#1E4FFF"/>
+            <rect x="15" y="6" width="1" height="1" fill="#1E4FFF"/>
+            <rect x="6" y="1" width="1" height="1" fill="#7FA3FF"/>
+            <rect x="5" y="0" width="1" height="1" fill="#7FA3FF"/>
+            <rect x="7" y="0" width="1" height="1" fill="#7FA3FF"/>
+            <rect x="4" y="4" width="1" height="1" fill="#09090B"/>
+          </svg>
+          Regrade
+        </a>
+        <p class="foot-tag">Built by a student. Backed by evidence.</p>
+      </div>
+      <div class="foot-links">
+        <a href="https://instagram.com/regrade_app" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://x.com/regrade_app" target="_blank" rel="noopener">X</a>
+        <a href="https://reddit.com/u/regrade_app" target="_blank" rel="noopener">Reddit</a>
+        <a href="mailto:regradeteam@gmail.com">regradeteam@gmail.com</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span id="year">2026</span> Regrade · regradeapp.tech</span>
+      <span>Read the rubric.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── WAITLIST → SUPABASE ──
+  const SUPABASE_URL = "https://lshqzxgzehgmzgeilvmy.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_B6sDgM-4xMY2tub3oX7VHA_bHOLntBJ";
+
+  async function joinWaitlist(email, source) {
+    const res = await fetch(SUPABASE_URL + "/rest/v1/waitlist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_KEY,
+        "Authorization": "Bearer " + SUPABASE_KEY,
+        "Prefer": "return=minimal"
+      },
+      body: JSON.stringify({ email: email.toLowerCase(), source: source })
+    });
+    return { ok: res.ok || res.status === 409 };
+  }
+
+  document.querySelectorAll(".wl-form").forEach(function (form) {
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const input = form.querySelector("input[name=email]");
+      const honeypot = form.querySelector("input[name=website]");
+      const error = form.parentElement.querySelector(".wl-error");
+      const success = form.parentElement.querySelector(".wl-success");
+      const email = (input.value || "").trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+
+      if (honeypot && honeypot.value) {
+        form.style.display = "none";
+        success.style.display = "flex";
+        return;
+      }
+      if (!valid) {
+        error.style.display = "block";
+        input.focus();
+        return;
+      }
+      error.style.display = "none";
+
+      const btn = form.querySelector("button[type=submit]");
+      const original = btn.textContent;
+      btn.textContent = "Joining…";
+      btn.disabled = true;
+
+      try {
+        const result = await joinWaitlist(email, form.dataset.source);
+        if (result.ok) {
+          form.style.display = "none";
+          success.style.display = "flex";
+        } else {
+          throw new Error("Request failed");
+        }
+      } catch (err) {
+        btn.textContent = original;
+        btn.disabled = false;
+        error.textContent = "Something went wrong on our end. Try again in a second.";
+        error.style.display = "block";
+      }
+    });
+  });
+
+  // ── Nav scroll ──
+  const nav = document.getElementById("nav");
+  function onScroll() { nav.classList.toggle("scrolled", window.scrollY > 12); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // ── Scroll reveal ──
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const revealEls = document.querySelectorAll(".reveal");
+  if (reduced || !("IntersectionObserver" in window)) {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  } else {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+    revealEls.forEach(function (el) { io.observe(el); });
+  }
+
+  // ── Product gap cards stagger ──
+  function animateGaps() {
+    if (reduced) {
+      document.querySelectorAll(".gap").forEach(function (g) { g.classList.add("visible"); });
+      return;
+    }
+    document.querySelectorAll(".gap").forEach(function (gap, i) {
+      setTimeout(function () { gap.classList.add("visible"); }, 1200 + i * 180);
+    });
+  }
+  animateGaps();
+
+  // ── Subtle 3D tilt on product window ──
+  const appWindow = document.getElementById("appWindow");
+  if (appWindow && !reduced && window.matchMedia("(pointer: fine)").matches) {
+    appWindow.addEventListener("mousemove", function (e) {
+      const rect = appWindow.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      appWindow.style.transform = "perspective(1200px) rotateY(" + (x * 3) + "deg) rotateX(" + (-y * 3) + "deg)";
+    });
+    appWindow.addEventListener("mouseleave", function () {
+      appWindow.style.transform = "";
+    });
+  }
+
+  // ── Animated stat counters ──
+  function animateCounter(el, target, suffix, prefix) {
+    suffix = suffix || "";
+    prefix = prefix || "";
+    var duration = 1400;
+    var start = performance.now();
+    function tick(now) {
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      var val = Math.round(eased * target);
+      el.textContent = prefix + val + suffix;
+      if (t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  var statsObserved = false;
+  var statsIO = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting && !statsObserved) {
+        statsObserved = true;
+        document.querySelectorAll(".stat-block .num").forEach(function (el) {
+          var count = el.getAttribute("data-count");
+          var suffix = el.getAttribute("data-suffix") || "";
+          var prefix = el.getAttribute("data-prefix") || "";
+          if (count !== null) {
+            animateCounter(el, parseInt(count, 10), suffix, prefix);
+          } else if (suffix) {
+            animateCounter(el, 5, suffix, "");
+          }
+        });
+        statsIO.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  var statsBand = document.querySelector(".stats-band");
+  if (statsBand) statsIO.observe(statsBand);
+
+  // ── FAQ accordion ──
+  document.querySelectorAll(".faq-item").forEach(function (item) {
+    var btn = item.querySelector(".faq-q");
+    btn.addEventListener("click", function () {
+      var isOpen = item.classList.contains("open");
+      document.querySelectorAll(".faq-item.open").forEach(function (other) {
+        other.classList.remove("open");
+        other.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  // ── Year ──
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
