@@ -44,7 +44,7 @@ export function Testimonial() {
                 “
               </span>
               Regrade helps me protect my GPA and AP scores when something does not line up with the
-              rubric. It has become part of how I prepare for competitive admissions.
+              the grading. It has become part of how I prepare for competitive admissions.
             </blockquote>
 
             <div className="mt-8 flex items-center gap-3.5 border-t border-black/[0.06] pt-6">

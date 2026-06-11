@@ -9,8 +9,8 @@ const pains = [
   },
   {
     step: "02",
-    title: "The rubric is buried",
-    body: "Deductions reference criteria spread across the syllabus, assignment sheet, and comment box.",
+    title: "The grading is buried",
+    body: "Deductions reference rules spread across the syllabus, assignment sheet, and comment box.",
   },
   {
     step: "03",
@@ -34,7 +34,7 @@ export function ProblemSection() {
                 <span className="text-white/55">The grading might not have.</span>
               </>
             }
-            description="Rubrics get applied inconsistently. Points get double-deducted. Syllabus policies get ignored. You deserve to know — with evidence."
+            description="Grading gets applied inconsistently. Points get double-deducted. Syllabus policies get ignored. You deserve to know — with evidence."
           />
         </SectionReveal>
 

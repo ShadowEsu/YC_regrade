@@ -71,7 +71,7 @@ export function Hero({ ready }: Props) {
             }}
             className="font-display text-[clamp(3.1rem,7.2vw,6rem)] font-medium leading-[1.08] tracking-[-0.03em] text-ink"
           >
-            <FadeWords text="The rubric was clear." />
+            <FadeWords text="The grading was clear." />
             <br />
             <em className="italic text-blue">
               <FadeWords text="Your grade wasn't." />
@@ -83,7 +83,7 @@ export function Hero({ ready }: Props) {
           variants={block}
           className="mx-auto mt-10 max-w-[680px] font-display text-[clamp(20px,2.5vw,24px)] font-medium leading-[1.55] tracking-[-0.02em] text-muted"
         >
-          Upload your graded work. Regrade checks every point against the rubric and drafts a
+          Upload your graded work. Regrade checks every point in the grading and drafts a
           respectful appeal you send yourself.
         </motion.p>
 

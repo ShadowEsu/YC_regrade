@@ -12,7 +12,7 @@ const cards = [
   {
     when: "While it's graded",
     title: "Grading platforms",
-    body: "Gradescope, Turnitin, LMS rubrics. Built for instructors. You are the subject, not the user.",
+    body: "Gradescope, Turnitin, LMS grading tools. Built for instructors. You are the subject, not the user.",
     featured: false,
   },
   {

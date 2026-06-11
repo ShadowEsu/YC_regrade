@@ -18,7 +18,7 @@ const gaps: Gap[] = [
   {
     id: "c3",
     criterion: "C3 · Evidence & sources",
-    issue: "Rubric mismatch",
+    issue: "Grading mismatch",
     pts: "+5 pts",
     rubric: "10 pts for 3+ credible, peer-reviewed sources.",
     submission: "Four peer-reviewed sources cited in paragraphs 2–4.",
@@ -29,7 +29,7 @@ const gaps: Gap[] = [
     criterion: "C5 · Structure",
     issue: "Duplicate deduction",
     pts: "+2 pts",
-    rubric: "Structure and Clarity are separate criteria.",
+    rubric: "Structure and Clarity are separate categories.",
     submission: "Same intro concern penalized under both categories.",
     score: "Double-deducted for a single issue.",
   },
@@ -107,7 +107,7 @@ function GapDetail({ gap }: { gap: Gap }) {
         <p className="text-[12px] font-semibold uppercase tracking-[0.08em] text-blue">Detail</p>
         <div className="mt-4 space-y-3">
           {[
-            { label: "Rubric", value: gap.rubric },
+            { label: "Graded on", value: gap.rubric },
             { label: "Your work", value: gap.submission },
             { label: "What happened", value: gap.score },
           ].map((row) => (
@@ -130,7 +130,7 @@ function EvidencePanel({ activeGap }: { activeGap: string }) {
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       {[
-        { label: "Rubric line", value: gap.rubric, accent: "text-blue" },
+        { label: "Graded on", value: gap.rubric, accent: "text-blue" },
         { label: "Submission", value: gap.submission, accent: "text-ink" },
         { label: "Grading outcome", value: gap.score, accent: "text-rose-500" },
       ].map((col, i) => (
@@ -169,7 +169,7 @@ function AppealPanel({ activeGap }: { activeGap: string }) {
         <p>Dear Professor Chen,</p>
         <p>
           I am writing to respectfully request a review of my Essay 2 grade. Regarding{" "}
-          <span className="font-semibold text-ink">{gap.criterion}</span>, the rubric states that{" "}
+          <span className="font-semibold text-ink">{gap.criterion}</span>, you were graded on{" "}
           <span className="font-semibold text-blue">{gap.rubric.toLowerCase()}</span>
         </p>
         <p>
@@ -205,7 +205,7 @@ export function FeatureDeepDive() {
                 <span className="text-muted">after the grade posts.</span>
               </>
             }
-            description="Click through a real case — rubric lines, evidence, and the appeal draft connected in one workflow."
+            description="Click through a real case — the grading, evidence, and the appeal draft connected in one workflow."
           />
         </SectionReveal>
 
@@ -250,7 +250,7 @@ export function FeatureDeepDive() {
                   {tab === "evidence" && (
                     <>
                       <p className="mb-5 max-w-[520px] text-[15px] leading-[1.65] text-muted">
-                        Evidence only — each claim links rubric, submission, and outcome side by side.
+                        Evidence only — each claim links the grading, submission, and outcome side by side.
                       </p>
                       <div className="mb-4 flex flex-wrap gap-2">
                         {gaps.map((g) => (
@@ -275,7 +275,7 @@ export function FeatureDeepDive() {
                   {tab === "appeal" && (
                     <>
                       <p className="mb-5 max-w-[520px] text-[15px] leading-[1.65] text-muted">
-                        A respectful draft citing the rubric — edited by you, sent from your inbox.
+                        A respectful draft citing the grading — edited by you, sent from your inbox.
                       </p>
                       <div className="mb-4 flex flex-wrap gap-2">
                         {gaps.map((g) => (

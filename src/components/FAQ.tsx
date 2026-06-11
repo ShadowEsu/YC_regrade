@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "Is it cheating?",
-    a: "No. Regrade never writes or edits assignments. It only reviews work that has already been graded and checks the grading against the rubric.",
+    a: "No. Regrade never writes or edits assignments. It only reviews work that has already been graded and audits the grading line by line.",
   },
   {
     q: "Will it email my professor?",
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     q: "What do I need to use it?",
-    a: "Your graded work, the rubric or assignment instructions, and any feedback you received. PDFs, documents, and screenshots all work. No school login required.",
+    a: "Your graded work, the assignment sheet, and any feedback you received. PDFs, documents, and screenshots all work. No school login required.",
   },
   {
     q: "What happens to my files?",

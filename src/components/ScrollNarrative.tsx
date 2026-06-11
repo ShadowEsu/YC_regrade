@@ -7,8 +7,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const beats = [
   { line: "The grade drops.", sub: "You see the number. Something does not add up." },
-  { line: "The rubric tells a different story.", sub: "Deductions that do not match what you submitted." },
-  { line: "Regrade finds the gap.", sub: "Every point traced back to a rubric line." },
+  { line: "The grading tells a different story.", sub: "Deductions that do not match what you submitted." },
+  { line: "Regrade finds the gap.", sub: "Every point traced back to the grading." },
   { line: "You recover the points.", sub: "A respectful appeal — drafted in minutes, sent by you." },
 ];
 

@@ -8,8 +8,8 @@ const gaps = [
     id: "evidence",
     label: "Evidence & sources",
     pts: "+5 pts",
-    text: "Rubric awards full credit for 3+ credible sources. You cited four and scored 5/10.",
-    detail: "Rubric C3 · 10 pts for 3+ credible sources",
+    text: "Grading awards full credit for 3+ credible sources. You cited four and scored 5/10.",
+    detail: "C3 · 10 pts for 3+ credible sources",
   },
   {
     id: "structure",
@@ -104,7 +104,7 @@ export function ProductShowcase() {
               animate={inView ? "show" : "hidden"}
               className="mb-5 rounded-lg border border-blue/15 bg-blue/[0.05] px-4 py-3 text-[15px] font-semibold text-blue-deep"
             >
-              3 rubric gaps · up to{" "}
+              3 grading gaps · up to{" "}
               <span className="text-green">+9 pts recoverable</span>
             </motion.div>
             <div className="flex flex-col gap-2.5">

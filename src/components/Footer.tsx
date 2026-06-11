@@ -55,7 +55,7 @@ export function Footer() {
               />
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
-              Re-check your grade against the rubric — we email only when your invite is ready.
+              Re-check your grade against the grading — we email only when your invite is ready.
             </p>
           </div>
 

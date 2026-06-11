@@ -10,7 +10,7 @@ const steps = [
     id: "upload",
     icon: Upload,
     title: "Upload your materials",
-    body: "Add your graded work, the rubric or assignment sheet, and any instructor feedback. PDFs, docs, and screenshots all work.",
+    body: "Add your graded work, the assignment sheet, and any instructor feedback. PDFs, docs, and screenshots all work.",
     preview: {
       label: "Incoming files",
       items: ["Essay_2_graded.pdf", "Rubric_ENGL1A.pdf", "Professor_comments.png"],
@@ -20,10 +20,10 @@ const steps = [
     id: "analyze",
     icon: Search,
     title: "Review the analysis",
-    body: "Regrade maps every deduction to a rubric line, flags mismatches, and ranks recoverable points by strength of evidence.",
+    body: "Regrade maps every deduction in the grading, flags mismatches, and ranks recoverable points by strength of evidence.",
     preview: {
       label: "Analysis output",
-      items: ["3 rubric gaps detected", "+9 pts recoverable", "Evidence linked per line"],
+      items: ["3 grading gaps detected", "+9 pts recoverable", "Evidence linked per line"],
     },
   },
   {

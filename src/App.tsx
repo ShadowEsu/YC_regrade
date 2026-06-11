@@ -14,7 +14,6 @@ import { ProblemSection } from "./components/ProblemSection";
 import { WhySection } from "./components/WhySection";
 import { FeatureDeepDive } from "./components/FeatureDeepDive";
 import { HowSection } from "./components/HowSection";
-import { TrustBento } from "./components/TrustBento";
 import { StatsBand } from "./components/StatsBand";
 import { FounderQuote } from "./components/FounderQuote";
 import { CTASection } from "./components/CTASection";
@@ -51,7 +50,6 @@ export default function App() {
           <WhySection />
           <FeatureDeepDive />
           <HowSection />
-          <TrustBento />
           <StatsBand />
           <FounderQuote />
           <CTASection />
