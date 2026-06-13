@@ -9,8 +9,8 @@ const steps = [
   {
     id: "upload",
     icon: Upload,
-    title: "Upload your materials",
-    body: "Add your graded work, the assignment sheet, and any instructor feedback. PDFs, docs, and screenshots all work.",
+    title: "Upload your graded work",
+    body: "Add your assignment, rubric, and any feedback. PDFs, docs, and screenshots all work.",
     preview: {
       label: "Incoming files",
       items: ["Essay_2_graded.pdf", "Rubric_ENGL1A.pdf", "Professor_comments.png"],
@@ -19,21 +19,21 @@ const steps = [
   {
     id: "analyze",
     icon: Search,
-    title: "Review the analysis",
-    body: "Regrade maps every deduction in the grading, flags mismatches, and ranks recoverable points by strength of evidence.",
+    title: "See your recoverable points",
+    body: "Regrade scans every rubric line, flags points you may deserve, and shows what they could do to your grade.",
     preview: {
       label: "Analysis output",
-      items: ["3 grading gaps detected", "+9 pts recoverable", "Evidence linked per line"],
+      items: ["3 recoverable gaps found", "+9 pts you may get back", "GPA impact preview"],
     },
   },
   {
-    id: "appeal",
+    id: "send",
     icon: Send,
-    title: "Send your appeal",
-    body: "Edit the draft email, send from your own inbox, and keep a record of every citation you used.",
+    title: "Decide your next step",
+    body: "Review a clear summary and optional professor-safe email draft. Nothing sends unless you choose to.",
     preview: {
-      label: "Ready to send",
-      items: ["Draft appeal generated", "Tone checked", "You control delivery"],
+      label: "Ready when you are",
+      items: ["Plain English case summary", "Respectful draft ready", "You control delivery"],
     },
   },
 ];
@@ -51,8 +51,8 @@ export function HowSection() {
         <SectionReveal>
           <SectionHeader
             eyebrow="How it works"
-            title="From posted grade to polished appeal."
-            description="No integrations and no school login. Upload, review, send — in three deliberate steps."
+            title="Three steps to unlock points you earned."
+            description="No school login. No integrations. Upload your work, see what you can recover, and decide what to do next."
           />
         </SectionReveal>
 

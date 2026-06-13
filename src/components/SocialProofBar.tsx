@@ -61,7 +61,7 @@ export function SocialProofBar() {
       <div className="section-shell">
         <SectionReveal>
           <p className="mb-6 text-center text-[13px] font-medium text-muted">
-            Early access is limited — first 100 students receive Pro Max free for 12 months
+            Early access is limited. First 100 students get Pro Max free for 1 year.
           </p>
           <div className="grid gap-3 sm:grid-cols-3">
             <WaitlistStats />

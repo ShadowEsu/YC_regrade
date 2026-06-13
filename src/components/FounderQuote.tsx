@@ -16,11 +16,11 @@ export function FounderQuote() {
               From the founder
             </p>
             <blockquote className="relative font-display text-[clamp(1.35rem,2.6vw,1.85rem)] font-medium leading-[1.5] tracking-[-0.02em] text-ink">
-              &ldquo;I built Regrade after losing points to the same grading rule applied twice.
-              The regrade request took{" "}
-              <span className="font-semibold text-blue">four hours</span> to write. It worked — and
-              it should not take four hours. Most students accept the grade.{" "}
-              <span className="italic text-ink/80">Regrade exists so they do not have to.</span>
+              &ldquo;I built Regrade after losing points on one rubric line that was counted twice.
+              Getting those points back took{" "}
+              <span className="font-semibold text-blue">four hours</span> of work. It moved my grade.
+              Most students never check.{" "}
+              <span className="italic text-ink/80">Regrade finds the points in minutes.</span>
               &rdquo;
             </blockquote>
             <div className="mt-9 flex items-center gap-4">

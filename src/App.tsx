@@ -11,8 +11,11 @@ import { LMSMarquee } from "./components/LMSMarquee";
 import { Testimonial } from "./components/Testimonial";
 import { SocialProofBar } from "./components/SocialProofBar";
 import { ProblemSection } from "./components/ProblemSection";
-import { WhySection } from "./components/WhySection";
+import { FeaturesSection } from "./components/FeaturesSection";
+import { GradingSystemsSection } from "./components/GradingSystemsSection";
 import { HowSection } from "./components/HowSection";
+import { GPAImpactSection } from "./components/GPAImpactSection";
+import { TrustSection } from "./components/TrustSection";
 import { StatsBand } from "./components/StatsBand";
 import { FounderQuote } from "./components/FounderQuote";
 import { CTASection } from "./components/CTASection";
@@ -46,8 +49,11 @@ export default function App() {
           <LMSMarquee />
           <Testimonial />
           <ProblemSection />
-          <WhySection />
+          <FeaturesSection />
+          <GradingSystemsSection />
           <HowSection />
+          <GPAImpactSection />
+          <TrustSection />
           <StatsBand />
           <FounderQuote />
           <CTASection />

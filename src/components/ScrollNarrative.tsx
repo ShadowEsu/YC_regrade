@@ -6,11 +6,15 @@ import { useReducedMotion } from "../hooks/useReducedMotion";
 gsap.registerPlugin(ScrollTrigger);
 
 const beats = [
-  { line: "The grade drops.", sub: "You see the number. Something does not add up." },
-  { line: "The grading tells a different story.", sub: "Deductions that do not match what you submitted." },
-  { line: "Regrade finds the gap.", sub: "Every point traced back to the grading." },
-  { line: "You recover the points.", sub: "A respectful appeal — drafted in minutes, sent by you." },
+  { line: "The grade drops.", sub: "You see the number. Points might still be yours." },
+  { line: "Free points hide in the rubric.", sub: "Credit you earned but did not get." },
+  { line: "Regrade finds them.", sub: "Every line scanned. Every recoverable point flagged." },
+  { line: "Your GPA can move.", sub: "Get back what you earned. You stay in control." },
 ];
+
+/** Extra scroll segment so the final beat holds before unpinning */
+const HOLD_SEGMENTS = 1;
+const TOTAL_SEGMENTS = beats.length + HOLD_SEGMENTS;
 
 export function ScrollNarrative() {
   const reduced = useReducedMotion();
@@ -18,82 +22,78 @@ export function ScrollNarrative() {
   const pinRef = useRef<HTMLDivElement>(null);
   const wordsRef = useRef<(HTMLDivElement | null)[]>([]);
   const subsRef = useRef<(HTMLParagraphElement | null)[]>([]);
-  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (reduced || !sectionRef.current || !pinRef.current) {
-      wordsRef.current.forEach((el) => el && gsap.set(el, { opacity: 1, scale: 1, filter: "blur(0px)" }));
-      subsRef.current.forEach((el) => el && gsap.set(el, { opacity: 1 }));
-      return;
-    }
+    if (reduced || !sectionRef.current || !pinRef.current) return;
+
+    const words = wordsRef.current.filter(Boolean) as HTMLDivElement[];
+    const subs = subsRef.current.filter(Boolean) as HTMLParagraphElement[];
+    const n = beats.length;
 
     const ctx = gsap.context(() => {
+      gsap.set(words, { opacity: 0, y: 32 });
+      gsap.set(subs, { opacity: 0, y: 16 });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=260%",
+          end: () => `+=${window.innerHeight * TOTAL_SEGMENTS}`,
           pin: pinRef.current,
-          scrub: 0.8,
+          pinSpacing: true,
           anticipatePin: 1,
+          scrub: 0.85,
+          invalidateOnRefresh: true,
         },
       });
 
+      const segment = 1 / TOTAL_SEGMENTS;
+
       beats.forEach((_, i) => {
-        const word = wordsRef.current[i];
-        const sub = subsRef.current[i];
-        if (!word || !sub) return;
+        const enter = i * segment;
+        const fadeIn = segment * 0.18;
+        const fadeOut = segment * 0.16;
+        const isLast = i === n - 1;
 
-        const enter = i * 0.22;
-        const hold = enter + 0.12;
-
-        tl.fromTo(
-          word,
-          { opacity: 0, scale: 0.94, filter: "blur(4px)" },
-          { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.18, ease: "power3.out" },
+        tl.to(
+          words[i],
+          { opacity: 1, y: 0, duration: fadeIn, ease: "power3.out" },
           enter
         );
-        tl.fromTo(
-          sub,
-          { opacity: 0, y: 12 },
-          { opacity: 1, y: 0, duration: 0.12, ease: "power2.out" },
-          enter + 0.04
+        tl.to(
+          subs[i],
+          { opacity: 1, y: 0, duration: fadeIn * 0.85, ease: "power3.out" },
+          enter + segment * 0.04
         );
 
-        if (i < beats.length - 1) {
-          tl.to(word, { opacity: 0, scale: 1.02, filter: "blur(4px)", duration: 0.14, ease: "power2.in" }, hold);
-          tl.to(sub, { opacity: 0, y: -8, duration: 0.1 }, hold);
+        if (!isLast) {
+          tl.to(
+            [words[i], subs[i]],
+            { opacity: 0, y: -24, duration: fadeOut, ease: "power2.in" },
+            enter + segment - fadeOut
+          );
         }
       });
-
-      if (progressRef.current) {
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=260%",
-          scrub: true,
-          onUpdate: (self) => {
-            if (progressRef.current) {
-              progressRef.current.style.transform = `scaleX(${self.progress})`;
-            }
-          },
-        });
-      }
     }, sectionRef);
 
-    return () => ctx.revert();
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", refresh);
+    refresh();
+
+    return () => {
+      window.removeEventListener("resize", refresh);
+      ctx.revert();
+    };
   }, [reduced]);
 
   if (reduced) {
     return (
-      <section className="section-cream border-y border-black/[0.05] py-20">
-        <div className="section-shell text-center">
+      <section className="section-dark py-24">
+        <div className="section-shell space-y-10 text-center">
           {beats.map((b) => (
-            <div key={b.line} className="mb-10 last:mb-0">
-              <h2 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-ink">
-                {b.line}
-              </h2>
-              <p className="mt-3 text-[16px] text-muted">{b.sub}</p>
+            <div key={b.line}>
+              <p className="font-display text-3xl font-semibold text-white">{b.line}</p>
+              <p className="mt-2 text-white/55">{b.sub}</p>
             </div>
           ))}
         </div>
@@ -102,52 +102,39 @@ export function ScrollNarrative() {
   }
 
   return (
-    <section ref={sectionRef} id="narrative" className="relative bg-cream">
-      <div ref={pinRef} className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6">
-        <div
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_45%,rgba(30,79,255,0.05)_0%,transparent_70%)]"
-          aria-hidden
-        />
-
-        <div className="relative z-10 h-[min(38vh,280px)] w-full max-w-[800px] text-center">
+    <section
+      ref={sectionRef}
+      className="relative"
+      style={{ height: `${TOTAL_SEGMENTS * 100}vh` }}
+    >
+      <div
+        ref={pinRef}
+        className="section-dark flex h-screen items-center justify-center overflow-hidden px-6"
+      >
+        <div className="relative mx-auto h-[min(44vh,400px)] w-full max-w-[800px]">
           {beats.map((b, i) => (
             <div
               key={b.line}
-              className="absolute inset-0 flex flex-col items-center justify-center"
-              aria-hidden={i > 0}
+              className="absolute inset-0 flex flex-col items-center justify-center text-center"
             >
-              <h2
+              <div
                 ref={(el) => {
                   wordsRef.current[i] = el;
                 }}
-                className={`narrative-word font-display text-[clamp(2rem,5.5vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink ${
-                  i === beats.length - 1 ? "text-gradient" : ""
-                }`}
-                style={{ opacity: i === 0 ? undefined : 0 }}
+                className="font-display text-[clamp(2rem,5vw,3.5rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-white"
               >
                 {b.line}
-              </h2>
+              </div>
               <p
                 ref={(el) => {
                   subsRef.current[i] = el;
                 }}
-                className="narrative-word mt-4 max-w-[440px] text-[16px] leading-[1.6] text-muted"
-                style={{ opacity: i === 0 ? undefined : 0 }}
+                className="mt-5 max-w-[480px] text-[17px] leading-[1.6] text-white/50"
               >
                 {b.sub}
               </p>
             </div>
           ))}
-        </div>
-
-        <div className="absolute bottom-10 left-1/2 w-32 -translate-x-1/2">
-          <div className="h-px overflow-hidden rounded-full bg-black/[0.08]">
-            <div
-              ref={progressRef}
-              className="h-full origin-left bg-blue"
-              style={{ transform: "scaleX(0)" }}
-            />
-          </div>
         </div>
       </div>
     </section>

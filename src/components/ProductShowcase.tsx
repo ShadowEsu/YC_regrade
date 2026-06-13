@@ -8,14 +8,14 @@ const gaps = [
     id: "evidence",
     label: "Evidence & sources",
     pts: "+5 pts",
-    text: "Grading awards full credit for 3+ credible sources. You cited four and scored 5/10.",
+    text: "Full credit for 3+ sources. You cited four and only got 5/10. Points you may recover.",
     detail: "C3 · 10 pts for 3+ credible sources",
   },
   {
     id: "structure",
     label: "Structure",
     pts: "+2 pts",
-    text: "The same intro issue was deducted twice — under Structure and again under Clarity.",
+    text: "The same intro issue was deducted twice, under Structure and again under Clarity.",
     detail: "C5 + C6 · Duplicate penalty on one issue",
   },
   {
@@ -104,8 +104,8 @@ export function ProductShowcase() {
               animate={inView ? "show" : "hidden"}
               className="mb-5 rounded-lg border border-blue/15 bg-blue/[0.05] px-4 py-3 text-[15px] font-semibold text-blue-deep"
             >
-              3 grading gaps · up to{" "}
-              <span className="text-green">+9 pts recoverable</span>
+              3 recoverable gaps · up to{" "}
+              <span className="text-green">+9 pts you may get back</span>
             </motion.div>
             <div className="flex flex-col gap-2.5">
               {gaps.map((g, i) => (

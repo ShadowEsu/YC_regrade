@@ -34,10 +34,10 @@ export function CTASection() {
               The first{" "}
               <span className="text-white">{REGRADE_CONFIG.waitlistDisplayMax}</span> students get{" "}
               <span className="text-[#9db5ff]">Pro Max free</span> for{" "}
-              <span className="text-blue">12 months</span>.
+              <span className="text-blue">1 year</span>.
             </h2>
             <p className="mx-auto mt-6 max-w-[560px] font-ui text-[clamp(17px,2.2vw,20px)] leading-[1.65] text-white/65">
-              Enter your name and school email. We notify you when your invite is ready — nothing
+              Enter your name and school email. We notify you when your invite is ready. Nothing
               else, ever.
             </p>
 

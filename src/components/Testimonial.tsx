@@ -43,8 +43,8 @@ export function Testimonial() {
               <span className="absolute -left-1 -top-4 font-display text-5xl leading-none text-blue/15">
                 “
               </span>
-              Regrade helps me protect my GPA and AP scores when something does not line up with the
-              the grading. It has become part of how I prepare for competitive admissions.
+              Regrade helped me recover points on a final that moved my semester GPA. One grade
+              change. Real difference on my transcript.
             </blockquote>
 
             <div className="mt-8 flex items-center gap-3.5 border-t border-black/[0.06] pt-6">

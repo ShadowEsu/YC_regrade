@@ -39,8 +39,8 @@ export function Nav({ ready }: { ready: boolean }) {
           <a href="#how" className="hidden sm:inline transition-colors hover:text-ink">
             How it works
           </a>
-          <a href="#why" className="hidden sm:inline transition-colors hover:text-ink">
-            Why Regrade
+          <a href="#features" className="hidden sm:inline transition-colors hover:text-ink">
+            Features
           </a>
           <a href="#faq" className="hidden sm:inline transition-colors hover:text-ink">
             FAQ

@@ -3,7 +3,7 @@ const columns = [
     title: "Product",
     links: [
       { label: "How it works", href: "/#how" },
-      { label: "Features", href: "/#why" },
+      { label: "Features", href: "/#features" },
       { label: "Join waitlist", href: "/#waitlist" },
     ],
   },
@@ -55,7 +55,7 @@ export function Footer() {
               />
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
-              Re-check your grade against the grading — we email only when your invite is ready.
+              Helping students everywhere get back the points they earned.
             </p>
           </div>
 

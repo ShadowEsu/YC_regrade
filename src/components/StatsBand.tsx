@@ -4,8 +4,8 @@ import { REGRADE_CONFIG } from "../lib/site-config";
 import { SectionReveal } from "./SectionReveal";
 
 const staticStats = [
-  { value: 3, suffix: "", label: "Steps to a complete appeal", accent: "ink" as const },
-  { value: 5, suffix: " min", label: "Average case preparation", accent: "ink" as const },
+  { value: 16, suffix: "", label: "Regions supported", accent: "ink" as const },
+  { value: 3, suffix: "", label: "Steps to recover points", accent: "ink" as const },
   { value: 0, prefix: "$", suffix: "", label: "Cost during beta", accent: "green" as const },
 ];
 
