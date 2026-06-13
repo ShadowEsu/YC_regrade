@@ -26,9 +26,25 @@
 }
 
 @layer base {
+  :root {
+    --site-header: 6.25rem;
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --site-header: 6.5rem;
+    }
+  }
   html {
     scroll-behavior: auto;
     font-size: 17px;
+    min-height: 100%;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
   }
 
   html.lenis,

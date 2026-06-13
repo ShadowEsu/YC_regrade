@@ -29,7 +29,7 @@ export function Hero({ ready }: Props) {
   return (
     <header
       id="top"
-      className="relative flex min-h-[calc(100vh-108px)] flex-col items-center justify-center bg-gradient-to-b from-blue-soft via-[#f5f3ef] to-[#f8f6f3] px-6 pt-[108px] text-center sm:min-h-[calc(100vh-112px)] sm:pt-[116px]"
+      className="relative box-border flex min-h-[100dvh] flex-col items-center justify-center bg-gradient-to-b from-blue-soft via-[#f5f3ef] to-[#f8f6f3] px-6 pb-8 pt-[var(--site-header)] text-center"
     >
       <motion.div
         initial="hidden"
