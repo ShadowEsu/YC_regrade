@@ -183,16 +183,10 @@ function Track({ reverse = false }: { reverse?: boolean }) {
 
 export function LMSMarquee() {
   return (
-    <section className="overflow-hidden border-y border-black/[0.05] bg-[#f8f6f3] py-[clamp(48px,6vw,72px)]">
-      <div className="section-shell mb-8 text-center">
-        <p className="mb-3 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-blue">
-          Compatible with your LMS
-        </p>
-        <h2 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-semibold tracking-[-0.02em] text-ink">
-          Works where you already submit work
-        </h2>
-        <p className="mx-auto mt-3 max-w-[480px] font-ui text-[14px] text-muted">
-          Export a PDF, screenshot your rubric, or upload from any platform below.
+    <section className="overflow-hidden border-y border-black/[0.05] bg-[#f8f6f3] py-[clamp(40px,5vw,56px)]">
+      <div className="section-shell mb-6 text-center">
+        <p className="font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-blue">
+          Works with your LMS
         </p>
       </div>
 

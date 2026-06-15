@@ -8,7 +8,7 @@ export function ScrollHint() {
 
   return (
     <motion.a
-      href="#narrative"
+      href="#how"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 1.2, duration: 0.8 }}
