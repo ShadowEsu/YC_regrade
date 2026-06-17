@@ -1,0 +1,36 @@
+Regrade
+========
+
+Copyright (c) 2026 Preston Jay Susanto. All Rights Reserved.
+
+Owner
+-----
+Preston Jay Susanto
+https://regradeapp.tech
+
+Trademarks
+----------
+"Regrade", the Regrade logo, and related brand assets are trademarks of
+Preston Jay Susanto. Unauthorized use is prohibited.
+
+Product
+-------
+Regrade is a student grade-recovery application and related services
+operated by Preston Jay Susanto.
+
+Repository
+----------
+This repository contains proprietary source code. It is not open source.
+See LICENSE for terms.
+
+Contributions
+-------------
+Any contribution to this repository is subject to the terms in
+CONTRIBUTING.md. Contributors must assign all intellectual property
+rights in their contributions to Preston Jay Susanto.
+
+Third-Party Software
+--------------------
+This project uses open-source dependencies licensed under their own terms
+(e.g. MIT). Those licenses apply only to the respective third-party
+packages in node_modules, not to Regrade's proprietary code.

@@ -4,6 +4,7 @@ const columns = [
     links: [
       { label: "How it works", href: "/#how" },
       { label: "Features", href: "/#features" },
+      { label: "Grade appeal resources", href: "/#resources" },
       { label: "Join waitlist", href: "/#waitlist" },
     ],
   },
@@ -11,6 +12,7 @@ const columns = [
     title: "Support",
     links: [
       { label: "FAQ", href: "/#faq" },
+      { label: "Founder proof", href: "/#proof" },
       { label: "regradeteam@gmail.com", href: "mailto:regradeteam@gmail.com" },
     ],
   },
@@ -26,6 +28,7 @@ const columns = [
     links: [
       { label: "Instagram", href: "https://instagram.com/regrade_app", external: true },
       { label: "X", href: "https://x.com/regrade_app", external: true },
+      { label: "UCSD grade appeals", href: "https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/Regulations/502", external: true },
     ],
   },
 ];
@@ -55,7 +58,11 @@ export function Footer() {
               />
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
-              Helping students everywhere get back the points they earned.
+              Helping students everywhere get back the points they earned.{" "}
+              <a href="/#resources" className="text-white/70 underline decoration-white/25 underline-offset-2 transition-colors hover:text-white hover:decoration-white/50">
+                See grade appeal resources
+              </a>
+              .
             </p>
           </div>
 

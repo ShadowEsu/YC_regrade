@@ -2,6 +2,9 @@
   "name": "regrade",
   "private": true,
   "version": "1.0.0",
+  "description": "Regrade landing page — proprietary software owned by Preston Jay Susanto",
+  "author": "Preston Jay Susanto (https://regradeapp.tech)",
+  "license": "UNLICENSED",
   "type": "module",
   "scripts": {
     "dev": "vite",

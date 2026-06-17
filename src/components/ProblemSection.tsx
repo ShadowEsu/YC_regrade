@@ -57,7 +57,16 @@ export function ProblemSection() {
             </h2>
 
             <p className="mt-5 max-w-[560px] text-[clamp(17px,2vw,19px)] leading-[1.65] tracking-[-0.01em] text-white/55">
-              Students leave free points on the table every semester. Not because they don't care. Because checking every rubric line takes hours nobody has.
+              Students leave free points on the table every semester. Not because they don&apos;t care.
+              Because checking every{" "}
+              <a href="#resources" className="text-white/70 underline decoration-white/20 underline-offset-2 transition-colors hover:text-white/90">
+                rubric line against university appeal standards
+              </a>{" "}
+              takes hours nobody has.{" "}
+              <a href="#how" className="text-white/70 underline decoration-white/20 underline-offset-2 transition-colors hover:text-white/90">
+                Regrade does it in minutes
+              </a>
+              .
             </p>
           </div>
         </SectionReveal>

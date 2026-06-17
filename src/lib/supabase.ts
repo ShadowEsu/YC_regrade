@@ -1,7 +1,5 @@
-const SUPABASE_URL =
-  import.meta.env.VITE_SUPABASE_URL ?? "https://lshqzxgzehgmzgeilvmy.supabase.co";
-const SUPABASE_KEY =
-  import.meta.env.VITE_SUPABASE_KEY ?? "sb_publishable_B6sDgM-4xMY2tub3oX7VHA_bHOLntBJ";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "";
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_KEY ?? "";
 
 export async function supabaseRpc<T>(fn: string, body: Record<string, unknown>): Promise<T> {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${fn}`, {
@@ -15,7 +13,7 @@ export async function supabaseRpc<T>(fn: string, body: Record<string, unknown>):
   });
 
   if (!res.ok) {
-    throw new Error(`RPC ${fn} failed: ${res.status}`);
+    throw new Error(`Supabase RPC ${fn} failed: ${res.status}`);
   }
 
   return res.json() as Promise<T>;

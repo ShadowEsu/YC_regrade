@@ -4,3 +4,12 @@ dist
 *.local
 .env
 .env.*
+*firebase*admin*.json
+*service*account*.json
+*Firebase*Admin*.json
+
+# Founder-only — never commit
+REGRADE_TECHNICAL_BRIEF.md
+/private/
+/legal/
+*.private.md

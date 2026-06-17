@@ -2,6 +2,19 @@
 
 Premium landing page for [regradeapp.tech](https://regradeapp.tech).
 
+## Ownership
+
+**Copyright © 2026 Preston Jay Susanto. All rights reserved.**
+
+Regrade, including this repository, is **proprietary** — not open source.
+The Regrade name and logo are trademarks of Preston Jay Susanto.
+
+- [LICENSE](./LICENSE) — proprietary terms; no redistribution without permission
+- [NOTICE](./NOTICE) — copyright and trademark notice
+- [CONTRIBUTING.md](./CONTRIBUTING.md) — required terms for any contributor
+
+Unauthorized copying, forking, or use of this code is prohibited.
+
 ## Stack
 
 - **Vite + React 19 + TypeScript** — fast builds, type-safe components

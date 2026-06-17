@@ -58,6 +58,7 @@ export function Hero({ ready }: Props) {
 
         <motion.p
           variants={block}
+          data-speakable="hero-subhead"
           className="mx-auto mt-7 max-w-[600px] font-display text-[clamp(17px,2.1vw,20px)] font-medium leading-[1.6] tracking-[-0.02em] text-muted"
         >
           Regrade scans your graded work against the rubric, finds every point you can get back, and

@@ -18,10 +18,13 @@ import { AIEnginesSection } from "./components/AIEnginesSection";
 import { CompareSection } from "./components/CompareSection";
 import { StatsBand } from "./components/StatsBand";
 import { FounderQuote } from "./components/FounderQuote";
+import { FounderProofSection } from "./components/FounderProofSection";
 import { CTASection } from "./components/CTASection";
 import { FAQ } from "./components/FAQ";
 import { Footer } from "./components/Footer";
 import { StickyCTA } from "./components/StickyCTA";
+import { SeoSchema } from "./components/SeoSchema";
+import { AuthoritySection } from "./components/AuthoritySection";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -29,6 +32,7 @@ export default function App() {
 
   return (
     <>
+      <SeoSchema />
       <div className="grain" aria-hidden />
       {!ready && <Preloader onDone={() => setReady(true)} />}
       <YCBanner />
@@ -54,9 +58,11 @@ export default function App() {
           <GradingSystemsSection />
           <AIEnginesSection />
           <CompareSection />
+          <FounderProofSection />
           <StatsBand />
           <FounderQuote />
           <CTASection />
+          <AuthoritySection />
           <FAQ />
         </main>
         <Footer />

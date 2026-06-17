@@ -1,11 +1,10 @@
 export const REGRADE_CONFIG = {
-  waitlistEmail: "prestonjaysusanto@gmail.com",
-  supabaseUrl: "https://lshqzxgzehgmzgeilvmy.supabase.co",
-  supabaseAnonKey: "sb_publishable_B6sDgM-4xMY2tub3oX7VHA_bHOLntBJ",
+  waitlistEmail: import.meta.env.VITE_WAITLIST_EMAIL ?? "regradeteam@gmail.com",
+  supabaseUrl: import.meta.env.VITE_SUPABASE_URL ?? "",
+  supabaseAnonKey: import.meta.env.VITE_SUPABASE_KEY ?? "",
   waitlistDisplayCount: 15,
   waitlistDisplayMax: 100,
-  /** Set to a YouTube embed URL when demo video is ready */
-  demoVideoUrl: "",
+  demoVideoUrl: import.meta.env.VITE_DEMO_VIDEO_URL ?? "",
   founderLinkedIn: "",
   founderGitHub: "",
 } as const;

@@ -42,6 +42,9 @@ export function Nav({ ready }: { ready: boolean }) {
           <a href="#features" className="hidden sm:inline transition-colors hover:text-ink">
             Features
           </a>
+          <a href="#resources" className="hidden sm:inline transition-colors hover:text-ink">
+            Resources
+          </a>
           <a href="#faq" className="hidden sm:inline transition-colors hover:text-ink">
             FAQ
           </a>
