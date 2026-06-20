@@ -1,3 +1,5 @@
+import { REGRADE_CONFIG } from "../lib/site-config";
+
 const columns = [
   {
     title: "Product",
@@ -28,6 +30,7 @@ const columns = [
     links: [
       { label: "Instagram", href: "https://instagram.com/regrade_app", external: true },
       { label: "X", href: "https://x.com/regrade_app", external: true },
+      { label: "Book an interview", href: REGRADE_CONFIG.calendlyUrl, external: true },
       { label: "UCSD grade appeals", href: "https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/Regulations/502", external: true },
     ],
   },

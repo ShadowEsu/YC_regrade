@@ -51,6 +51,19 @@ export function CTASection() {
               />
             </div>
 
+            <p className="mx-auto mt-6 max-w-[560px] font-ui text-[15px] text-white/50">
+              Investors or partners?{" "}
+              <a
+                href={REGRADE_CONFIG.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[#9db5ff] underline decoration-[#9db5ff]/35 underline-offset-2 transition-colors hover:text-white hover:decoration-white/50"
+              >
+                Book an interview on Calendly
+              </a>
+              .
+            </p>
+
             <div className="mx-auto mt-12 grid max-w-[520px] grid-cols-3 gap-6 text-center sm:gap-10">
               <div>
                 <p className="font-display text-[clamp(2rem,4vw,2.75rem)] font-semibold tabular-nums text-white">

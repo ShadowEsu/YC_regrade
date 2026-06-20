@@ -1,4 +1,6 @@
 import { SectionReveal } from "./SectionReveal";
+import { REGRADE_CONFIG } from "../lib/site-config";
+import { Calendar } from "lucide-react";
 
 export function FounderQuote() {
   return (
@@ -23,14 +25,25 @@ export function FounderQuote() {
               <span className="italic text-ink/80">Regrade finds the points in minutes.</span>
               &rdquo;
             </blockquote>
-            <div className="mt-9 flex items-center gap-4">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-ink text-[13px] font-semibold text-white">
-                PS
+            <div className="mt-9 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-4">
+                <div className="grid h-12 w-12 place-items-center rounded-xl bg-ink text-[13px] font-semibold text-white">
+                  PS
+                </div>
+                <div>
+                  <div className="text-[16px] font-semibold text-ink">Preston Susanto</div>
+                  <div className="text-[14px] text-muted">Founder · EECS student · Applying to YC W26</div>
+                </div>
               </div>
-              <div>
-                <div className="text-[16px] font-semibold text-ink">Preston Susanto</div>
-                <div className="text-[14px] text-muted">Founder · EECS student · Applying to YC W26</div>
-              </div>
+              <a
+                href={REGRADE_CONFIG.calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-blue/20 bg-blue-soft px-5 py-2.5 font-ui text-[14px] font-semibold text-blue transition-colors hover:border-blue/35 hover:bg-blue/[0.12]"
+              >
+                <Calendar className="h-4 w-4" strokeWidth={2} aria-hidden />
+                Book an interview
+              </a>
             </div>
           </div>
         </SectionReveal>

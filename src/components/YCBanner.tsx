@@ -1,3 +1,5 @@
+import { REGRADE_CONFIG } from "../lib/site-config";
+
 export function YCBanner() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] border-b border-[#e6e2da] bg-gradient-to-r from-[#f5f7ff] via-[#fdfcf7] to-[#f5f7ff] backdrop-blur-md">
@@ -13,6 +15,15 @@ export function YCBanner() {
           <span className="font-semibold text-[#00236f]">Y Combinator</span>
           <span className="mx-2 text-[#a1a1aa] sm:mx-2.5">·</span>
           <span className="font-semibold text-ink">Winter 2026 Batch</span>
+          <span className="mx-2 hidden text-[#a1a1aa] sm:mx-2.5 sm:inline">·</span>
+          <a
+            href={REGRADE_CONFIG.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden font-semibold text-blue underline decoration-blue/30 underline-offset-2 transition-colors hover:decoration-blue sm:inline"
+          >
+            Book an interview
+          </a>
         </p>
       </div>
     </div>
