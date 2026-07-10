@@ -22,8 +22,8 @@ export function Nav({ ready }: { ready: boolean }) {
       className={cn(
         "fixed top-11 left-0 right-0 z-50 transition-all duration-300 sm:top-12",
         scrolled
-          ? "border-b border-black/[0.06] bg-paper/90 backdrop-blur-xl"
-          : "border-b border-transparent bg-paper/70 backdrop-blur-md"
+          ? "border-b border-blue/10 bg-paper/95"
+          : "border-b border-transparent bg-paper/80"
       )}
     >
       <div className="section-shell flex h-16 items-center justify-between">
@@ -57,7 +57,7 @@ export function Nav({ ready }: { ready: boolean }) {
               e.preventDefault();
               scrollToId("#waitlist");
             }}
-            className="btn-pro animate-breathe-slow inline-flex h-12 items-center rounded-xl px-6 text-[15px] font-bold transition-transform duration-300 hover:scale-105"
+            className="btn-pro inline-flex h-12 items-center rounded-xl px-7 text-[15px] font-bold shadow-[0_10px_28px_-8px_rgba(30,79,255,0.7)] transition-transform duration-300 hover:scale-105"
           >
             Join waitlist
           </a>

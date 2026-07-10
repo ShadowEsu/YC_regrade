@@ -25,7 +25,7 @@ export function TrustSection() {
   return (
     <section
       id="trust"
-      className="scroll-mt-[120px] border-y border-black/[0.07] bg-cream py-[clamp(64px,8vw,96px)]"
+      className="scroll-mt-[120px] border-y border-blue/10 bg-blue-soft py-[clamp(64px,8vw,96px)]"
     >
       <div className="section-shell">
         <SectionReveal>
@@ -47,13 +47,13 @@ export function TrustSection() {
         <div className="mt-10 grid gap-5 md:grid-cols-3">
           {trust.map((item, index) => (
             <SectionReveal key={item.title} delay={index * 0.07}>
-              <div className="hover-lift flex h-full flex-col items-center rounded-[24px] border border-black/[0.08] bg-white p-7 text-center shadow-[0_12px_36px_rgba(9,9,11,0.05)]">
+              <div className="hover-lift flex h-full flex-col items-center rounded-[24px] border border-blue/20 bg-blue-wash p-7 text-center">
                 <img
                   src={item.image}
                   alt={item.alt}
                   width={96}
                   height={96}
-                  className="h-24 w-24 rounded-[24px] object-contain shadow-[0_12px_28px_-10px_rgba(9,9,11,0.35)]"
+                  className="h-24 w-24 rounded-[24px] object-contain"
                 />
                 <h3 className="mt-6 text-[18px] font-semibold tracking-[-0.02em] text-ink">
                   {item.title}

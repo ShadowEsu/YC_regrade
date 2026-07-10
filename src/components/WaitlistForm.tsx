@@ -72,10 +72,10 @@ export function WaitlistForm({
     fieldText,
     "focus:border-blue/55 focus:ring-2 focus:ring-blue/15",
     variant === "dark"
-      ? "border-white/20 bg-white/[0.1] text-white placeholder:text-white/45"
+      ? "border border-white/25 bg-[#0b1a4a]/45 text-white placeholder:text-white/50 focus:border-[#9db5ff] focus:ring-[#9db5ff]/25"
       : variant === "offer"
-        ? "border-white/40 bg-white/25 text-white placeholder:text-white/55 focus:border-white/70 focus:ring-white/20"
-        : "border-blue/20 bg-white text-ink placeholder:text-faint shadow-[0_1px_2px_rgba(30,79,255,0.06)]"
+        ? "border border-white/40 bg-[#0b1a4a]/35 text-white placeholder:text-white/55 focus:border-white/70 focus:ring-white/20"
+        : "border border-blue/25 bg-blue-wash text-ink placeholder:text-faint"
   );
 
   const buttonClass = cn(
@@ -85,7 +85,7 @@ export function WaitlistForm({
     "disabled:cursor-not-allowed disabled:opacity-50",
     inline ? "w-full sm:w-auto" : "w-full",
     variant === "dark"
-      ? "bg-white text-ink hover:bg-white/92 shadow-[0_8px_24px_-10px_rgba(255,255,255,0.45)]"
+      ? "btn-pro px-8 shadow-[0_12px_32px_-10px_rgba(30,79,255,0.8)]"
       : "btn-pro"
   );
 

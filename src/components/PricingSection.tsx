@@ -53,7 +53,7 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="scroll-mt-[120px] border-b border-blue/10 bg-paper py-[clamp(72px,10vw,120px)]">
+    <section id="pricing" className="scroll-mt-[120px] border-b border-blue/10 bg-blue-soft py-[clamp(72px,10vw,120px)]">
       <div className="section-shell">
         <SectionReveal>
           <div className="mx-auto max-w-[760px] text-center">
@@ -64,18 +64,12 @@ export function PricingSection() {
               Simple plans.{" "}
               <span className="text-gradient-live">Real monthly limits.</span>
             </h2>
-            <div className="mx-auto mt-6 max-w-[640px] rounded-[20px] border-2 border-blue bg-blue-wash px-5 py-4 sm:px-7 sm:py-5">
-              <p className="font-display text-[clamp(1.35rem,2.8vw,1.85rem)] font-semibold leading-[1.2] tracking-[-0.02em] text-ink">
-                First {REGRADE_CONFIG.waitlistDisplayMax} waitlist users get{" "}
-                <span className="text-blue">Pro free for 1 year.</span>
-              </p>
-              <p className="mt-2 font-ui text-[15px] text-muted">
-                Join early. Lock in Pro before paid launch.
-              </p>
-            </div>
-            <p className="mx-auto mt-5 max-w-[520px] font-ui text-[16px] leading-relaxed text-muted">
-              Unused exam credits roll over for 1 month — so limits feel fair without making cost
-              unpredictable.
+            <p className="mx-auto mt-6 max-w-[560px] font-display text-[clamp(1.25rem,2.6vw,1.7rem)] font-semibold leading-[1.25] tracking-[-0.02em] text-ink">
+              First {REGRADE_CONFIG.waitlistDisplayMax} waitlist users get{" "}
+              <span className="text-blue">Pro free for 1 year.</span>
+            </p>
+            <p className="mx-auto mt-3 max-w-[520px] font-ui text-[15px] leading-relaxed text-muted">
+              Unused exam credits roll over for 1 month.
             </p>
           </div>
         </SectionReveal>
@@ -85,11 +79,10 @@ export function PricingSection() {
             <SectionReveal key={plan.name} delay={index * 0.06}>
               <article
                 className={cn(
-                  "group flex h-full flex-col rounded-[28px] border bg-white p-7 transition-all duration-300 sm:p-8",
-                  "hover:-translate-y-2 hover:border-blue/40 hover:shadow-[0_28px_60px_-24px_rgba(30,79,255,0.35)]",
-                  plan.featured
-                    ? "border-blue shadow-[0_20px_50px_-24px_rgba(30,79,255,0.4)]"
-                    : "border-blue/15 shadow-[0_12px_36px_rgba(30,79,255,0.08)]"
+                  "group flex h-full flex-col rounded-[28px] border border-blue/20 bg-blue-wash p-7 transition-all duration-300 sm:p-8",
+                  "opacity-70 brightness-95",
+                  "hover:z-10 hover:scale-[1.03] hover:border-blue hover:bg-[#e0e8ff] hover:opacity-100 hover:brightness-110 hover:shadow-[0_28px_60px_-20px_rgba(30,79,255,0.4)]",
+                  plan.featured && "border-blue/40 opacity-85"
                 )}
               >
                 {plan.featured && (
@@ -97,7 +90,7 @@ export function PricingSection() {
                     Most popular
                   </span>
                 )}
-                <h3 className="text-[22px] font-semibold tracking-[-0.02em] text-ink transition-colors group-hover:text-blue">
+                <h3 className="text-[22px] font-semibold tracking-[-0.02em] text-ink group-hover:text-blue">
                   {plan.name}
                 </h3>
                 <p className="mt-3 flex items-baseline gap-1">
@@ -119,10 +112,10 @@ export function PricingSection() {
                   type="button"
                   onClick={() => scrollToId("#waitlist")}
                   className={cn(
-                    "mt-8 inline-flex h-14 items-center justify-center rounded-xl px-5 text-[16px] font-bold transition-transform duration-300 group-hover:scale-[1.02]",
+                    "mt-8 inline-flex h-14 items-center justify-center rounded-xl px-5 text-[16px] font-bold transition-all duration-300",
                     plan.featured
                       ? "btn-pro"
-                      : "border border-blue/25 bg-blue-wash text-blue hover:bg-blue hover:text-white"
+                      : "border border-blue/30 bg-paper text-blue group-hover:bg-blue group-hover:text-white"
                   )}
                 >
                   Join waitlist

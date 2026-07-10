@@ -154,7 +154,7 @@ export function buildJsonLdGraph() {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
-      description: "Free during private beta. First 100 waitlist members receive Pro Max free for 1 year.",
+      description: "Free during private beta. First 100 waitlist members receive Pro free for 1 year.",
       availability: "https://schema.org/PreOrder",
     },
     description: SITE_DESCRIPTION,

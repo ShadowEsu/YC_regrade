@@ -20,6 +20,9 @@ const points = [
   },
 ];
 
+const headlineClass =
+  "font-display text-[clamp(2.8rem,6.5vw,5rem)] font-semibold leading-[1.02] tracking-[-0.045em]";
+
 export function SupervisorSection() {
   return (
     <section
@@ -32,15 +35,11 @@ export function SupervisorSection() {
             <p className="font-ui text-[14px] font-bold uppercase tracking-[0.16em] text-blue sm:text-[15px]">
               Private beta
             </p>
-            <h2 className="mt-5 font-display text-[clamp(2.8rem,6.5vw,5rem)] font-semibold leading-[1.02] tracking-[-0.045em] text-ink">
-              Introducing
-              <br />
-              <span className="text-gradient-live">Supervisor Mode</span>
+            <h2 className={`mt-5 ${headlineClass}`}>
+              <span className="text-gradient-live">Introducing Supervisor Mode</span>
             </h2>
-            <p className="mt-6 font-display text-[clamp(1.75rem,3.5vw,2.75rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-ink">
-              The biggest add-on yet.
-            </p>
-            <p className="mx-auto mt-5 max-w-[620px] font-ui text-[clamp(17px,2vw,20px)] leading-relaxed text-muted">
+            <p className={`mt-4 ${headlineClass} text-ink`}>The biggest add-on yet.</p>
+            <p className="mx-auto mt-6 max-w-[620px] font-ui text-[clamp(17px,2vw,20px)] leading-relaxed text-muted">
               Support a learner without taking over their account. Consent-first. Scoped sharing.
               Revoke anytime.
             </p>
@@ -49,7 +48,7 @@ export function SupervisorSection() {
               onClick={() => scrollToId("#waitlist")}
               className="btn-pro mt-10 inline-flex h-16 items-center rounded-2xl px-10 text-[18px] font-bold"
             >
-              Request Supervisor access
+              Join waitlist for Supervisor
             </button>
           </div>
         </SectionReveal>
@@ -57,7 +56,7 @@ export function SupervisorSection() {
         <div className="mx-auto mt-14 grid max-w-[980px] gap-5 md:grid-cols-3">
           {points.map((item, index) => (
             <SectionReveal key={item.title} delay={index * 0.07}>
-              <div className="h-full rounded-[24px] border border-blue/15 bg-white p-7 shadow-[0_12px_36px_rgba(30,79,255,0.08)]">
+              <div className="h-full rounded-[24px] border border-blue/20 bg-blue-wash p-7">
                 <item.icon className="h-6 w-6 text-blue" />
                 <h3 className="mt-5 text-[19px] font-semibold tracking-[-0.02em] text-ink">
                   {item.title}
@@ -69,7 +68,7 @@ export function SupervisorSection() {
         </div>
 
         <SectionReveal delay={0.12}>
-          <div className="mx-auto mt-8 max-w-[980px] rounded-[24px] border border-blue/15 bg-white p-7 sm:p-8">
+          <div className="mx-auto mt-8 max-w-[980px] rounded-[24px] border border-blue/20 bg-blue-wash p-7 sm:p-8">
             <p className="font-ui text-[12px] font-bold uppercase tracking-[0.1em] text-blue">
               What Supervisor is not
             </p>

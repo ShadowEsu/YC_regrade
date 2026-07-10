@@ -100,8 +100,8 @@ export function ConnectionsSection() {
     >
       <div className="section-shell mb-8 text-center sm:mb-10">
         <h2 className="font-display text-[clamp(2.1rem,5vw,3.5rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-ink">
-          Connections to{" "}
-          <span className="text-gradient-live">all of these.</span>
+          Connections{" "}
+          <span className="text-gradient-live">all over the world.</span>
         </h2>
       </div>
 

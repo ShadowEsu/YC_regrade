@@ -4,24 +4,24 @@ import { SectionReveal } from "./SectionReveal";
 const steps = [
   {
     number: "01",
-    title: "Upload",
-    body: "Marked PDF, screenshot, rubric, or feedback.",
+    title: "Bring the marked work in",
+    body: "Upload a PDF or screenshot, or connect a class platform when it is ready.",
     image: "/icons/how-scan.png",
-    alt: "Upload a marked exam",
+    alt: "Bring marked work into Regrade",
   },
   {
     number: "02",
-    title: "Read the evidence",
-    body: "Visible marks, rubric support, and uncertainty — kept separate.",
+    title: "Regrade reads the evidence",
+    body: "It maps marks, rubric rows, and teacher notes — and flags what is unclear.",
     image: "/icons/how-match.png",
-    alt: "Read the evidence on the marked work",
+    alt: "Regrade reads the evidence on the marked work",
   },
   {
     number: "03",
-    title: "Pick a next step",
-    body: "Clarify, appeal, study, or ask Mr Whale.",
+    title: "Choose what to do next",
+    body: "Clarify the mark, draft an appeal, build a study plan, or ask Mr Whale.",
     image: "/icons/how-checklist.png",
-    alt: "Pick a next step from the checklist",
+    alt: "Choose the next step after review",
   },
 ];
 
@@ -29,7 +29,7 @@ export function HowSection() {
   return (
     <section
       id="how"
-      className="scroll-mt-[120px] border-b border-black/[0.07] bg-cream py-[clamp(64px,8vw,96px)]"
+      className="scroll-mt-[120px] border-b border-blue/10 bg-blue-soft py-[clamp(64px,8vw,96px)]"
     >
       <div className="section-shell">
         <SectionReveal>
@@ -47,13 +47,13 @@ export function HowSection() {
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {steps.map((step, index) => (
             <SectionReveal key={step.number} delay={index * 0.08}>
-              <article className="hover-lift group flex h-full flex-col items-center rounded-[24px] border border-blue/15 bg-white p-7 text-center shadow-[0_12px_36px_rgba(30,79,255,0.08)]">
+              <article className="hover-lift group flex h-full flex-col items-center rounded-[24px] border border-blue/20 bg-blue-wash p-7 text-center">
                 <img
                   src={step.image}
                   alt={step.alt}
                   width={112}
                   height={112}
-                  className="h-28 w-28 rounded-[28px] object-contain shadow-[0_14px_30px_-12px_rgba(30,79,255,0.3)] transition-transform duration-300 group-hover:scale-105"
+                  className="h-28 w-28 rounded-[28px] object-contain transition-transform duration-300 group-hover:scale-105"
                 />
                 <p className="mt-6 font-ui text-[12px] font-bold uppercase tracking-[0.12em] text-blue">
                   Step {step.number}
@@ -61,7 +61,7 @@ export function HowSection() {
                 <h3 className="mt-2 text-[22px] font-semibold tracking-[-0.03em] text-ink">
                   {step.title}
                 </h3>
-                <p className="mt-2 max-w-[240px] text-[15px] leading-relaxed text-muted">
+                <p className="mt-2 max-w-[260px] text-[15px] leading-relaxed text-muted">
                   {step.body}
                 </p>
               </article>

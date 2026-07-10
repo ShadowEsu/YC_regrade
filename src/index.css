@@ -5,18 +5,18 @@
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-ui: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --font-brand: "Caveat", cursive;
-  --color-cream: #eef2ff;
-  --color-cream-2: #e4eaff;
-  --color-paper: #f3f6ff;
+  --color-cream: #e8eeff;
+  --color-cream-2: #dde6ff;
+  --color-paper: #eef2ff;
   --color-ink: #09090b;
   --color-ink-2: #18181b;
   --color-muted: #4b5568;
   --color-faint: #94a3b8;
-  --color-line: rgba(30, 79, 255, 0.1);
+  --color-line: rgba(30, 79, 255, 0.12);
   --color-blue: #1e4fff;
   --color-blue-deep: #1236c9;
-  --color-blue-wash: #e8eeff;
-  --color-blue-soft: #f0f4ff;
+  --color-blue-wash: #e0e8ff;
+  --color-blue-soft: #eaf0ff;
   --color-blue-muted: #6b8cff;
   --color-green: #0d9f6e;
   --color-rose: #e11d48;
@@ -93,13 +93,14 @@
 
   .btn-pro {
     @apply relative inline-flex cursor-pointer items-center justify-center bg-blue font-ui font-semibold text-white;
-    box-shadow: 0 1px 2px rgba(18, 54, 201, 0.2), 0 10px 28px -12px rgba(30, 79, 255, 0.55);
+    box-shadow: 0 1px 2px rgba(18, 54, 201, 0.2), 0 12px 32px -10px rgba(30, 79, 255, 0.65);
     transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   }
 
   .btn-pro:hover {
     background: var(--color-blue-deep);
-    box-shadow: 0 4px 18px rgba(18, 54, 201, 0.3);
+    box-shadow: 0 6px 24px rgba(18, 54, 201, 0.4);
+    transform: translateY(-1px);
   }
 
   .btn-pro:active {
