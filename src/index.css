@@ -278,12 +278,12 @@
   }
 
   .animate-marquee-connectors {
-    animation: marquee 32s linear infinite;
+    animation: marquee 55s linear infinite;
     will-change: transform;
   }
 
   .animate-marquee-connectors-reverse {
-    animation: marquee-reverse 38s linear infinite;
+    animation: marquee-reverse 62s linear infinite;
     will-change: transform;
   }
 
