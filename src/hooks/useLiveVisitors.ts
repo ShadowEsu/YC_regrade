@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { getLiveVisitorCount } from "../lib/analytics";
+import { getVisitorStats } from "../lib/analytics";
 import { REGRADE_CONFIG } from "../lib/site-config";
 
-const pollMs = 30_000;
+const pollMs = 60_000;
 
 export function useLiveVisitors(): number | null {
-  const [liveCount, setLiveCount] = useState<number | null>(null);
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
   useEffect(() => {
     if (!REGRADE_CONFIG.supabaseUrl || !REGRADE_CONFIG.supabaseAnonKey) return;
@@ -13,8 +13,8 @@ export function useLiveVisitors(): number | null {
     let active = true;
 
     const refresh = async () => {
-      const count = await getLiveVisitorCount();
-      if (active) setLiveCount(count);
+      const stats = await getVisitorStats();
+      if (active) setVisitorCount(stats?.total ?? null);
     };
 
     refresh();
@@ -25,5 +25,5 @@ export function useLiveVisitors(): number | null {
     };
   }, []);
 
-  return liveCount;
+  return visitorCount;
 }
