@@ -38,10 +38,10 @@ export default function App() {
           <LaunchVideo ready={ready} />
           <Hero ready={ready} />
           <HowSection />
-          <ProductShowcase />
           <ConnectionsSection />
-          <TrustSection />
+          <ProductShowcase />
           <SupervisorSection />
+          <TrustSection />
           <FounderProofSection />
           <CTASection />
         </main>

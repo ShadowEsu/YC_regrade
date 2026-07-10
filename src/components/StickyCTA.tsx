@@ -34,7 +34,7 @@ export function StickyCTA() {
               e.preventDefault();
               scrollToId("#waitlist");
             }}
-            className="btn-pro flex h-14 items-center justify-center rounded-2xl px-7 text-[16px] font-bold shadow-[0_18px_40px_-12px_rgba(242,101,34,0.65)] sm:min-w-[220px]"
+            className="btn-pro flex h-14 items-center justify-center rounded-2xl px-7 text-[16px] font-bold shadow-[0_18px_40px_-12px_rgba(30,79,255,0.65)] sm:min-w-[220px]"
           >
             Join the waitlist
           </a>

@@ -154,7 +154,7 @@ export function ProductShowcase() {
                   className={cn(
                     "shrink-0 rounded-lg px-4 py-2 font-ui text-[13px] font-semibold transition-all duration-300",
                     mode === item.id
-                      ? "bg-blue text-white shadow-[0_8px_20px_rgba(242,101,34,0.28)]"
+                      ? "bg-blue text-white shadow-[0_8px_20px_rgba(30,79,255,0.28)]"
                       : "text-muted hover:bg-blue/[0.08] hover:text-ink"
                   )}
                 >

@@ -48,7 +48,7 @@ export function Hero({ ready }: { ready: boolean }) {
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-[#ff8f5c]/15 blur-3xl"
+        className="pointer-events-none absolute -right-20 bottom-10 h-80 w-80 rounded-full bg-blue-muted/25 blur-3xl"
         aria-hidden
       />
 

@@ -24,7 +24,7 @@ export function RegradeLogo({
           aria-hidden
           width={size}
           height={size}
-          className="shrink-0 rounded-[22%] object-contain shadow-[0_2px_10px_rgba(30,79,255,0.18)]"
+          className="shrink-0 rounded-[22%] object-contain shadow-[0_2px_12px_rgba(30,79,255,0.22)]"
           style={{ width: size, height: size }}
         />
         <span

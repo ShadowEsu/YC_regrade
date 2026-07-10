@@ -41,7 +41,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-ink text-white">
       <div
-        className="pointer-events-none absolute -right-16 top-0 h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(242,101,34,0.22)_0%,transparent_70%)]"
+        className="pointer-events-none absolute -right-16 top-0 h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(30,79,255,0.22)_0%,transparent_70%)]"
         aria-hidden
       />
 
