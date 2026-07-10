@@ -32,7 +32,7 @@ export function Nav({ ready }: { ready: boolean }) {
           className="flex items-center transition-transform duration-300 hover:scale-105"
           aria-label="Regrade home"
         >
-          <RegradeLogo variant="wordmark" size={40} />
+          <RegradeLogo variant="mark" size={42} />
         </a>
         <div className="flex items-center gap-5 text-[15px] font-medium text-muted sm:gap-6">
           <a href="#how" className="relative hidden sm:inline transition-colors hover:text-ink group">
@@ -41,6 +41,10 @@ export function Nav({ ready }: { ready: boolean }) {
           </a>
           <a href="#connections" className="relative hidden md:inline transition-colors hover:text-ink group">
             Connections
+            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
+          </a>
+          <a href="#pricing" className="relative hidden md:inline transition-colors hover:text-ink group">
+            Pricing
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
           <a href="#supervisor" className="relative hidden lg:inline transition-colors hover:text-ink group">

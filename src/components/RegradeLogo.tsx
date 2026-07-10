@@ -31,12 +31,12 @@ export function RegradeLogo({
       return (
         <span className={cn("inline-flex items-center gap-2.5", className)}>
           <img
-            src="/logo-mark-dark.png"
+            src="/logo-mark-clear.png"
             alt=""
             aria-hidden
             width={size}
             height={size}
-            className="shrink-0 rounded-[22%] object-contain"
+            className="shrink-0 object-contain"
             style={{ width: size, height: size }}
           />
           <span
@@ -65,8 +65,8 @@ export function RegradeLogo({
     variant === "app"
       ? "/logo-mark-app.png"
       : invert
-        ? "/logo-mark-dark.png"
-        : "/logo-mark.png";
+        ? "/logo-mark-clear.png"
+        : "/logo-mark-clear.png";
 
   return (
     <img
@@ -77,7 +77,7 @@ export function RegradeLogo({
       height={size}
       className={cn(
         "shrink-0 object-contain",
-        variant === "app" ? "rounded-[22%]" : "rounded-[18%]",
+        variant === "app" ? "rounded-[22%]" : null,
         className
       )}
       style={{ width: size, height: size }}

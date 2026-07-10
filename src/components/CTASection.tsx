@@ -23,14 +23,14 @@ export function CTASection() {
               Waitlist · private beta
             </p>
             <h2 className="font-display text-[clamp(2.35rem,5.2vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-white">
-              Bring one marked exam.
+              <span className="text-gradient-live">Bring one marked exam.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-[480px] font-ui text-[17px] leading-[1.6] text-white/65">
               First {REGRADE_CONFIG.waitlistDisplayMax} get Pro Max free for a year. Powered by
               OpenAI.
             </p>
 
-            <div className="mx-auto mt-9 w-full max-w-[680px] rounded-[22px] border border-white/15 bg-white/10 p-4 backdrop-blur-md sm:p-5">
+            <div className="glass-dark mx-auto mt-9 w-full max-w-[680px] rounded-[22px] p-4 sm:p-5">
               <WaitlistForm
                 source="offer"
                 submitLabel="Join waitlist"

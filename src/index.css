@@ -5,18 +5,18 @@
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-ui: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --font-brand: "Caveat", cursive;
-  --color-cream: #f5f1eb;
-  --color-cream-2: #ebe4da;
-  --color-paper: #faf8f5;
+  --color-cream: #eef2ff;
+  --color-cream-2: #e4eaff;
+  --color-paper: #f3f6ff;
   --color-ink: #09090b;
   --color-ink-2: #18181b;
-  --color-muted: #5c5a56;
-  --color-faint: #a39e96;
-  --color-line: rgba(9, 9, 11, 0.08);
+  --color-muted: #4b5568;
+  --color-faint: #94a3b8;
+  --color-line: rgba(30, 79, 255, 0.1);
   --color-blue: #1e4fff;
   --color-blue-deep: #1236c9;
-  --color-blue-wash: #eef2ff;
-  --color-blue-soft: #f5f7ff;
+  --color-blue-wash: #e8eeff;
+  --color-blue-soft: #f0f4ff;
   --color-blue-muted: #6b8cff;
   --color-green: #0d9f6e;
   --color-rose: #e11d48;
@@ -271,11 +271,13 @@
   }
 
   .animate-marquee-connectors {
-    animation: marquee 38s linear infinite;
+    animation: marquee 32s linear infinite;
+    will-change: transform;
   }
 
   .animate-marquee-connectors-reverse {
-    animation: marquee-reverse 44s linear infinite;
+    animation: marquee-reverse 38s linear infinite;
+    will-change: transform;
   }
 
   .marquee-pause:hover .animate-marquee,
@@ -383,8 +385,6 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .animate-marquee-reverse,
-  .animate-marquee-connectors,
-  .animate-marquee-connectors-reverse,
   .animate-breathe,
   .animate-breathe-slow,
   .animate-blob,
@@ -393,6 +393,11 @@
   .bg-animated-gradient,
   .text-gradient-live {
     animation: none;
+  }
+
+  .animate-marquee-connectors,
+  .animate-marquee-connectors-reverse {
+    animation: marquee 60s linear infinite;
   }
 
   .animate-whale,

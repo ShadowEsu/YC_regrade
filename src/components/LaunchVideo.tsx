@@ -10,7 +10,7 @@ type Props = {
 export function LaunchVideo({ ready }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const loopCountRef = useRef(0);
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState(true);
   const [playing, setPlaying] = useState(true);
   const [finished, setFinished] = useState(false);
 
@@ -18,35 +18,30 @@ export function LaunchVideo({ ready }: Props) {
     const video = videoRef.current;
     if (!video || !ready) return;
 
-    video.currentTime = 0;
-    video.muted = false;
-    setMuted(false);
     loopCountRef.current = 0;
     setFinished(false);
     setPlaying(true);
+    setMuted(true);
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.currentTime = 0;
 
-    let gestureEvents: string[] = [];
-    const unmuteOnGesture = () => {
-      const el = videoRef.current;
-      if (!el) return;
-      el.muted = false;
-      setMuted(false);
-      if (el.paused) el.play().catch(() => {});
+    const tryPlay = () => {
+      video.play().then(() => setPlaying(true)).catch(() => {
+        setPlaying(false);
+      });
     };
 
-    video.play().catch(() => {
-      video.muted = true;
-      setMuted(true);
-      video.play().catch(() => {});
-
-      gestureEvents = ["pointerdown", "keydown", "touchstart", "wheel"];
-      gestureEvents.forEach((evt) =>
-        window.addEventListener(evt, unmuteOnGesture, { once: true, passive: true })
-      );
-    });
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      video.addEventListener("loadeddata", tryPlay, { once: true });
+      video.load();
+    }
 
     return () => {
-      gestureEvents.forEach((evt) => window.removeEventListener(evt, unmuteOnGesture));
+      video.removeEventListener("loadeddata", tryPlay);
     };
   }, [ready]);
 
@@ -55,8 +50,10 @@ export function LaunchVideo({ ready }: Props) {
     if (!video) return;
     const nextMuted = !muted;
     video.muted = nextMuted;
-    if (!nextMuted) video.play().catch(() => {});
     setMuted(nextMuted);
+    if (!nextMuted) {
+      video.play().then(() => setPlaying(true)).catch(() => {});
+    }
   }
 
   function togglePlayback() {
@@ -72,8 +69,7 @@ export function LaunchVideo({ ready }: Props) {
       video.currentTime = 0;
       setFinished(false);
     }
-    video.play().catch(() => {});
-    setPlaying(true);
+    video.play().then(() => setPlaying(true)).catch(() => {});
   }
 
   function handleEnded() {
@@ -100,6 +96,7 @@ export function LaunchVideo({ ready }: Props) {
         muted={muted}
         playsInline
         preload="auto"
+        autoPlay
         onEnded={handleEnded}
         className="absolute inset-0 h-full w-full object-cover"
         aria-label="Regrade launch animation with Mr Whale"

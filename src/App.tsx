@@ -11,6 +11,7 @@ import { ProductShowcase } from "./components/ProductShowcase";
 import { ConnectionsSection } from "./components/ConnectionsSection";
 import { TrustSection } from "./components/TrustSection";
 import { SupervisorSection } from "./components/SupervisorSection";
+import { PricingSection } from "./components/PricingSection";
 import { FounderProofSection } from "./components/FounderProofSection";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
@@ -41,6 +42,7 @@ export default function App() {
           <HowSection />
           <ProductShowcase />
           <SupervisorSection />
+          <PricingSection />
           <TrustSection />
           <FounderProofSection />
           <CTASection />

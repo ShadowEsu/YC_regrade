@@ -99,7 +99,7 @@ export function Hero({ ready }: { ready: boolean }) {
         </motion.blockquote>
 
         <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[740px]">
-          <div className="rounded-[22px] border border-black/[0.08] bg-white p-3 shadow-[0_18px_50px_-20px_rgba(9,9,11,0.18)] sm:p-4">
+          <div className="glass-panel rounded-[22px] p-3 sm:p-4">
             <WaitlistForm
               source="hero"
               submitLabel="Join the waitlist"
