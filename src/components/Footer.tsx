@@ -38,32 +38,26 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#1a3a8a] text-white">
+    <footer className="relative overflow-hidden bg-ink text-white">
       <div
-        className="pointer-events-none absolute -left-24 top-0 h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.12)_0%,transparent_68%)]"
-        aria-hidden
-      />
-      <div
-        className="pointer-events-none absolute -right-16 bottom-0 h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(157,181,255,0.2)_0%,transparent_70%)]"
+        className="pointer-events-none absolute -right-16 top-0 h-[280px] w-[280px] rounded-full bg-[radial-gradient(circle,rgba(242,101,34,0.22)_0%,transparent_70%)]"
         aria-hidden
       />
 
-      <div className="section-shell relative py-16 sm:py-20">
-        <div className="flex flex-col gap-14 lg:flex-row lg:items-start lg:justify-between lg:gap-20">
-          <div className="max-w-[400px]">
+      <div className="section-shell relative py-14 sm:py-16">
+        <div className="flex flex-col gap-12 lg:flex-row lg:items-start lg:justify-between lg:gap-16">
+          <div className="max-w-[360px]">
             <a
               href="/#top"
               className="inline-flex items-center transition-transform duration-300 hover:scale-105"
             >
-              <RegradeLogo variant="wordmark" size={52} invert />
+              <RegradeLogo variant="wordmark" size={48} invert />
             </a>
-            <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
+            <p className="mt-5 font-display text-[17px] font-medium leading-[1.55] text-white/80">
               Understand your grade. Learn from it. Make the strongest appeal.
             </p>
-            <p className="mt-4 text-[14px] leading-relaxed text-white/55">
-              Regrade provides educational support, not legal or institutional decision-making.
-              Students should review original marked work and follow their school&apos;s policy before
-              submitting an appeal.
+            <p className="mt-3 text-[13px] leading-relaxed text-white/45">
+              Educational support — not legal advice. Follow your school&apos;s appeal policy.
             </p>
           </div>
 

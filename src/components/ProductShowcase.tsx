@@ -11,48 +11,44 @@ const modes = [
     id: "review",
     label: "Review",
     title: "See the grade, not just the number.",
-    description:
-      "A clear read of visible marks, rubric rows, and teacher feedback — with uncertainty called out honestly.",
+    description: "Marks, rubric rows, and feedback — with uncertainty called out.",
     labelText: "Question review",
     question: "Why did I lose points on question 4?",
     answer:
-      "Your main idea is clear. The marker’s note points to the explanation after the second quote, not the quote itself. That is a useful skill to practise before the final.",
+      "Your claim is clear. The note is about the explanation after quote two — practise that before the final.",
     icon: MessageCircle,
   },
   {
     id: "appeal",
     label: "Appeal",
-    title: "Ask the right question with the right evidence.",
-    description:
-      "When a concrete discrepancy exists, Regrade helps you prepare a factual, respectful draft. You stay in control of sending.",
+    title: "Ask with the right evidence.",
+    description: "A respectful draft when a real discrepancy exists. You send it.",
     labelText: "Potential issue",
-    question: "Could you help me ask about the evidence deduction?",
+    question: "Help me ask about the evidence deduction.",
     answer:
-      "The rubric awards four points for evidence. Your paper includes two cited sources, but the comment does not say why the full deduction was applied. Ask for clarification before requesting a regrade.",
+      "The rubric awards four points for evidence. Ask how the deduction maps to that criterion before requesting a regrade.",
     icon: ClipboardCheck,
   },
   {
     id: "study",
     label: "Study",
-    title: "Turn past marks into your next study plan.",
-    description:
-      "Study starts empty. Once you analyze marked exams, Regrade groups recurring deductions into a personal finals checklist.",
+    title: "Turn marks into a study plan.",
+    description: "Recurring patterns from marked exams become your finals checklist.",
     labelText: "Finals Prep",
     question: "What should I practise before the final?",
     answer:
-      "Focus on linking evidence back to your claim. This pattern appears across two marked exams, so begin with a short explanation drill and check it off when it feels solid.",
+      "Link evidence to your claim. It shows up across two exams — drill that first.",
     icon: GraduationCap,
   },
   {
     id: "coach",
     label: "Coach",
-    title: "A calm guide beside the work.",
-    description:
-      "Mr Whale explains a marked question in plain language, one focused follow-up at a time — never inventing policy or a guaranteed result.",
+    title: "Mr Whale beside the work.",
+    description: "Plain-language help on the selected mark. No invented guarantees.",
     labelText: "Ask Mr Whale",
-    question: "Can you explain this mark in plain language?",
+    question: "Explain this mark simply.",
     answer:
-      "You earned credit for a clear claim. The deduction is about the link after quote two. Practise restating how each quote supports your argument before you ask for clarification.",
+      "You got credit for a clear claim. The deduction is the link after quote two. Practise restating that link.",
     icon: CheckCircle2,
   },
 ] as const;
@@ -134,19 +130,18 @@ export function ProductShowcase() {
         <SectionReveal>
           <SectionHeader
             centered
-            eyebrow="Review · Appeal · Study · Coach"
+            eyebrow="What you get"
             title={
               <>
-                Understand the mark.{" "}
-                <span className="text-gradient-live">Then choose the right next step.</span>
+                Four modes.{" "}
+                <span className="text-gradient-live">One marked exam.</span>
               </>
             }
-            description="Every mode starts with the same marked work. The next step changes with the evidence — not with four separate assistants."
           />
         </SectionReveal>
         <SectionReveal delay={0.06}>
           <div className="mt-10 overflow-hidden rounded-[24px] border border-black/[0.1] bg-white shadow-[0_18px_55px_rgba(9,9,11,0.08)]">
-            <div className="flex gap-1 overflow-x-auto border-b border-black/[0.08] bg-[#fbfcff] px-3 py-3 sm:px-5">
+            <div className="flex gap-1 overflow-x-auto border-b border-black/[0.08] bg-cream px-3 py-3 sm:px-5">
               {modes.map((item) => (
                 <button
                   key={item.id}
@@ -155,8 +150,8 @@ export function ProductShowcase() {
                   className={cn(
                     "shrink-0 rounded-lg px-4 py-2 font-ui text-[13px] font-semibold transition-all duration-300",
                     mode === item.id
-                      ? "bg-blue text-white shadow-[0_8px_20px_rgba(30,79,255,0.28)]"
-                      : "text-muted hover:bg-blue/[0.06] hover:text-ink"
+                      ? "bg-blue text-white shadow-[0_8px_20px_rgba(242,101,34,0.28)]"
+                      : "text-muted hover:bg-blue/[0.08] hover:text-ink"
                   )}
                 >
                   {item.label}
@@ -164,7 +159,7 @@ export function ProductShowcase() {
               ))}
             </div>
             <div className="grid lg:grid-cols-[.88fr_1.12fr]">
-              <div className="border-b border-black/[0.08] bg-[#fafbfe] p-7 lg:border-b-0 lg:border-r lg:p-9">
+              <div className="border-b border-black/[0.08] bg-[#fcfaf7] p-7 lg:border-b-0 lg:border-r lg:p-9">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/[0.09] text-blue transition-transform duration-300 hover:scale-110">
                   <selected.icon className="h-5 w-5" />
                 </div>

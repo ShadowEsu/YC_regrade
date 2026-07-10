@@ -2,7 +2,7 @@ import { REGRADE_CONFIG } from "../lib/site-config";
 
 export function YCBanner() {
   return (
-    <div className="fixed top-0 left-0 right-0 z-[60] border-b border-[#e6e2da] bg-gradient-to-r from-[#f5f7ff] via-[#fdfcf7] to-[#f5f7ff] backdrop-blur-md">
+    <div className="fixed top-0 left-0 right-0 z-[60] border-b border-[#f26522]/20 bg-[#fff3ec]">
       <div className="section-shell flex h-11 items-center justify-center gap-2.5 sm:h-12 sm:gap-3">
         <span
           className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[5px] bg-[#f26522] font-display text-[12px] font-bold text-white sm:h-8 sm:w-8 sm:text-[13px]"
@@ -10,17 +10,17 @@ export function YCBanner() {
         >
           Y
         </span>
-        <p className="font-display text-center text-[13px] font-medium leading-snug tracking-[-0.02em] text-[#444651] sm:text-[15px]">
+        <p className="font-ui text-center text-[13px] font-medium leading-snug tracking-[-0.02em] text-ink sm:text-[15px]">
           Applying to{" "}
-          <span className="font-semibold text-[#00236f]">Y Combinator</span>
-          <span className="mx-2 text-[#a1a1aa] sm:mx-2.5">·</span>
-          <span className="font-semibold text-ink">Winter 2026 Batch</span>
-          <span className="mx-2 hidden text-[#a1a1aa] sm:mx-2.5 sm:inline">·</span>
+          <span className="font-semibold text-[#f26522]">Y Combinator</span>
+          <span className="mx-2 text-faint sm:mx-2.5">·</span>
+          <span className="font-semibold">Winter 2026</span>
+          <span className="mx-2 hidden text-faint sm:mx-2.5 sm:inline">·</span>
           <a
             href={REGRADE_CONFIG.calendlyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden font-semibold text-blue underline decoration-blue/30 underline-offset-2 transition-colors hover:decoration-blue sm:inline"
+            className="hidden font-semibold text-[#f26522] underline decoration-[#f26522]/35 underline-offset-2 transition-colors hover:decoration-[#f26522] sm:inline"
           >
             Book an interview
           </a>

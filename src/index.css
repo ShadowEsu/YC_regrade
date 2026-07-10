@@ -5,19 +5,19 @@
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-ui: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
   --font-brand: "Caveat", cursive;
-  --color-cream: #f6f7fb;
-  --color-cream-2: #eceef4;
-  --color-paper: #fafbfc;
+  --color-cream: #f5f1eb;
+  --color-cream-2: #ebe4da;
+  --color-paper: #faf8f5;
   --color-ink: #09090b;
   --color-ink-2: #18181b;
-  --color-muted: #52525b;
-  --color-faint: #a1a1aa;
+  --color-muted: #5c5a56;
+  --color-faint: #a39e96;
   --color-line: rgba(9, 9, 11, 0.08);
-  --color-blue: #4d8cff;
-  --color-blue-deep: #2f6ef0;
-  --color-blue-wash: #eef4ff;
-  --color-blue-soft: #f5f8ff;
-  --color-blue-muted: #7aa6ff;
+  --color-blue: #f26522;
+  --color-blue-deep: #d4551a;
+  --color-blue-wash: #fff3ec;
+  --color-blue-soft: #fff8f4;
+  --color-blue-muted: #ff8f5c;
   --color-green: #0d9f6e;
   --color-rose: #e11d48;
   --color-dark: #09090b;
@@ -93,13 +93,13 @@
 
   .btn-pro {
     @apply relative inline-flex cursor-pointer items-center justify-center bg-blue font-ui font-semibold text-white;
-    box-shadow: 0 1px 2px rgba(47, 110, 240, 0.18), 0 10px 28px -12px rgba(77, 140, 255, 0.55);
+    box-shadow: 0 1px 2px rgba(212, 85, 26, 0.2), 0 10px 28px -12px rgba(242, 101, 34, 0.55);
     transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   }
 
   .btn-pro:hover {
     background: var(--color-blue-deep);
-    box-shadow: 0 4px 18px rgba(47, 110, 240, 0.28);
+    box-shadow: 0 4px 18px rgba(212, 85, 26, 0.3);
   }
 
   .btn-pro:active {
@@ -111,12 +111,12 @@
   }
 
   .surface-hover:hover {
-    border-color: rgba(30, 79, 255, 0.18);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.55) 0%, rgba(238, 242, 255, 0.4) 100%);
+    border-color: rgba(242, 101, 34, 0.22);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 243, 236, 0.55) 100%);
   }
 
   .text-gradient {
-    background: linear-gradient(120deg, #4d8cff 0%, #7aa6ff 50%, #4d8cff 100%);
+    background: linear-gradient(120deg, #f26522 0%, #ff8f5c 50%, #f26522 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -306,7 +306,7 @@
   }
 
   .text-gradient-live {
-    background: linear-gradient(100deg, #4d8cff 0%, #7aa6ff 25%, #9db5ff 50%, #4d8cff 75%, #2f6ef0 100%);
+    background: linear-gradient(100deg, #f26522 0%, #ff8f5c 30%, #f26522 60%, #d4551a 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
