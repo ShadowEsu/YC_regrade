@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, FileText, MessageCircle, Sparkles } from "lucide-react";
 import { WaitlistForm } from "./WaitlistForm";
 import { ScrollHint } from "./ScrollHint";
+import { RegradeLogo } from "./RegradeLogo";
 import { scrollToId } from "../lib/scroll";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -207,11 +208,8 @@ export function Hero({ ready }: { ready: boolean }) {
                 transition={{ delay: 0.9, duration: 0.5, ease }}
                 className="mt-5 flex items-end gap-2.5"
               >
-                <span
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-transparent text-[25px] animate-whale"
-                  aria-label="Mr Whale"
-                >
-                  🐋
+                <span className="grid h-9 w-9 shrink-0 place-items-center animate-whale">
+                  <RegradeLogo variant="whale" size={34} />
                 </span>
                 <div className="rounded-2xl rounded-bl-md border border-black/[0.08] bg-white px-4 py-3 text-[14px] leading-relaxed text-ink shadow-sm">
                   Practice connecting each quote back to your claim. Start with this question, then

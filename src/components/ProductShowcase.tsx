@@ -3,6 +3,7 @@ import type { FormEvent } from "react";
 import { CheckCircle2, ClipboardCheck, GraduationCap, MessageCircle, Send } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { SectionReveal } from "./SectionReveal";
+import { RegradeLogo } from "./RegradeLogo";
 import { cn } from "../lib/utils";
 
 const modes = [
@@ -258,12 +259,8 @@ export function ProductShowcase() {
                       </div>
                     </div>
                     <div className="flex items-end gap-2.5">
-                      <span
-                        className="grid h-9 w-9 shrink-0 place-items-center text-[26px] animate-whale"
-                        role="img"
-                        aria-label="Mr Whale"
-                      >
-                        🐋
+                      <span className="grid h-9 w-9 shrink-0 place-items-center animate-whale">
+                        <RegradeLogo variant="whale" size={34} />
                       </span>
                       <div className="max-w-[84%] rounded-2xl rounded-bl-md border border-black/[0.09] bg-white px-4 py-3 text-[15px] leading-relaxed text-ink shadow-sm">
                         {loading ? (

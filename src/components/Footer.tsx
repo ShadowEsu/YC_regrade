@@ -53,10 +53,9 @@ export function Footer() {
           <div className="max-w-[400px]">
             <a
               href="/#top"
-              className="inline-flex items-center gap-3 transition-transform duration-300 hover:scale-105"
+              className="inline-flex items-center transition-transform duration-300 hover:scale-105"
             >
-              <RegradeLogo variant="mark" size={52} className="brightness-0 invert" />
-              <span className="font-brand text-[30px] font-semibold text-white">Regrade</span>
+              <RegradeLogo variant="wordmark" size={52} invert />
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
               Understand your grade. Learn from it. Make the strongest appeal.
