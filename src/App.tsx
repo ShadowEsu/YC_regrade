@@ -36,9 +36,9 @@ export default function App() {
           className={ready ? "opacity-100" : "opacity-0"}
           style={{ transition: "opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1)" }}
         >
+          <Hero ready={ready} />
           <LaunchVideo ready={ready} />
           <ConnectionsSection />
-          <Hero ready={ready} />
           <HowSection />
           <ProductShowcase />
           <SupervisorSection />
