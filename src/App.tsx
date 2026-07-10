@@ -24,7 +24,6 @@ import { StickyCTA } from "./components/StickyCTA";
 import { SeoSchema } from "./components/SeoSchema";
 import { AuthoritySection } from "./components/AuthoritySection";
 import { VisionSection } from "./components/VisionSection";
-import { LiveVisitorsBadge } from "./components/LiveVisitorsBadge";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -66,7 +65,6 @@ export default function App() {
         </main>
         <Footer />
         <StickyCTA />
-        <LiveVisitorsBadge />
       </SmoothScroll>
     </>
   );
