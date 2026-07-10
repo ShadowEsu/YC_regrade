@@ -38,7 +38,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[#0d1d42] text-white">
+    <footer className="relative overflow-hidden bg-[#1a3a8a] text-white">
       <div
         className="pointer-events-none absolute -left-24 top-0 h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.12)_0%,transparent_68%)]"
         aria-hidden

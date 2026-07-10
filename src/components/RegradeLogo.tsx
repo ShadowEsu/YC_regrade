@@ -13,16 +13,18 @@ export function RegradeLogo({
   className,
   invert = false,
 }: RegradeLogoProps) {
+  const markSrc = invert ? "/logo-mark-light.png" : "/logo-mark.png";
+
   if (variant === "wordmark") {
     return (
       <span className={cn("inline-flex items-center gap-2.5", className)}>
         <img
-          src="/logo-mark.png"
+          src={markSrc}
           alt=""
           aria-hidden
           width={size}
           height={size}
-          className="shrink-0 object-contain"
+          className="shrink-0 rounded-[22%] object-contain shadow-[0_2px_10px_rgba(30,79,255,0.18)]"
           style={{ width: size, height: size }}
         />
         <span
@@ -51,27 +53,14 @@ export function RegradeLogo({
     );
   }
 
-  if (variant === "svg") {
-    return (
-      <img
-        src="/logo-mark.png"
-        alt=""
-        aria-hidden
-        width={size}
-        height={size}
-        className={cn("shrink-0 object-contain", className)}
-      />
-    );
-  }
-
   return (
     <img
-      src="/logo-mark.png"
+      src={markSrc}
       alt=""
       aria-hidden
       width={size}
       height={size}
-      className={cn("shrink-0 object-contain", className)}
+      className={cn("shrink-0 rounded-[22%] object-contain", className)}
     />
   );
 }

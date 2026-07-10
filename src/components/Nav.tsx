@@ -26,24 +26,24 @@ export function Nav({ ready }: { ready: boolean }) {
           : "border-b border-transparent bg-paper/70 backdrop-blur-md"
       )}
     >
-      <div className="section-shell flex h-14 items-center justify-between">
+      <div className="section-shell flex h-16 items-center justify-between">
         <a
           href="#top"
           className="flex items-center transition-transform duration-300 hover:scale-105"
           aria-label="Regrade home"
         >
-          <RegradeLogo variant="wordmark" size={40} />
+          <RegradeLogo variant="wordmark" size={44} />
         </a>
-        <div className="flex items-center gap-7 text-[15px] font-medium text-muted">
+        <div className="flex items-center gap-6 text-[15px] font-medium text-muted sm:gap-7">
           <a href="#how" className="relative hidden sm:inline transition-colors hover:text-ink group">
             How it works
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#product" className="relative hidden sm:inline transition-colors hover:text-ink group">
+          <a href="#product" className="relative hidden md:inline transition-colors hover:text-ink group">
             Product
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#trust" className="relative hidden sm:inline transition-colors hover:text-ink group">
+          <a href="#trust" className="relative hidden lg:inline transition-colors hover:text-ink group">
             Trust
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
@@ -53,7 +53,7 @@ export function Nav({ ready }: { ready: boolean }) {
               e.preventDefault();
               scrollToId("#waitlist");
             }}
-            className="btn-pro inline-flex h-10 items-center rounded-xl px-5 text-[14px] transition-transform duration-300 hover:scale-105"
+            className="btn-pro animate-breathe-slow inline-flex h-12 items-center rounded-xl px-6 text-[15px] font-bold transition-transform duration-300 hover:scale-105"
           >
             Join waitlist
           </a>

@@ -7,10 +7,11 @@ export function StickyCTA() {
 
   useEffect(() => {
     const onScroll = () => {
-      const pastHero = window.scrollY > window.innerHeight * 0.85;
-      const nearBottom =
-        window.innerHeight + window.scrollY < document.body.offsetHeight - 120;
-      setVisible(pastHero && nearBottom);
+      const pastHero = window.scrollY > window.innerHeight * 0.7;
+      const waitlist = document.getElementById("waitlist");
+      const waitlistTop = waitlist?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+      const nearWaitlist = waitlistTop < window.innerHeight * 0.85;
+      setVisible(pastHero && !nearWaitlist);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -21,11 +22,11 @@ export function StickyCTA() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={{ y: 64, opacity: 0 }}
+          initial={{ y: 72, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 64, opacity: 0 }}
+          exit={{ y: 72, opacity: 0 }}
           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-0 left-0 right-0 z-40 border-t border-black/[0.06] bg-paper/95 px-4 py-3 backdrop-blur-xl sm:hidden"
+          className="fixed bottom-4 left-4 right-4 z-40 sm:bottom-6 sm:left-auto sm:right-6 sm:w-auto"
         >
           <a
             href="#waitlist"
@@ -33,7 +34,7 @@ export function StickyCTA() {
               e.preventDefault();
               scrollToId("#waitlist");
             }}
-            className="btn-pro flex h-12 w-full items-center justify-center rounded-xl text-sm"
+            className="btn-pro flex h-14 items-center justify-center rounded-2xl px-7 text-[16px] font-bold shadow-[0_18px_40px_-12px_rgba(77,140,255,0.65)] sm:min-w-[220px]"
           >
             Join the waitlist
           </a>

@@ -102,15 +102,17 @@ export function Hero({ ready }: { ready: boolean }) {
           Powered by OpenAI&apos;s newest and fastest model · grounded in your marked work
         </motion.p>
 
-        <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[720px]">
-          <WaitlistForm
-            source="hero"
-            submitLabel="Join the waitlist"
-            variant="light"
-            layout="inline"
-            accent="blue"
-            size="lg"
-          />
+        <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[780px]">
+          <div className="rounded-[22px] border-2 border-blue/25 bg-white/80 p-3 shadow-[0_20px_50px_-18px_rgba(77,140,255,0.45)] backdrop-blur-md sm:p-4">
+            <WaitlistForm
+              source="hero"
+              submitLabel="Join the waitlist"
+              variant="light"
+              layout="inline"
+              accent="blue"
+              size="lg"
+            />
+          </div>
         </motion.div>
 
         <motion.div

@@ -21,7 +21,7 @@ export function WaitlistForm({
   source,
   submitLabel = "Join waitlist",
   variant = "light",
-  accent = "ink",
+  accent: _accent = "ink",
   layout = "stacked",
   size = "md",
 }: Props) {
@@ -39,9 +39,9 @@ export function WaitlistForm({
 
   const inline = layout === "inline";
   const large = size === "lg";
-  const fieldHeight = large ? "h-12" : "h-11";
-  const fieldText = large ? "text-[17px]" : "text-[16px]";
-  const buttonText = large ? "text-[16px]" : "text-[15px]";
+  const fieldHeight = large ? "h-14" : "h-12";
+  const fieldText = large ? "text-[18px]" : "text-[16px]";
+  const buttonText = large ? "text-[17px]" : "text-[15px]";
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -70,25 +70,23 @@ export function WaitlistForm({
     "w-full rounded-xl border px-4 tracking-[-0.01em] outline-none backdrop-blur-md transition-colors",
     fieldHeight,
     fieldText,
-    "focus:border-blue/45 focus:ring-2 focus:ring-blue/12",
+    "focus:border-blue/55 focus:ring-2 focus:ring-blue/15",
     variant === "dark"
-      ? "border-white/12 bg-white/[0.08] text-white placeholder:text-white/40"
+      ? "border-white/20 bg-white/[0.1] text-white placeholder:text-white/45"
       : variant === "offer"
-        ? "border-white/35 bg-white/20 text-white placeholder:text-white/50 focus:border-white/70 focus:ring-white/20"
-        : "border-white/70 bg-white/40 text-ink placeholder:text-faint"
+        ? "border-white/40 bg-white/25 text-white placeholder:text-white/55 focus:border-white/70 focus:ring-white/20"
+        : "border-blue/20 bg-white text-ink placeholder:text-faint shadow-[0_1px_2px_rgba(30,79,255,0.06)]"
   );
 
   const buttonClass = cn(
-    "shrink-0 cursor-pointer rounded-xl px-6 font-ui font-semibold tracking-[-0.02em] transition-all duration-300",
+    "shrink-0 cursor-pointer rounded-xl px-7 font-ui font-bold tracking-[-0.02em] transition-all duration-300",
     fieldHeight,
     buttonText,
     "disabled:cursor-not-allowed disabled:opacity-50",
     inline ? "w-full sm:w-auto" : "w-full",
     variant === "dark"
-      ? "bg-white text-ink hover:bg-white/92"
-      : variant === "offer" || accent === "ink"
-        ? "btn-pro"
-        : "bg-blue text-white shadow-[0_1px_2px_rgba(11,18,32,0.12),0_8px_24px_-12px_rgba(30,79,255,0.45)] hover:bg-blue-deep"
+      ? "bg-white text-ink hover:bg-white/92 shadow-[0_8px_24px_-10px_rgba(255,255,255,0.45)]"
+      : "btn-pro"
   );
 
   if (success) {
@@ -140,7 +138,7 @@ export function WaitlistForm({
           autoComplete="name"
           aria-label="Full name"
           required
-          className={cn(inputClass, inline && (large ? "sm:max-w-[210px]" : "sm:max-w-[180px]"))}
+          className={cn(inputClass, inline && (large ? "sm:max-w-[240px]" : "sm:max-w-[200px]"))}
         />
         <input
           type="email"

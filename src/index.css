@@ -13,11 +13,11 @@
   --color-muted: #52525b;
   --color-faint: #a1a1aa;
   --color-line: rgba(9, 9, 11, 0.08);
-  --color-blue: #1e4fff;
-  --color-blue-deep: #1236c9;
-  --color-blue-wash: #eef2ff;
-  --color-blue-soft: #f5f7ff;
-  --color-blue-muted: #6b8cff;
+  --color-blue: #4d8cff;
+  --color-blue-deep: #2f6ef0;
+  --color-blue-wash: #eef4ff;
+  --color-blue-soft: #f5f8ff;
+  --color-blue-muted: #7aa6ff;
   --color-green: #0d9f6e;
   --color-rose: #e11d48;
   --color-dark: #09090b;
@@ -27,12 +27,12 @@
 
 @layer base {
   :root {
-    --site-header: 6.25rem;
+    --site-header: 6.75rem;
   }
 
   @media (min-width: 640px) {
     :root {
-      --site-header: 6.5rem;
+      --site-header: 7rem;
     }
   }
   html {
@@ -92,14 +92,14 @@
   }
 
   .btn-pro {
-    @apply relative inline-flex cursor-pointer items-center justify-center bg-ink font-ui font-semibold text-white;
-    box-shadow: 0 1px 2px rgba(9, 9, 11, 0.12);
+    @apply relative inline-flex cursor-pointer items-center justify-center bg-blue font-ui font-semibold text-white;
+    box-shadow: 0 1px 2px rgba(47, 110, 240, 0.18), 0 10px 28px -12px rgba(77, 140, 255, 0.55);
     transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
   }
 
   .btn-pro:hover {
-    background: #000;
-    box-shadow: 0 4px 14px rgba(9, 9, 11, 0.18);
+    background: var(--color-blue-deep);
+    box-shadow: 0 4px 18px rgba(47, 110, 240, 0.28);
   }
 
   .btn-pro:active {
@@ -116,7 +116,7 @@
   }
 
   .text-gradient {
-    background: linear-gradient(120deg, #1e4fff 0%, #3d6dff 50%, #1e4fff 100%);
+    background: linear-gradient(120deg, #4d8cff 0%, #7aa6ff 50%, #4d8cff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -306,7 +306,7 @@
   }
 
   .text-gradient-live {
-    background: linear-gradient(100deg, #1e4fff 0%, #6b8cff 25%, #8b6bff 50%, #1e4fff 75%, #1236c9 100%);
+    background: linear-gradient(100deg, #4d8cff 0%, #7aa6ff 25%, #9db5ff 50%, #4d8cff 75%, #2f6ef0 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

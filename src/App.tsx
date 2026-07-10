@@ -13,6 +13,8 @@ import { FounderProofSection } from "./components/FounderProofSection";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
 import { SeoSchema } from "./components/SeoSchema";
+import { ScrollProgress } from "./components/ScrollProgress";
+import { StickyCTA } from "./components/StickyCTA";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -23,6 +25,7 @@ export default function App() {
       <SeoSchema />
       <div className="grain" aria-hidden />
       {!ready && <Preloader onDone={() => setReady(true)} />}
+      <ScrollProgress />
       <YCBanner />
       <SmoothScroll>
         <Nav ready={ready} />
@@ -39,6 +42,7 @@ export default function App() {
           <CTASection />
         </main>
         <Footer />
+        <StickyCTA />
       </SmoothScroll>
     </>
   );
