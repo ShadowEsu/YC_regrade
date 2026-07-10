@@ -42,7 +42,7 @@ const toneClass = {
 
 export function Hero({ ready }: { ready: boolean }) {
   return (
-    <header className="relative overflow-hidden border-b border-black/[0.07] bg-paper px-6 pb-16 pt-12 text-center">
+    <header id="top" className="relative overflow-hidden border-b border-black/[0.07] bg-paper px-6 pb-16 pt-12 text-center">
       <div
         className="pointer-events-none absolute -left-24 top-16 h-72 w-72 rounded-full bg-blue/[0.12] blur-3xl"
         aria-hidden

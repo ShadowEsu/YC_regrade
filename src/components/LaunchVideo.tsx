@@ -87,7 +87,7 @@ export function LaunchVideo({ ready }: Props) {
 
   return (
     <section
-      id="top"
+      id="launch-video"
       className="border-b border-blue/10 bg-[#0a0f2e] py-[clamp(40px,6vw,72px)]"
     >
       <div className="mx-auto w-full max-w-[880px] px-4 sm:px-6">
