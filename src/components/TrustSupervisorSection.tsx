@@ -1,22 +1,25 @@
-import { Eye, LockKeyhole, ShieldCheck, UsersRound } from "lucide-react";
+import { UsersRound } from "lucide-react";
 import { SectionReveal } from "./SectionReveal";
 import { scrollToId } from "../lib/scroll";
 
 const trust = [
   {
-    icon: Eye,
     title: "Clear evidence",
     body: "Marks, rubric, and uncertainty stay distinct.",
+    image: "/icons/trust-evidence.png",
+    alt: "Clear evidence icon",
   },
   {
-    icon: ShieldCheck,
     title: "Honest uncertainty",
     body: "Unclear marks are flagged — never invented.",
+    image: "/icons/trust-uncertainty.png",
+    alt: "Honest uncertainty icon",
   },
   {
-    icon: LockKeyhole,
     title: "You stay in control",
     body: "You review every draft. Nothing sends itself.",
+    image: "/icons/trust-control.png",
+    alt: "You stay in control icon",
   },
 ];
 
@@ -43,15 +46,23 @@ export function TrustSupervisorSection() {
           </div>
         </SectionReveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {trust.map((item, index) => (
             <SectionReveal key={item.title} delay={index * 0.07}>
-              <div className="hover-lift h-full rounded-2xl border border-black/[0.08] bg-white p-6 text-center">
-                <item.icon className="mx-auto h-5 w-5 text-blue" />
+              <div className="hover-lift flex h-full flex-col items-center rounded-[24px] border border-black/[0.08] bg-white p-7 text-center shadow-[0_12px_36px_rgba(9,9,11,0.05)]">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width={96}
+                  height={96}
+                  className="h-24 w-24 rounded-[24px] object-contain shadow-[0_12px_28px_-10px_rgba(9,9,11,0.35)]"
+                />
                 <h3 className="mt-6 text-[18px] font-semibold tracking-[-0.02em] text-ink">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted">{item.body}</p>
+                <p className="mt-2 max-w-[220px] text-[15px] leading-relaxed text-muted">
+                  {item.body}
+                </p>
               </div>
             </SectionReveal>
           ))}

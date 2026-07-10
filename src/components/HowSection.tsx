@@ -1,25 +1,27 @@
-import { FileUp, SearchCheck, Compass } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { SectionReveal } from "./SectionReveal";
 
 const steps = [
   {
-    icon: FileUp,
     number: "01",
     title: "Upload",
     body: "Marked PDF, screenshot, rubric, or feedback.",
+    image: "/icons/how-scan.png",
+    alt: "Scan a marked document",
   },
   {
-    icon: SearchCheck,
     number: "02",
     title: "Read the evidence",
     body: "Visible marks, rubric support, and uncertainty — kept separate.",
+    image: "/icons/how-match.png",
+    alt: "Match marks against the rubric",
   },
   {
-    icon: Compass,
     number: "03",
     title: "Pick a next step",
     body: "Clarify, appeal, study, or ask Mr Whale.",
+    image: "/icons/how-checklist.png",
+    alt: "Checklist of next steps",
   },
 ];
 
@@ -42,22 +44,26 @@ export function HowSection() {
             }
           />
         </SectionReveal>
-        <div className="mt-12 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-5 md:grid-cols-3">
           {steps.map((step, index) => (
             <SectionReveal key={step.number} delay={index * 0.08}>
-              <article className="hover-lift group h-full rounded-2xl border border-black/[0.08] bg-white p-7 text-center shadow-[0_10px_30px_rgba(9,9,11,0.04)] md:text-left">
-                <div className="flex items-center justify-between">
-                  <span className="font-ui text-[13px] font-bold tracking-[0.09em] text-blue">
-                    {step.number}
-                  </span>
-                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-blue/[0.1] text-blue transition-all duration-300 group-hover:scale-110 group-hover:bg-blue group-hover:text-white">
-                    <step.icon className="h-5 w-5" />
-                  </span>
-                </div>
-                <h3 className="mt-8 text-[22px] font-semibold tracking-[-0.03em] text-ink">
+              <article className="hover-lift group flex h-full flex-col items-center rounded-[24px] border border-black/[0.08] bg-white p-7 text-center shadow-[0_12px_36px_rgba(9,9,11,0.05)]">
+                <img
+                  src={step.image}
+                  alt={step.alt}
+                  width={112}
+                  height={112}
+                  className="h-28 w-28 rounded-[28px] object-contain shadow-[0_14px_30px_-12px_rgba(9,9,11,0.35)] transition-transform duration-300 group-hover:scale-105"
+                />
+                <p className="mt-6 font-ui text-[12px] font-bold uppercase tracking-[0.12em] text-blue">
+                  Step {step.number}
+                </p>
+                <h3 className="mt-2 text-[22px] font-semibold tracking-[-0.03em] text-ink">
                   {step.title}
                 </h3>
-                <p className="mt-2 text-[16px] leading-relaxed text-muted">{step.body}</p>
+                <p className="mt-2 max-w-[240px] text-[15px] leading-relaxed text-muted">
+                  {step.body}
+                </p>
               </article>
             </SectionReveal>
           ))}

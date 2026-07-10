@@ -17,6 +17,7 @@ const modes = [
     answer:
       "Your claim is clear. The note is about the explanation after quote two — practise that before the final.",
     icon: MessageCircle,
+    image: "/icons/how-scan.png",
   },
   {
     id: "appeal",
@@ -28,6 +29,7 @@ const modes = [
     answer:
       "The rubric awards four points for evidence. Ask how the deduction maps to that criterion before requesting a regrade.",
     icon: ClipboardCheck,
+    image: "/icons/how-match.png",
   },
   {
     id: "study",
@@ -39,6 +41,7 @@ const modes = [
     answer:
       "Link evidence to your claim. It shows up across two exams — drill that first.",
     icon: GraduationCap,
+    image: "/icons/how-checklist.png",
   },
   {
     id: "coach",
@@ -50,6 +53,7 @@ const modes = [
     answer:
       "You got credit for a clear claim. The deduction is the link after quote two. Practise restating that link.",
     icon: CheckCircle2,
+    image: "/logo-mark.png",
   },
 ] as const;
 
@@ -160,9 +164,14 @@ export function ProductShowcase() {
             </div>
             <div className="grid lg:grid-cols-[.88fr_1.12fr]">
               <div className="border-b border-black/[0.08] bg-[#fcfaf7] p-7 lg:border-b-0 lg:border-r lg:p-9">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/[0.09] text-blue transition-transform duration-300 hover:scale-110">
-                  <selected.icon className="h-5 w-5" />
-                </div>
+                <img
+                  src={selected.image}
+                  alt=""
+                  aria-hidden
+                  width={56}
+                  height={56}
+                  className="h-14 w-14 rounded-[16px] object-contain shadow-[0_10px_24px_-10px_rgba(9,9,11,0.35)]"
+                />
                 <p className="mt-7 font-ui text-[12px] font-bold uppercase tracking-[0.1em] text-blue">
                   {selected.labelText}
                 </p>
