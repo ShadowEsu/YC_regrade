@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX, Play, Pause } from "lucide-react";
 
-const maxAutoLoops = 33;
+const maxAutoLoops = 3;
 
 type Props = {
   ready: boolean;

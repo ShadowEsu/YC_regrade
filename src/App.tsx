@@ -36,9 +36,9 @@ export default function App() {
           style={{ transition: "opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1)" }}
         >
           <LaunchVideo ready={ready} />
+          <ConnectionsSection />
           <Hero ready={ready} />
           <HowSection />
-          <ConnectionsSection />
           <ProductShowcase />
           <SupervisorSection />
           <TrustSection />

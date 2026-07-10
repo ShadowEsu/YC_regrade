@@ -80,11 +80,23 @@ export function Hero({ ready }: { ready: boolean }) {
 
         <motion.p
           variants={block}
-          className="mx-auto mt-5 max-w-[520px] font-ui text-[clamp(17px,2vw,19px)] leading-[1.6] text-muted"
+          className="mx-auto mt-5 max-w-[560px] font-ui text-[clamp(18px,2.2vw,21px)] leading-[1.6] text-muted"
         >
           Upload a marked exam. Understand it. Practise the weak spots. Appeal only when the
           evidence supports it.
         </motion.p>
+
+        <motion.blockquote
+          variants={block}
+          className="mx-auto mt-7 max-w-[640px] border-l-4 border-blue pl-5 text-left sm:pl-6"
+        >
+          <p className="font-display text-[clamp(1.2rem,2.4vw,1.55rem)] font-medium leading-[1.35] tracking-[-0.02em] text-ink">
+            “Built from a confusing mark — not a pitch deck story.”
+          </p>
+          <footer className="mt-2 font-ui text-[14px] text-muted">
+            Preston Susanto · Founder
+          </footer>
+        </motion.blockquote>
 
         <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[740px]">
           <div className="rounded-[22px] border border-black/[0.08] bg-white p-3 shadow-[0_18px_50px_-20px_rgba(9,9,11,0.18)] sm:p-4">

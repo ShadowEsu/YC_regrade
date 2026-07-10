@@ -270,6 +270,14 @@
     animation: marquee-reverse 46s linear infinite;
   }
 
+  .animate-marquee-connectors {
+    animation: marquee 38s linear infinite;
+  }
+
+  .animate-marquee-connectors-reverse {
+    animation: marquee-reverse 44s linear infinite;
+  }
+
   .marquee-pause:hover .animate-marquee,
   .marquee-pause:hover .animate-marquee-reverse {
     animation-play-state: paused;
@@ -375,6 +383,8 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .animate-marquee-reverse,
+  .animate-marquee-connectors,
+  .animate-marquee-connectors-reverse,
   .animate-breathe,
   .animate-breathe-slow,
   .animate-blob,
