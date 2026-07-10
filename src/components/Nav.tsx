@@ -29,11 +29,10 @@ export function Nav({ ready }: { ready: boolean }) {
       <div className="section-shell flex h-14 items-center justify-between">
         <a
           href="#top"
-          className="flex items-center gap-2.5 text-[16px] font-semibold tracking-[-0.02em] text-ink"
+          className="flex items-center text-[16px] font-semibold tracking-[-0.02em] text-ink"
           aria-label="Regrade home"
         >
-          <RegradeLogo />
-          Regrade
+          <RegradeLogo variant="wordmark" size={30} />
         </a>
         <div className="flex items-center gap-7 text-[15px] font-medium text-muted">
           <a href="#how" className="hidden sm:inline transition-colors hover:text-ink">
@@ -44,6 +43,9 @@ export function Nav({ ready }: { ready: boolean }) {
           </a>
           <a href="#resources" className="hidden sm:inline transition-colors hover:text-ink">
             Resources
+          </a>
+          <a href="#vision" className="hidden sm:inline transition-colors hover:text-ink">
+            Vision
           </a>
           <a href="#faq" className="hidden sm:inline transition-colors hover:text-ink">
             FAQ

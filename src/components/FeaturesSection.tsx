@@ -1,9 +1,19 @@
 import type { LucideIcon } from "lucide-react";
-import { Search, TrendingUp, FileText, Mail } from "lucide-react";
+import { GraduationCap, HeartHandshake, Search, TrendingUp, FileText, Mail } from "lucide-react";
 import { SectionReveal } from "./SectionReveal";
 import { SectionHeader } from "./SectionHeader";
 
 const features: { icon: LucideIcon; title: string; body: string }[] = [
+  {
+    icon: GraduationCap,
+    title: "Student advocate",
+    body: "An AI advocate that catches rubric errors, maps every deduction, and builds your case in plain English.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Parent Mode",
+    body: "Snap a marked test, see why points were lost, and get a parent-teacher conference prep sheet.",
+  },
   {
     icon: Search,
     title: "Point finder",
@@ -37,11 +47,11 @@ export function FeaturesSection() {
           <SectionHeader
             eyebrow="Features"
             title="Free points are already in your grade."
-            description="Scan your work, see what you can recover, and decide your next step. Built for students who want a stronger transcript."
+            description="Built for students who need an advocate and parents who want Parent Mode. Scan work, see recoverable points, and decide your next step."
           />
         </SectionReveal>
 
-        <div className="mt-14 grid gap-3 sm:grid-cols-2">
+        <div className="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => (
             <SectionReveal key={f.title} delay={i * 0.05}>
               <div className="card-pro surface-hover h-full p-7">

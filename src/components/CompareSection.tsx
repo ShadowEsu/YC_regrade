@@ -28,6 +28,11 @@ const rows = [
     regrade: true,
   },
   {
+    label: "Parent Mode with conference prep sheets",
+    chatgpt: false,
+    regrade: true,
+  },
+  {
     label: "Free to try during beta",
     chatgpt: true,
     regrade: true,

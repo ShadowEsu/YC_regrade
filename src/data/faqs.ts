@@ -26,6 +26,14 @@ export const FAQ_ITEMS: FaqItem[] = [
     a: "Your graded work, the rubric or assignment sheet, and any feedback you received. PDFs, documents, and screenshots all work. No school login required.",
   },
   {
+    q: "Can parents use Regrade?",
+    a: "Yes. Parent Mode lets you photograph your child's marked work, see exactly why points were lost, and get a parent-teacher conference prep sheet. In K-12, the parent is often the advocate — Regrade gives you the same rubric-level analysis students get.",
+  },
+  {
+    q: "What is the student advocate?",
+    a: "Regrade acts as your student advocate: it reads graded work against the rubric, catches mismatches and harsh deductions, summarizes the case in plain English, and drafts a respectful appeal. You stay in control — nothing sends without you.",
+  },
+  {
     q: "What happens to my files?",
     a: "They are used to analyze your grade and build your summary, nothing else. You can delete them from your account at any time.",
   },

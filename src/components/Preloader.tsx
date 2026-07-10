@@ -35,10 +35,9 @@ export function Preloader({ onDone }: { onDone: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
-            className="flex items-center gap-2.5"
+            className="flex items-center"
           >
-            <RegradeLogo size={24} />
-            <span className="text-[15px] font-semibold tracking-[-0.02em] text-ink">Regrade</span>
+            <RegradeLogo variant="wordmark" size={36} />
           </motion.div>
         </motion.div>
       )}

@@ -6,6 +6,7 @@ const columns = [
     links: [
       { label: "How it works", href: "/#how" },
       { label: "Features", href: "/#features" },
+      { label: "Regrade 2.0 vision", href: "/#vision" },
       { label: "Grade appeal resources", href: "/#resources" },
       { label: "Join waitlist", href: "/#waitlist" },
     ],
@@ -53,7 +54,7 @@ export function Footer() {
           <div className="max-w-[360px]">
             <a href="/#top" className="inline-block">
               <img
-                src="/regrade-wordmark.png"
+                src="/logo-wordmark.png"
                 alt="Regrade"
                 className="h-11 w-auto brightness-0 invert sm:h-12"
                 width={180}
@@ -61,7 +62,8 @@ export function Footer() {
               />
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
-              Helping students everywhere get back the points they earned.{" "}
+              Every student deserves an advocate. Parent Mode for families. The accountability layer
+              for grading.{" "}
               <a href="/#resources" className="text-white/70 underline decoration-white/25 underline-offset-2 transition-colors hover:text-white hover:decoration-white/50">
                 See grade appeal resources
               </a>

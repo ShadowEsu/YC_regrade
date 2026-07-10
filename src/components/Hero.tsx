@@ -16,8 +16,8 @@ const block = {
 };
 
 const trustItems = [
-  "Free during beta",
-  "Works with any grading system",
+  "Student advocate built in",
+  "Parent Mode for families",
   "You send everything yourself",
 ];
 
@@ -42,8 +42,11 @@ export function Hero({ ready }: Props) {
       >
         <motion.div variants={block}>
           <span className="inline-flex items-center gap-2 rounded-full border border-blue/20 bg-white/80 px-4 py-2 font-ui text-[13px] font-semibold text-ink shadow-[0_1px_2px_rgba(9,9,11,0.04)]">
-            <span className="h-1.5 w-1.5 rounded-full bg-blue" aria-hidden />
-            Private beta · First 100 get Pro Max free for 1 year
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue opacity-50" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-blue" />
+            </span>
+            Launching soon · First 100 get Pro Max free for 1 year
           </span>
         </motion.div>
 
@@ -63,8 +66,8 @@ export function Hero({ ready }: Props) {
         >
           Regrade scans your graded work against the rubric, finds every point you can get back, and
           shows your{" "}
-          <span className="font-semibold text-ink">projected new score</span>. No redoing the work.
-          Just the marks you already earned.
+          <span className="font-semibold text-ink">projected new score</span>. Your student advocate
+          in your pocket — with Parent Mode for families who want the same clarity.
         </motion.p>
 
         <motion.div variants={block} className="mx-auto mt-10 w-full max-w-[720px]">
