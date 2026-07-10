@@ -1,52 +1,68 @@
 import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { CheckCircle2, ClipboardCheck, GraduationCap, MessageCircle, Send } from "lucide-react";
+import {
+  CheckCircle2,
+  ClipboardCheck,
+  History,
+  MessageCircle,
+  Send,
+  Sparkles,
+} from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
 import { SectionReveal } from "./SectionReveal";
 import { RegradeLogo } from "./RegradeLogo";
 import { cn } from "../lib/utils";
 
-const modes = [
+const features = [
+  {
+    id: "understand",
+    label: "Understand",
+    blurb: "Open one marked exam and see marks, rubric rows, and notes.",
+    title: "See the grade, not just the number.",
+    description: "Marks, rubric rows, and feedback — with uncertainty called out.",
+    labelText: "This exam",
+    icon: Sparkles,
+    image: "/icons/how-scan.png",
+    imageAlt: "Understand a marked exam",
+    panel: "chat" as const,
+  },
   {
     id: "review",
     label: "Review",
-    title: "See the grade, not just the number.",
-    description: "Marks, rubric rows, and feedback — with uncertainty called out.",
-    labelText: "Question review",
-    icon: MessageCircle,
-    image: "/icons/how-scan.png",
-    imageAlt: "Upload and scan a marked exam",
+    blurb: "Look back at mistakes. AI collects patterns from every upload.",
+    title: "Review mistakes. Build the next attempt.",
+    description:
+      "History across your marked exams — weak spots, repeats, and what to practise next.",
+    labelText: "History · reinforcement",
+    icon: History,
+    image: "/icons/how-checklist.png",
+    imageAlt: "Review mistakes from uploaded exams",
+    panel: "review" as const,
   },
   {
     id: "appeal",
     label: "Appeal",
+    blurb: "Appealing agent — draft a respectful ask when evidence supports it.",
     title: "Ask with the right evidence.",
-    description: "A respectful draft when a real discrepancy exists. You send it.",
-    labelText: "Potential issue",
+    description: "A calm draft when a real discrepancy exists. You send it.",
+    labelText: "Appealing agent",
     icon: ClipboardCheck,
     image: "/icons/how-match.png",
-    imageAlt: "Read the evidence against the rubric",
-  },
-  {
-    id: "study",
-    label: "Study",
-    title: "Turn marks into a study plan.",
-    description: "Recurring patterns from marked exams become your finals checklist.",
-    labelText: "Finals Prep",
-    icon: GraduationCap,
-    image: "/icons/how-checklist.png",
-    imageAlt: "Pick a next step from your study checklist",
+    imageAlt: "Appealing agent draft",
+    panel: "chat" as const,
   },
   {
     id: "coach",
     label: "Coach",
+    blurb: "Mr Whale beside the work — plain answers, no invented guarantees.",
     title: "Mr Whale beside the work.",
-    description: "Plain-language help on the selected mark. No invented guarantees.",
+    description: "Ask about a mark in plain language. One focused follow-up at a time.",
     labelText: "Ask Mr Whale",
-    icon: CheckCircle2,
+    icon: MessageCircle,
     image: "/logo-mark-app.png",
-    imageAlt: "Regrade Coach with Mr Whale",
+    imageAlt: "Coach with Mr Whale",
+    panel: "chat" as const,
   },
 ] as const;
 
@@ -59,7 +75,7 @@ const chatScript = [
   {
     question: "Is this worth appealing?",
     answer:
-      "Only if the rubric row and the mark do not match. Here the deduction is explained — study first, appeal only if still unclear.",
+      "Only if the rubric row and the mark do not match. Here the deduction is explained — review first, appeal only if still unclear.",
   },
   {
     question: "What should I practise before the final?",
@@ -78,7 +94,7 @@ const chatScript = [
   },
 ] as const;
 
-const studyItems = [
+const reviewItems = [
   {
     title: "Link evidence to claim",
     detail: "Teacher note on Q4 · appears in 2 exams",
@@ -96,7 +112,7 @@ const studyItems = [
   },
 ];
 
-type ModeId = (typeof modes)[number]["id"];
+type FeatureId = (typeof features)[number]["id"];
 type ChatItem =
   | { id: string; role: "user"; text: string }
   | { id: string; role: "whale"; text: string; typing?: boolean };
@@ -109,16 +125,17 @@ const bubbleMotion = {
 };
 
 export function ProductShowcase() {
-  const [mode, setMode] = useState<ModeId>("review");
+  const [mode, setMode] = useState<FeatureId>("understand");
   const [message, setMessage] = useState<string>(chatScript[0].question);
   const [thread, setThread] = useState<ChatItem[]>([]);
   const [scriptIndex, setScriptIndex] = useState(0);
   const [pairKey, setPairKey] = useState(0);
   const bottomRef = useRef<HTMLDivElement>(null);
-  const selected = modes.find((item) => item.id === mode)!;
+  const selected = features.find((item) => item.id === mode)!;
+  const showChat = selected.panel === "chat";
 
   useEffect(() => {
-    if (mode === "study") return;
+    if (!showChat) return;
 
     let cancelled = false;
     const timers: number[] = [];
@@ -169,7 +186,7 @@ export function ProductShowcase() {
       cancelled = true;
       timers.forEach((id) => window.clearTimeout(id));
     };
-  }, [mode]);
+  }, [mode, showChat]);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -199,31 +216,61 @@ export function ProductShowcase() {
             eyebrow="Review Studio"
             title={
               <>
-                Four modes.{" "}
+                Four features.{" "}
                 <span className="text-gradient-live">One marked exam.</span>
               </>
             }
           />
+          <p className="mx-auto mt-4 max-w-[560px] text-center font-ui text-[15px] leading-relaxed text-muted sm:text-[16px]">
+            Click a feature to see what it does — Understand, Review, Appeal, and Coach.
+          </p>
         </SectionReveal>
-        <SectionReveal delay={0.06}>
-          <div className="mt-8 overflow-hidden rounded-[28px] border border-blue/20 bg-paper shadow-[0_32px_90px_rgba(30,79,255,0.16)] sm:mt-12 sm:rounded-[40px]">
-            <div className="flex gap-1 overflow-x-auto border-b border-blue/12 bg-[#eef2ff] px-3 py-3.5 sm:gap-1.5 sm:px-7 sm:py-5">
-              {modes.map((item) => (
+
+        <SectionReveal delay={0.05}>
+          <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+            {features.map((item) => {
+              const Icon = item.icon;
+              const active = mode === item.id;
+              return (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => setMode(item.id)}
+                  aria-pressed={active}
                   className={cn(
-                    "shrink-0 rounded-lg px-3.5 py-2.5 font-ui text-[13px] font-semibold transition-all duration-300 sm:rounded-xl sm:px-6 sm:py-3.5 sm:text-[16px]",
-                    mode === item.id
-                      ? "bg-blue text-white shadow-[0_8px_20px_rgba(30,79,255,0.28)]"
-                      : "text-muted hover:bg-blue-soft hover:text-ink"
+                    "group flex min-h-[148px] flex-col rounded-[22px] border p-5 text-left transition-all duration-300 sm:min-h-[168px] sm:p-6",
+                    active
+                      ? "border-blue bg-blue text-white shadow-[0_18px_40px_-16px_rgba(30,79,255,0.55)] scale-[1.02]"
+                      : "border-black/10 bg-paper text-ink hover:border-blue/40 hover:shadow-[0_16px_36px_-20px_rgba(30,79,255,0.3)]"
                   )}
                 >
-                  {item.label}
+                  <span
+                    className={cn(
+                      "grid h-11 w-11 place-items-center rounded-xl transition-colors",
+                      active ? "bg-white/15 text-white" : "bg-[#eef2ff] text-blue"
+                    )}
+                  >
+                    <Icon className="h-5 w-5" strokeWidth={2.25} />
+                  </span>
+                  <span className="mt-4 font-display text-[1.35rem] font-semibold tracking-[-0.03em] sm:text-[1.45rem]">
+                    {item.label}
+                  </span>
+                  <span
+                    className={cn(
+                      "mt-2 text-[13px] leading-snug sm:text-[14px]",
+                      active ? "text-white/85" : "text-muted"
+                    )}
+                  >
+                    {item.blurb}
+                  </span>
                 </button>
-              ))}
-            </div>
+              );
+            })}
+          </div>
+        </SectionReveal>
+
+        <SectionReveal delay={0.08}>
+          <div className="mt-6 overflow-hidden rounded-[28px] border border-blue/20 bg-paper shadow-[0_32px_90px_rgba(30,79,255,0.16)] sm:mt-8 sm:rounded-[40px]">
             <div className="grid lg:grid-cols-[.82fr_1.18fr]">
               <div className="border-b border-blue/12 bg-[#f7f9ff] p-6 sm:p-10 lg:border-b-0 lg:border-r lg:p-14 xl:p-16">
                 <img
@@ -255,18 +302,22 @@ export function ProductShowcase() {
                 </div>
               </div>
 
-              {mode === "study" ? (
+              {selected.panel === "review" ? (
                 <div className="flex min-h-[520px] flex-col bg-paper p-5 sm:min-h-[780px] sm:p-9 lg:min-h-[900px] lg:p-12">
                   <div className="flex items-center justify-between">
                     <span className="font-ui text-[11px] font-bold uppercase tracking-[0.09em] text-blue sm:text-[13px]">
-                      Study checklist · from marked exams
+                      Review history · from your uploads
                     </span>
                     <span className="rounded-full bg-blue/15 px-3 py-1 font-ui text-[11px] font-bold text-blue">
                       2 exams
                     </span>
                   </div>
+                  <p className="mt-3 text-[14px] leading-relaxed text-muted sm:text-[15px]">
+                    AI collects weak spots across marked work so you can look back and reinforce
+                    what keeps costing points.
+                  </p>
                   <ul className="mt-5 flex flex-1 flex-col gap-3 sm:mt-8 sm:gap-4">
-                    {studyItems.map((item) => (
+                    {reviewItems.map((item) => (
                       <li
                         key={item.title}
                         className={cn(
@@ -311,7 +362,9 @@ export function ProductShowcase() {
                         <RegradeLogo variant="whale" size={28} />
                       </span>
                       <div className="text-left">
-                        <p className="text-[15px] font-semibold text-ink sm:text-[16px]">Mr Whale</p>
+                        <p className="text-[15px] font-semibold text-ink sm:text-[16px]">
+                          {mode === "appeal" ? "Appealing agent" : "Mr Whale"}
+                        </p>
                         <p className="font-ui text-[11px] text-blue sm:text-[12px]">
                           Live demo · question {(scriptIndex % chatScript.length) + 1} of{" "}
                           {chatScript.length}
@@ -354,7 +407,7 @@ export function ProductShowcase() {
                                   {item.typing ? (
                                     <span
                                       className="inline-flex gap-1.5 px-1 py-1"
-                                      aria-label="Mr Whale is typing"
+                                      aria-label="Typing"
                                     >
                                       <i className="typing-dot" />
                                       <i className="typing-dot" />
@@ -379,8 +432,10 @@ export function ProductShowcase() {
                     <input
                       value={message}
                       onChange={(event) => setMessage(event.target.value)}
-                      aria-label="Ask Mr Whale about the mark"
-                      placeholder="Ask about this mark…"
+                      aria-label="Ask about the mark"
+                      placeholder={
+                        mode === "appeal" ? "Ask the appealing agent…" : "Ask about this mark…"
+                      }
                       className="min-w-0 flex-1 rounded-xl border border-black/10 bg-[#f7f9ff] px-4 py-3.5 text-[15px] text-ink outline-none transition focus:border-blue focus:ring-2 focus:ring-blue/15 sm:rounded-2xl sm:px-5 sm:py-4 sm:text-[17px]"
                     />
                     <button

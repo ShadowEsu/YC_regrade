@@ -39,6 +39,6 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What happens to my files?",
-    a: "They are used to analyze your marked work and build your summary, Study checklist, and drafts — nothing else. You can delete them from your account at any time.",
+    a: "They are used to analyze your marked work and build your summary, Review history, and drafts — nothing else. You can delete them from your account at any time.",
   },
 ];

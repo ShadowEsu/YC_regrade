@@ -11,7 +11,7 @@ const points = [
   {
     icon: Shield,
     title: "Selected sharing scopes",
-    body: "Choose what is visible — marked work, Study checklist, or draft appeals.",
+    body: "Choose what is visible — marked work, Review history, or draft appeals.",
   },
   {
     icon: Link2,

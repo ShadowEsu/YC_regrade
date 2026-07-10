@@ -6,7 +6,7 @@ export const SITE_TAGLINE = "Understand your grade. Learn from it. Make the stro
 export const SITE_DESCRIPTION =
   "Regrade helps students inspect marked work, understand what happened, prepare evidence-led appeals when appropriate, and turn marked exams into better finals preparation — with Mr Whale as a calm guide beside the work.";
 export const OG_DESCRIPTION =
-  "Know what happened on your grade. Know what to do next. Review, Appeal, Study, and Coach — powered by OpenAI.";
+  "Know what happened on your grade. Know what to do next. Understand, Review, Appeal, and Coach — powered by OpenAI.";
 export const OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export const FOUNDER = {
@@ -45,7 +45,7 @@ export const HOW_TO_STEPS = [
   },
   {
     name: "Choose what to do next",
-    text: "Clarify the mark, prepare a respectful appeal, ask Mr Whale, or add the pattern to your Study plan. Nothing sends unless you choose to.",
+    text: "Clarify the mark, prepare a respectful appeal, ask Mr Whale, or review patterns from past exams. Nothing sends unless you choose to.",
   },
 ] as const;
 
@@ -163,7 +163,7 @@ export function buildJsonLdGraph() {
     featureList: [
       "Review Studio evidence map",
       "Evidence-led appeal drafting",
-      "Study checklist from marked exams",
+      "Review history from marked exams",
       "Mr Whale academic coach",
       "Consent-first Supervisor access",
     ],
@@ -175,7 +175,7 @@ export function buildJsonLdGraph() {
     "@id": `${SITE_URL}/#howto`,
     name: "How to understand a marked exam with Regrade",
     description:
-      "Upload marked work to read the evidence, prepare a respectful appeal when appropriate, and build a Study plan from past exams.",
+      "Upload marked work to read the evidence, prepare a respectful appeal when appropriate, and review mistakes from past exams.",
     step: HOW_TO_STEPS.map((step, i) => ({
       "@type": "HowToStep",
       position: i + 1,

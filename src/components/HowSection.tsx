@@ -19,7 +19,7 @@ const steps = [
   {
     number: "03",
     title: "Choose what to do next",
-    body: "Clarify the mark, draft an appeal, build a study plan, or ask Mr Whale.",
+    body: "Clarify the mark, draft an appeal, review your mistakes, or ask Mr Whale.",
     image: "/icons/how-checklist.png",
     alt: "Choose the next step after review",
   },
