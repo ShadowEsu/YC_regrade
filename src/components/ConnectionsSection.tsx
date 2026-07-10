@@ -70,7 +70,7 @@ const connectors: Connector[] = [
 ];
 
 function LogoTrack({ reverse = false }: { reverse?: boolean }) {
-  const loop = [...connectors, ...connectors, ...connectors];
+  const loop = [...connectors, ...connectors];
   return (
     <div
       className={cn(
