@@ -32,10 +32,12 @@ export function HowSection() {
       <div className="section-shell">
         <SectionReveal>
           <SectionHeader
+            centered
             eyebrow="How it works"
             title={
               <>
-                One marked exam. <span className="text-blue">A clearer next step.</span>
+                One marked exam.{" "}
+                <span className="text-gradient-live">A clearer next step.</span>
               </>
             }
             description="Regrade starts after the grade comes back — when you have real evidence and a real reason to understand it."

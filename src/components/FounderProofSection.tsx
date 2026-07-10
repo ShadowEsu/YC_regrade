@@ -26,15 +26,15 @@ export function FounderProofSection() {
     >
       <div className="section-shell">
         <SectionReveal>
-          <div className="mx-auto max-w-[720px]">
+          <div className="mx-auto max-w-[720px] text-center">
             <p className="mb-3 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-blue">
               Founder note
             </p>
             <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
               I built Regrade to turn a confusing mark into a{" "}
-              <span className="text-blue">clearer next step</span>.
+              <span className="text-gradient-live">clearer next step</span>.
             </h2>
-            <p className="mt-4 text-[17px] leading-[1.65] text-muted">
+            <p className="mx-auto mt-4 max-w-[640px] text-[17px] leading-[1.65] text-muted">
               One rubric line was counted twice on a final essay. Building the case by hand took
               hours. The same upload through Regrade surfaced the same evidence gaps — with a
               line-by-line read and a draft I could edit before anything went out. Regrade does not
@@ -63,7 +63,7 @@ export function FounderProofSection() {
         </SectionReveal>
 
         <SectionReveal delay={0.1}>
-          <div className="mx-auto mt-8 flex max-w-[720px] items-center gap-4 border-t border-black/[0.06] pt-8">
+          <div className="mx-auto mt-8 flex max-w-[720px] items-center justify-center gap-4 border-t border-black/[0.06] pt-8">
             <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-ink text-[12px] font-semibold text-white">
               PS
             </div>

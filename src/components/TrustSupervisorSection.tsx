@@ -28,17 +28,15 @@ export function TrustSupervisorSection() {
     >
       <div className="section-shell">
         <SectionReveal>
-          <div className="grid gap-10 lg:grid-cols-[1.15fr_.85fr] lg:items-end">
-            <div>
-              <p className="font-ui text-[12px] font-bold uppercase tracking-[0.12em] text-blue">
-                Trust, not theatrics
-              </p>
-              <h2 className="mt-4 max-w-[720px] font-display text-[clamp(2.3rem,4vw,3.75rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-ink">
-                Clear evidence. Honest uncertainty.{" "}
-                <span className="text-blue">You stay in control.</span>
-              </h2>
-            </div>
-            <p className="max-w-[450px] text-[17px] leading-relaxed text-muted">
+          <div className="mx-auto max-w-[760px] text-center">
+            <p className="font-ui text-[12px] font-bold uppercase tracking-[0.12em] text-blue">
+              Trust, not theatrics
+            </p>
+            <h2 className="mt-4 font-display text-[clamp(2.3rem,4vw,3.75rem)] font-semibold leading-[1.06] tracking-[-0.04em] text-ink">
+              Clear evidence. Honest uncertainty.{" "}
+              <span className="text-gradient-live">You stay in control.</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-[560px] text-[17px] leading-relaxed text-muted">
               Regrade does not decide whether a grade is “fair.” It helps you read the marked work,
               identify what is visible, and ask a clearer question. You review every draft before it
               goes anywhere.

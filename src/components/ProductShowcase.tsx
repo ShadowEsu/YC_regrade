@@ -132,11 +132,12 @@ export function ProductShowcase() {
       <div className="section-shell">
         <SectionReveal>
           <SectionHeader
+            centered
             eyebrow="Review · Appeal · Study · Coach"
             title={
               <>
                 Understand the mark.{" "}
-                <span className="text-blue">Then choose the right next step.</span>
+                <span className="text-gradient-live">Then choose the right next step.</span>
               </>
             }
             description="Every mode starts with the same marked work. The next step changes with the evidence — not with four separate assistants."

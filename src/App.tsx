@@ -4,6 +4,7 @@ import { SmoothScroll } from "./components/SmoothScroll";
 import { Preloader } from "./components/Preloader";
 import { YCBanner } from "./components/YCBanner";
 import { Nav } from "./components/Nav";
+import { LaunchVideo } from "./components/LaunchVideo";
 import { Hero } from "./components/Hero";
 import { HowSection } from "./components/HowSection";
 import { ProductShowcase } from "./components/ProductShowcase";
@@ -29,6 +30,7 @@ export default function App() {
           className={ready ? "opacity-100" : "opacity-0"}
           style={{ transition: "opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1)" }}
         >
+          <LaunchVideo ready={ready} />
           <Hero ready={ready} />
           <HowSection />
           <ProductShowcase />

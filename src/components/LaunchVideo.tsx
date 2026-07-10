@@ -100,7 +100,7 @@ export function LaunchVideo({ ready }: Props) {
           preload="auto"
           onEnded={handleEnded}
           className="aspect-video max-h-[85vh] w-full object-cover"
-          aria-label="Regrade 2.0 launch animation"
+          aria-label="Regrade launch animation"
         />
         <div
           className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0a0f2e]/70 via-transparent to-transparent"
