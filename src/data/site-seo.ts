@@ -36,7 +36,7 @@ export const KEYWORDS = [
 
 export const HOW_TO_STEPS = [
   {
-    name: "Bring one marked exam",
+    name: "Bring One Marked Exam",
     text: "Upload a marked PDF, image, screenshot, rubric, or feedback. Manual upload always works.",
   },
   {

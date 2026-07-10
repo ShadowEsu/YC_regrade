@@ -18,7 +18,7 @@ export function CTASection() {
               Waitlist · private beta
             </p>
             <h2 className="font-display text-[clamp(2.1rem,4.5vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-              <span className="text-gradient-live">Bring one marked exam.</span>
+              <span className="text-gradient-live">Bring One Marked Exam.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-[480px] font-ui text-[15px] leading-relaxed text-white/75 sm:text-[16px]">
               First {REGRADE_CONFIG.waitlistDisplayMax} users get Pro free for 1 year. Powered by

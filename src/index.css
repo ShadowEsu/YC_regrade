@@ -27,12 +27,18 @@
 
 @layer base {
   :root {
-    --site-header: 6.75rem;
+    --site-header: 6.25rem;
   }
 
   @media (min-width: 640px) {
     :root {
       --site-header: 7rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    html {
+      font-size: 15.5px;
     }
   }
   html {

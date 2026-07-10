@@ -133,8 +133,8 @@ export function ProductShowcase() {
   }
 
   return (
-    <section id="product" className="scroll-mt-[120px] bg-blue-soft py-[clamp(88px,11vw,140px)]">
-      <div className="mx-auto max-w-[1280px] px-5 sm:px-8">
+    <section id="product" className="scroll-mt-[120px] bg-blue-soft py-[clamp(64px,11vw,140px)]">
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-8 lg:max-w-[1360px]">
         <SectionReveal>
           <SectionHeader
             centered
@@ -148,15 +148,15 @@ export function ProductShowcase() {
           />
         </SectionReveal>
         <SectionReveal delay={0.06}>
-          <div className="mt-12 overflow-hidden rounded-[32px] border border-blue/25 bg-blue-wash shadow-[0_28px_80px_rgba(30,79,255,0.14)]">
-            <div className="flex gap-1.5 overflow-x-auto border-b border-blue/15 bg-[#d7e2ff] px-4 py-4 sm:px-6">
+          <div className="mt-8 overflow-hidden rounded-[24px] border border-blue/25 bg-blue-wash shadow-[0_28px_80px_rgba(30,79,255,0.14)] sm:mt-12 sm:rounded-[32px]">
+            <div className="flex gap-1 overflow-x-auto border-b border-blue/15 bg-[#d7e2ff] px-3 py-3 sm:gap-1.5 sm:px-6 sm:py-4">
               {modes.map((item) => (
                 <button
                   key={item.id}
                   type="button"
                   onClick={() => setMode(item.id)}
                   className={cn(
-                    "shrink-0 rounded-xl px-5 py-3 font-ui text-[15px] font-semibold transition-all duration-300",
+                    "shrink-0 rounded-lg px-3.5 py-2 font-ui text-[13px] font-semibold transition-all duration-300 sm:rounded-xl sm:px-5 sm:py-3 sm:text-[15px]",
                     mode === item.id
                       ? "bg-blue text-white shadow-[0_8px_20px_rgba(30,79,255,0.28)]"
                       : "text-muted hover:bg-blue-soft hover:text-ink"
@@ -167,52 +167,52 @@ export function ProductShowcase() {
               ))}
             </div>
             <div className="grid lg:grid-cols-[.95fr_1.05fr]">
-              <div className="border-b border-blue/15 bg-blue-wash p-9 lg:border-b-0 lg:border-r lg:p-12">
+              <div className="border-b border-blue/15 bg-blue-wash p-5 sm:p-9 lg:border-b-0 lg:border-r lg:p-12 xl:p-14">
                 <img
                   src={selected.image}
                   alt={selected.imageAlt}
                   width={88}
                   height={88}
-                  className="h-[88px] w-[88px] rounded-[20px] object-contain"
+                  className="h-14 w-14 rounded-[16px] object-contain sm:h-[88px] sm:w-[88px] sm:rounded-[20px]"
                 />
-                <p className="mt-9 font-ui text-[13px] font-bold uppercase tracking-[0.1em] text-blue">
+                <p className="mt-5 font-ui text-[11px] font-bold uppercase tracking-[0.1em] text-blue sm:mt-9 sm:text-[13px]">
                   {selected.labelText}
                 </p>
-                <h3 className="mt-3 font-display text-[clamp(2.25rem,3.4vw,3.25rem)] font-semibold leading-[1.08] tracking-[-0.04em] text-ink">
+                <h3 className="mt-2 font-display text-[clamp(1.65rem,3.4vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.04em] text-ink sm:mt-3">
                   {selected.title}
                 </h3>
-                <p className="mt-4 max-w-[480px] text-[18px] leading-relaxed text-muted">
+                <p className="mt-3 max-w-[480px] text-[15px] leading-relaxed text-muted sm:mt-4 sm:text-[18px]">
                   {selected.description}
                 </p>
-                <div className="mt-9 rounded-2xl border border-blue/20 bg-paper p-6">
-                  <p className="font-ui text-[12px] font-bold uppercase tracking-[0.08em] text-blue">
+                <div className="mt-5 rounded-2xl border border-blue/20 bg-paper p-4 sm:mt-9 sm:p-6">
+                  <p className="font-ui text-[11px] font-bold uppercase tracking-[0.08em] text-blue sm:text-[12px]">
                     Evidence in view
                   </p>
-                  <p className="mt-2 text-[16px] font-semibold leading-relaxed text-ink">
+                  <p className="mt-2 text-[14px] font-semibold leading-relaxed text-ink sm:text-[16px]">
                     Rubric: “Explain how evidence supports the claim.”
                   </p>
-                  <p className="mt-1 text-[16px] leading-relaxed text-muted">
+                  <p className="mt-1 text-[14px] leading-relaxed text-muted sm:text-[16px]">
                     Teacher note: “Explain the link after quote two.”
                   </p>
                 </div>
               </div>
 
               {mode === "study" ? (
-                <div className="flex min-h-[640px] flex-col bg-paper p-8 sm:p-10">
+                <div className="flex min-h-[420px] flex-col bg-paper p-5 sm:min-h-[640px] sm:p-8 lg:min-h-[720px] lg:p-10">
                   <div className="flex items-center justify-between">
-                    <span className="font-ui text-[13px] font-bold uppercase tracking-[0.09em] text-blue">
+                    <span className="font-ui text-[11px] font-bold uppercase tracking-[0.09em] text-blue sm:text-[13px]">
                       Study checklist · from marked exams
                     </span>
                     <span className="rounded-full bg-blue/15 px-3 py-1 font-ui text-[11px] font-bold text-blue">
                       2 exams
                     </span>
                   </div>
-                  <ul className="mt-8 flex flex-1 flex-col gap-3.5">
+                  <ul className="mt-5 flex flex-1 flex-col gap-3 sm:mt-8 sm:gap-3.5">
                     {studyItems.map((item) => (
                       <li
                         key={item.title}
                         className={cn(
-                          "rounded-2xl border px-5 py-4 transition-colors",
+                          "rounded-2xl border px-4 py-3.5 transition-colors sm:px-5 sm:py-4",
                           item.done
                             ? "border-green/20 bg-green/[0.05]"
                             : "border-blue/15 bg-blue-wash"
@@ -232,47 +232,49 @@ export function ProductShowcase() {
                           <div>
                             <p
                               className={cn(
-                                "text-[16px] font-semibold text-ink",
+                                "text-[15px] font-semibold text-ink sm:text-[16px]",
                                 item.done && "line-through opacity-70"
                               )}
                             >
                               {item.title}
                             </p>
-                            <p className="mt-1 text-[14px] text-muted">{item.detail}</p>
+                            <p className="mt-1 text-[13px] text-muted sm:text-[14px]">{item.detail}</p>
                           </div>
                         </div>
                       </li>
                     ))}
                   </ul>
-                  <p className="mt-6 font-ui text-[14px] leading-relaxed text-muted">
+                  <p className="mt-5 font-ui text-[13px] leading-relaxed text-muted sm:mt-6 sm:text-[14px]">
                     Uses exams only. Check-offs stay on your profile with links back to the original
                     feedback.
                   </p>
                 </div>
               ) : (
-                <div className="flex min-h-[640px] flex-col bg-paper p-0">
-                  <div className="flex items-center justify-between border-b border-blue/15 px-7 py-5 sm:px-9">
+                <div className="flex min-h-[420px] flex-col bg-paper p-0 sm:min-h-[640px] lg:min-h-[720px]">
+                  <div className="flex items-center justify-between border-b border-blue/15 px-4 py-4 sm:px-9 sm:py-5">
                     <div className="flex items-center gap-3">
-                      <span className="grid h-11 w-11 place-items-center rounded-full bg-blue-wash animate-whale">
-                        <RegradeLogo variant="whale" size={30} />
+                      <span className="grid h-9 w-9 place-items-center rounded-full bg-blue-wash animate-whale sm:h-11 sm:w-11">
+                        <RegradeLogo variant="whale" size={26} />
                       </span>
                       <div className="text-left">
-                        <p className="text-[15px] font-semibold text-ink">Mr Whale</p>
-                        <p className="font-ui text-[12px] text-blue">Beside the work · evidence-linked</p>
+                        <p className="text-[14px] font-semibold text-ink sm:text-[15px]">Mr Whale</p>
+                        <p className="font-ui text-[11px] text-blue sm:text-[12px]">
+                          Beside the work · evidence-linked
+                        </p>
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-1 flex-col gap-5 overflow-y-auto bg-blue-soft/60 px-7 py-7 sm:px-9">
+                  <div className="flex flex-1 flex-col gap-4 overflow-y-auto bg-blue-soft/60 px-4 py-5 sm:gap-5 sm:px-9 sm:py-7">
                     <div className="flex justify-end">
-                      <div className="max-w-[78%] rounded-2xl rounded-br-md bg-blue px-5 py-3.5 text-[16px] leading-relaxed text-white">
+                      <div className="max-w-[85%] rounded-2xl rounded-br-md bg-blue px-4 py-3 text-[14px] leading-relaxed text-white sm:max-w-[78%] sm:px-5 sm:py-3.5 sm:text-[16px]">
                         {sent}
                       </div>
                     </div>
-                    <div className="flex items-end gap-3">
-                      <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-blue-wash">
-                        <RegradeLogo variant="whale" size={26} />
+                    <div className="flex items-end gap-2.5 sm:gap-3">
+                      <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-blue-wash sm:h-9 sm:w-9">
+                        <RegradeLogo variant="whale" size={22} />
                       </span>
-                      <div className="max-w-[82%] rounded-2xl rounded-bl-md border border-blue/20 bg-paper px-5 py-3.5 text-[16px] leading-relaxed text-ink">
+                      <div className="max-w-[85%] rounded-2xl rounded-bl-md border border-blue/20 bg-paper px-4 py-3 text-[14px] leading-relaxed text-ink sm:max-w-[82%] sm:px-5 sm:py-3.5 sm:text-[16px]">
                         {loading ? (
                           <span
                             className="inline-flex gap-1 px-1 py-1"
@@ -290,21 +292,21 @@ export function ProductShowcase() {
                   </div>
                   <form
                     onSubmit={submit}
-                    className="flex gap-2.5 border-t border-blue/15 bg-paper px-6 py-5 sm:px-8"
+                    className="flex gap-2 border-t border-blue/15 bg-paper px-4 py-4 sm:gap-2.5 sm:px-8 sm:py-5"
                   >
                     <input
                       value={message}
                       onChange={(event) => setMessage(event.target.value)}
                       aria-label="Ask Mr Whale about the mark"
                       placeholder="Ask about this mark…"
-                      className="min-w-0 flex-1 rounded-2xl border border-blue/25 bg-blue-wash px-5 py-4 text-[16px] text-ink outline-none transition focus:border-blue focus:ring-2 focus:ring-blue/15"
+                      className="min-w-0 flex-1 rounded-xl border border-blue/25 bg-blue-wash px-4 py-3 text-[14px] text-ink outline-none transition focus:border-blue focus:ring-2 focus:ring-blue/15 sm:rounded-2xl sm:px-5 sm:py-4 sm:text-[16px]"
                     />
                     <button
                       type="submit"
-                      className="btn-pro grid h-14 w-14 shrink-0 place-items-center rounded-2xl"
+                      className="btn-pro grid h-11 w-11 shrink-0 place-items-center rounded-xl sm:h-14 sm:w-14 sm:rounded-2xl"
                       aria-label="Send message"
                     >
-                      <Send className="h-5 w-5" />
+                      <Send className="h-4 w-4 sm:h-5 sm:w-5" />
                     </button>
                   </form>
                 </div>
