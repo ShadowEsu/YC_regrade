@@ -45,7 +45,7 @@ export function SupervisorSection() {
                 Supervisor Mode · private beta
               </p>
               <div className="mt-7">
-                <RegradeLogo size={72} className="shadow-[0_12px_40px_rgba(9,9,11,0.25)]" />
+                <RegradeLogo variant="app" size={72} className="shadow-[0_12px_40px_rgba(9,9,11,0.25)]" />
               </div>
               <h2 className="mt-7 font-display text-[clamp(2.6rem,5.5vw,4.25rem)] font-semibold leading-[1.05] tracking-[-0.04em]">
                 The biggest add-on yet.

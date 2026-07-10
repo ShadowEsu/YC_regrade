@@ -2,7 +2,7 @@ import { cn } from "../lib/utils";
 
 type RegradeLogoProps = {
   size?: number;
-  variant?: "mark" | "wordmark" | "whale" | "svg";
+  variant?: "mark" | "wordmark" | "app" | "whale";
   className?: string;
   invert?: boolean;
 };
@@ -13,33 +13,6 @@ export function RegradeLogo({
   className,
   invert = false,
 }: RegradeLogoProps) {
-  const markSrc = invert ? "/logo-mark-light.png" : "/logo-mark.png";
-
-  if (variant === "wordmark") {
-    return (
-      <span className={cn("inline-flex items-center gap-2.5", className)}>
-        <img
-          src={markSrc}
-          alt=""
-          aria-hidden
-          width={size}
-          height={size}
-          className="shrink-0 rounded-[22%] object-contain shadow-[0_2px_12px_rgba(30,79,255,0.22)]"
-          style={{ width: size, height: size }}
-        />
-        <span
-          className={cn(
-            "font-brand font-semibold leading-none tracking-[-0.02em]",
-            invert ? "text-white" : "text-ink"
-          )}
-          style={{ fontSize: Math.round(size * 0.72) }}
-        >
-          Regrade
-        </span>
-      </span>
-    );
-  }
-
   if (variant === "whale") {
     return (
       <img
@@ -53,6 +26,48 @@ export function RegradeLogo({
     );
   }
 
+  if (variant === "wordmark") {
+    if (invert) {
+      return (
+        <span className={cn("inline-flex items-center gap-2.5", className)}>
+          <img
+            src="/logo-mark-dark.png"
+            alt=""
+            aria-hidden
+            width={size}
+            height={size}
+            className="shrink-0 rounded-[22%] object-contain"
+            style={{ width: size, height: size }}
+          />
+          <span
+            className="font-brand font-semibold leading-none tracking-[-0.02em] text-white"
+            style={{ fontSize: Math.round(size * 0.72) }}
+          >
+            Regrade
+          </span>
+        </span>
+      );
+    }
+
+    return (
+      <img
+        src="/logo-wordmark.png"
+        alt="Regrade"
+        width={Math.round(size * 2.6)}
+        height={size}
+        className={cn("shrink-0 object-contain object-left", className)}
+        style={{ height: size, width: "auto", maxWidth: Math.round(size * 3.2) }}
+      />
+    );
+  }
+
+  const markSrc =
+    variant === "app"
+      ? "/logo-mark-app.png"
+      : invert
+        ? "/logo-mark-dark.png"
+        : "/logo-mark.png";
+
   return (
     <img
       src={markSrc}
@@ -60,7 +75,12 @@ export function RegradeLogo({
       aria-hidden
       width={size}
       height={size}
-      className={cn("shrink-0 rounded-[22%] object-contain", className)}
+      className={cn(
+        "shrink-0 object-contain",
+        variant === "app" ? "rounded-[22%]" : "rounded-[18%]",
+        className
+      )}
+      style={{ width: size, height: size }}
     />
   );
 }

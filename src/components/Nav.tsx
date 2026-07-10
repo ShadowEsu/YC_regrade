@@ -32,7 +32,7 @@ export function Nav({ ready }: { ready: boolean }) {
           className="flex items-center transition-transform duration-300 hover:scale-105"
           aria-label="Regrade home"
         >
-          <RegradeLogo variant="wordmark" size={44} />
+          <RegradeLogo variant="wordmark" size={40} />
         </a>
         <div className="flex items-center gap-5 text-[15px] font-medium text-muted sm:gap-6">
           <a href="#how" className="relative hidden sm:inline transition-colors hover:text-ink group">

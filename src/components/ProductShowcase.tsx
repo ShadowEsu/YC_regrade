@@ -53,7 +53,7 @@ const modes = [
     answer:
       "You got credit for a clear claim. The deduction is the link after quote two. Practise restating that link.",
     icon: CheckCircle2,
-    image: "/logo-mark.png",
+    image: "/logo-mark-app.png",
   },
 ] as const;
 
