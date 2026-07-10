@@ -10,7 +10,7 @@ type Props = {
 export function LaunchVideo({ ready }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const loopCountRef = useRef(0);
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const [playing, setPlaying] = useState(true);
   const [finished, setFinished] = useState(false);
 
@@ -18,7 +18,13 @@ export function LaunchVideo({ ready }: Props) {
     const video = videoRef.current;
     if (!video || !ready) return;
     video.currentTime = 0;
-    video.play().catch(() => {});
+    video.muted = false;
+    video.play().catch(() => {
+      // Browser blocked autoplay with sound — fall back to muted autoplay.
+      video.muted = true;
+      setMuted(true);
+      video.play().catch(() => {});
+    });
   }, [ready]);
 
   function toggleSound() {
