@@ -5,13 +5,13 @@ import { Preloader } from "./components/Preloader";
 import { YCBanner } from "./components/YCBanner";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { ProductShowcase } from "./components/ProductShowcase";
 import { HowSection } from "./components/HowSection";
+import { ProductShowcase } from "./components/ProductShowcase";
+import { TrustSupervisorSection } from "./components/TrustSupervisorSection";
 import { FounderProofSection } from "./components/FounderProofSection";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
 import { SeoSchema } from "./components/SeoSchema";
-import { TrustSupervisorSection } from "./components/TrustSupervisorSection";
 
 export default function App() {
   const [ready, setReady] = useState(false);

@@ -47,10 +47,6 @@ export function Nav({ ready }: { ready: boolean }) {
             Trust
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#supervisor" className="relative hidden sm:inline transition-colors hover:text-ink group">
-            Supervisor
-            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
-          </a>
           <a
             href="#waitlist"
             onClick={(e) => {

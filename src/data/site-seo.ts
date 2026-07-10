@@ -2,11 +2,11 @@ import { FAQ_ITEMS } from "./faqs";
 
 export const SITE_URL = "https://regradeapp.tech";
 export const SITE_NAME = "Regrade";
-export const SITE_TAGLINE = "Understand your grade. Make the strongest appeal.";
+export const SITE_TAGLINE = "Understand your grade. Learn from it. Make the strongest appeal.";
 export const SITE_DESCRIPTION =
-  "Regrade helps students understand marked work, ask the right question, prepare evidence-led appeals, and turn past exam feedback into targeted finals preparation.";
+  "Regrade helps students inspect marked work, understand what happened, prepare evidence-led appeals when appropriate, and turn marked exams into better finals preparation — with Mr Whale as a calm guide beside the work.";
 export const OG_DESCRIPTION =
-  "Understand marked work, prepare an evidence-led appeal, and turn past feedback into a better finals plan.";
+  "Know what happened on your grade. Know what to do next. Review, Appeal, Study, and Coach — powered by OpenAI.";
 export const OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export const FOUNDER = {
@@ -23,29 +23,29 @@ export const SOCIAL = {
 
 export const KEYWORDS = [
   "grade appeal",
-  "regrade request",
+  "marked exam review",
   "rubric checker",
-  "grade recovery",
-  "GPA calculator",
+  "evidence-led appeal",
+  "finals prep from marked exams",
+  "Mr Whale",
   "student grade review",
   "professor appeal email",
   "assignment rubric",
-  "grade dispute",
   "academic appeal",
 ].join(", ");
 
 export const HOW_TO_STEPS = [
   {
-    name: "Upload your graded work",
-    text: "Add your assignment, rubric, and any professor feedback. PDFs, documents, and screenshots all work.",
+    name: "Bring one marked exam",
+    text: "Upload a marked PDF, image, screenshot, rubric, or feedback. Manual upload always works.",
   },
   {
-    name: "See your recoverable points",
-    text: "Regrade scans every rubric line, flags deductions that may not hold up, and shows your projected new score.",
+    name: "Read the evidence",
+    text: "Regrade separates visible marks, rubric support, and uncertainty instead of guessing what happened.",
   },
   {
-    name: "Decide your next step",
-    text: "Review a clear summary and optional professor-safe email draft. Nothing sends unless you choose to.",
+    name: "Choose your next step",
+    text: "Clarify the mark, prepare a respectful appeal, ask Mr Whale, or add the pattern to your Study plan. Nothing sends unless you choose to.",
   },
 ] as const;
 
@@ -161,11 +161,11 @@ export function buildJsonLdGraph() {
     url: SITE_URL,
     author: { "@id": `${SITE_URL}/#organization` },
     featureList: [
-      "Rubric line-by-line scan",
-      "Recoverable points analysis",
-      "GPA impact preview",
-      "Professor-safe appeal email draft",
-      "16 grading systems supported",
+      "Review Studio evidence map",
+      "Evidence-led appeal drafting",
+      "Study checklist from marked exams",
+      "Mr Whale academic coach",
+      "Consent-first Supervisor access",
     ],
     screenshot: OG_IMAGE,
   };
@@ -173,9 +173,9 @@ export function buildJsonLdGraph() {
   const howTo = {
     "@type": "HowTo",
     "@id": `${SITE_URL}/#howto`,
-    name: "How to check your grade against the rubric with Regrade",
+    name: "How to understand a marked exam with Regrade",
     description:
-      "Upload graded work and a rubric to find recoverable points and draft a respectful regrade request.",
+      "Upload marked work to read the evidence, prepare a respectful appeal when appropriate, and build a Study plan from past exams.",
     step: HOW_TO_STEPS.map((step, i) => ({
       "@type": "HowToStep",
       position: i + 1,

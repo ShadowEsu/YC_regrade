@@ -2,20 +2,28 @@ export type FaqItem = { q: string; a: string };
 
 export const FAQ_ITEMS: FaqItem[] = [
   {
+    q: "What does Regrade do?",
+    a: "Regrade helps you inspect marked work, understand what happened, prepare a respectful evidence-led appeal when appropriate, and turn marked exams into better preparation for the next one. It does not decide whether a grade is fair or promise a grade change.",
+  },
+  {
     q: "Does Regrade work outside the US?",
     a: "Yes. Regrade reads your rubric or marking guide directly. It works with US GPA, Australian ATAR and HSC/VCE, UK A-Levels and GCSE mark schemes, IB criterion rubrics, CBSE and ICSE, gaokao-style 100-point marking, and other national scales. It does not convert grades between systems.",
   },
   {
     q: "Is this allowed?",
-    a: "Yes. Grade reviews and regrade requests are standard at most schools — universities from UC San Diego to the University of Ottawa publish formal appeal policies. Regrade helps you find points you may deserve, with the rubric-and-evidence documentation those policies require.",
+    a: "Yes. Grade reviews and clarification requests are standard at most schools. Regrade helps you prepare evidence-backed questions and drafts that follow your institution’s process. You remain responsible for following school policy.",
   },
   {
     q: "Is it cheating?",
-    a: "No. Regrade never writes or edits assignments. It scans work that is already graded and shows where points may have been missed.",
+    a: "No. Regrade never writes or edits assignments. It reads work that is already graded and helps you understand marks, practise weak spots, and ask clearer questions when the evidence supports it.",
   },
   {
     q: "Will it email my professor?",
-    a: "Never. Regrade does not send anything. You get a summary and optional draft. You edit it and send it yourself if you want to.",
+    a: "Never. Regrade does not send anything. You get a summary and an editable draft. You review it and send it yourself if you choose to.",
+  },
+  {
+    q: "What is Mr Whale?",
+    a: "Mr Whale is the academic guide beside your marked work. He explains a mark in plain language, helps you revise, and helps shape a thoughtful appeal — one focused follow-up at a time. He never fabricates policy, teacher intent, or a guaranteed result.",
   },
   {
     q: "What does it cost?",
@@ -23,18 +31,14 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What do I need to use it?",
-    a: "Your graded work, the rubric or assignment sheet, and any feedback you received. PDFs, documents, and screenshots all work. No school login required.",
+    a: "A marked exam, PDF, screenshot, rubric, or teacher feedback. Manual upload always works. You can connect Google Classroom, Canvas, or Moodle later when supported.",
   },
   {
-    q: "Can parents use Regrade?",
-    a: "Yes. Parent Mode lets you photograph your child's marked work, see exactly why points were lost, and get a parent-teacher conference prep sheet. In K-12, the parent is often the advocate — Regrade gives you the same rubric-level analysis students get.",
-  },
-  {
-    q: "What is the student advocate?",
-    a: "Regrade acts as your student advocate: it reads graded work against the rubric, catches mismatches and harsh deductions, summarizes the case in plain English, and drafts a respectful appeal. You stay in control — nothing sends without you.",
+    q: "Can parents or educators use Regrade?",
+    a: "Supervisor access is a consent-first private beta. A parent or educator can support a learner only after the learner accepts, chooses what to share, and can revoke access. Regrade does not let adults bypass the learner’s account.",
   },
   {
     q: "What happens to my files?",
-    a: "They are used to analyze your grade and build your summary, nothing else. You can delete them from your account at any time.",
+    a: "They are used to analyze your marked work and build your summary, Study checklist, and drafts — nothing else. You can delete them from your account at any time.",
   },
 ];

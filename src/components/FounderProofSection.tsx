@@ -1,37 +1,44 @@
 import { SectionReveal } from "./SectionReveal";
 
 const results = [
-  { label: "Essay score", before: "82", after: "91", note: "B− → A− on one assignment" },
-  { label: "Semester GPA", before: "3.4", after: "3.6", note: "After one regrade request" },
-  { label: "Time spent", before: "4 hrs", after: "8 min", note: "Manual check vs. Regrade" },
+  {
+    label: "What changed",
+    value: "Clearer question",
+    note: "From a confusing deduction to a specific ask",
+  },
+  {
+    label: "Evidence used",
+    value: "Rubric + notes",
+    note: "Visible marks kept separate from uncertainty",
+  },
+  {
+    label: "Time to prepare",
+    value: "Minutes",
+    note: "Same gaps I spent hours finding by hand",
+  },
 ];
 
 export function FounderProofSection() {
   return (
     <section
       id="proof"
-      className="scroll-mt-[var(--site-header)] border-y border-black/[0.05] bg-[linear-gradient(150deg,var(--color-paper)_0%,var(--color-blue-wash)_60%,var(--color-paper)_100%)] py-[clamp(56px,8vw,88px)]"
+      className="scroll-mt-[var(--site-header)] border-b border-black/[0.07] bg-paper py-[clamp(56px,8vw,88px)]"
     >
       <div className="section-shell">
         <SectionReveal>
           <div className="mx-auto max-w-[720px]">
             <p className="mb-3 font-ui text-[11px] font-semibold uppercase tracking-[0.14em] text-blue">
-              Real result · Founder&apos;s own grade
+              Founder note
             </p>
             <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
-              I used Regrade on <span className="text-gradient-live">my own work</span> before shipping it.
+              I built Regrade to turn a confusing mark into a{" "}
+              <span className="text-blue">clearer next step</span>.
             </h2>
             <p className="mt-4 text-[17px] leading-[1.65] text-muted">
-              One rubric line was counted twice on a final essay. I spent four hours building the
-              case by hand. Same upload through Regrade took eight minutes and surfaced the same
-              gaps — with a line-by-line breakdown and a draft email ready to send.{" "}
-              <a
-                href="#trust"
-                className="font-medium text-blue underline decoration-blue/30 underline-offset-2 transition-colors hover:decoration-blue"
-              >
-                See Regrade&apos;s evidence standards
-              </a>
-              .
+              One rubric line was counted twice on a final essay. Building the case by hand took
+              hours. The same upload through Regrade surfaced the same evidence gaps — with a
+              line-by-line read and a draft I could edit before anything went out. Regrade does not
+              promise a grade change. It helps you see what is visible and ask a better question.
             </p>
           </div>
         </SectionReveal>
@@ -39,14 +46,15 @@ export function FounderProofSection() {
         <SectionReveal delay={0.06}>
           <div className="mx-auto mt-10 grid max-w-[720px] gap-3 sm:grid-cols-3">
             {results.map((r) => (
-              <div key={r.label} className="card-pro p-5 text-center">
+              <div
+                key={r.label}
+                className="hover-lift rounded-2xl border border-black/[0.08] bg-white p-5 text-center shadow-[0_10px_28px_rgba(9,9,11,0.04)]"
+              >
                 <p className="font-ui text-[12px] font-semibold uppercase tracking-[0.08em] text-faint">
                   {r.label}
                 </p>
-                <p className="mt-2 font-display text-[clamp(1.5rem,3vw,2rem)] font-semibold tracking-[-0.03em]">
-                  <span className="text-ink">{r.before}</span>
-                  <span className="mx-2 text-faint">→</span>
-                  <span className="text-blue">{r.after}</span>
+                <p className="mt-2 font-display text-[clamp(1.25rem,2.4vw,1.65rem)] font-semibold tracking-[-0.03em] text-ink">
+                  {r.value}
                 </p>
                 <p className="mt-1.5 font-ui text-[13px] text-muted">{r.note}</p>
               </div>
@@ -62,7 +70,7 @@ export function FounderProofSection() {
             <div className="text-left">
               <p className="text-[15px] font-semibold text-ink">Preston Susanto</p>
               <p className="text-[14px] text-muted">
-                Founder, EECS student · These are my actual numbers, not a placeholder quote.
+                Founder, EECS student · Built from my own marked work, not a placeholder story.
               </p>
             </div>
           </div>

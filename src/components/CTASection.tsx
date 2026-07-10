@@ -31,10 +31,13 @@ export function CTASection() {
               Early access
             </p>
             <h2 className="font-display text-[clamp(2.35rem,5.5vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-white">
-              Bring one marked exam. Leave with a <span className="text-[#9db5ff]">clearer next step</span>.
+              Bring one marked exam. Leave with a{" "}
+              <span className="text-[#9db5ff]">clearer next step</span>.
             </h2>
             <p className="mx-auto mt-6 max-w-[560px] font-ui text-[clamp(17px,2.2vw,20px)] leading-[1.65] text-white/65">
-              Join the waitlist for early access to Regrade. The first {REGRADE_CONFIG.waitlistDisplayMax} students receive Pro Max free for one year.
+              Join the waitlist for early access to Review, Appeal, Study, and Coach — powered by
+              OpenAI&apos;s newest and fastest model. The first {REGRADE_CONFIG.waitlistDisplayMax}{" "}
+              students receive Pro Max free for one year.
             </p>
 
             <div className="mx-auto mt-11 w-full max-w-[620px]">

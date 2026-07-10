@@ -6,7 +6,7 @@ const columns = [
     title: "Product",
     links: [
       { label: "How it works", href: "/#how" },
-      { label: "Appeal, Understand & Finals", href: "/#product" },
+      { label: "Review, Appeal, Study, Coach", href: "/#product" },
       { label: "Trust and evidence", href: "/#trust" },
       { label: "Supervisor private beta", href: "/#supervisor" },
       { label: "Join waitlist", href: "/#waitlist" },
@@ -15,7 +15,7 @@ const columns = [
   {
     title: "Support",
     links: [
-      { label: "Founder proof", href: "/#proof" },
+      { label: "Founder note", href: "/#proof" },
       { label: "regradeteam@gmail.com", href: "mailto:regradeteam@gmail.com" },
     ],
   },
@@ -32,7 +32,6 @@ const columns = [
       { label: "Instagram", href: "https://instagram.com/regrade_app", external: true },
       { label: "X", href: "https://x.com/regrade_app", external: true },
       { label: "Book an interview", href: REGRADE_CONFIG.calendlyUrl, external: true },
-      { label: "UCSD grade appeals", href: "https://senate.ucsd.edu/Operating-Procedures/Senate-Manual/Regulations/502", external: true },
     ],
   },
 ];
@@ -51,7 +50,7 @@ export function Footer() {
 
       <div className="section-shell relative py-16 sm:py-20">
         <div className="flex flex-col gap-14 lg:flex-row lg:items-start lg:justify-between lg:gap-20">
-          <div className="max-w-[360px]">
+          <div className="max-w-[400px]">
             <a
               href="/#top"
               className="inline-flex items-center gap-3 transition-transform duration-300 hover:scale-105"
@@ -60,11 +59,12 @@ export function Footer() {
               <span className="font-brand text-[30px] font-semibold text-white">Regrade</span>
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
-              Understand your grade. Learn from it. Make the strongest appeal.{" "}
-              <a href="/#trust" className="text-white/70 underline decoration-white/25 underline-offset-2 transition-colors hover:text-white hover:decoration-white/50">
-                See how Regrade handles evidence
-              </a>
-              .
+              Understand your grade. Learn from it. Make the strongest appeal.
+            </p>
+            <p className="mt-4 text-[14px] leading-relaxed text-white/55">
+              Regrade provides educational support, not legal or institutional decision-making.
+              Students should review original marked work and follow their school&apos;s policy before
+              submitting an appeal.
             </p>
           </div>
 
