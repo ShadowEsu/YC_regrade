@@ -67,7 +67,7 @@ export function WaitlistForm({
   }
 
   const inputClass = cn(
-    "w-full rounded-xl border px-4 tracking-[-0.01em] outline-none backdrop-blur-md transition-colors",
+    "w-full rounded-xl border px-4 tracking-[-0.01em] outline-none transition-colors",
     fieldHeight,
     fieldText,
     "focus:border-blue/55 focus:ring-2 focus:ring-blue/15",

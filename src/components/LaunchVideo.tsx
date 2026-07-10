@@ -106,10 +106,10 @@ export function LaunchVideo({ ready }: Props) {
         aria-hidden
       />
       <div className="absolute left-1/2 top-[calc(var(--site-header)+1.25rem)] -translate-x-1/2">
-        <span className="glass-dark animate-breathe-slow inline-flex items-center gap-2 rounded-full px-4 py-2 font-ui text-[12px] font-semibold uppercase tracking-[0.12em] text-white">
+        <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-blue px-4 py-2 font-ui text-[12px] font-semibold uppercase tracking-[0.12em] text-white">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-muted opacity-70" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-blue-muted" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
           </span>
           Launching very soon
         </span>
@@ -119,7 +119,7 @@ export function LaunchVideo({ ready }: Props) {
           type="button"
           onClick={togglePlayback}
           aria-label={playing ? "Pause video" : "Play video"}
-          className="glass-dark inline-flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform duration-300 hover:scale-110"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue text-white transition-transform duration-300 hover:scale-110"
         >
           {playing ? (
             <Pause className="h-5 w-5" strokeWidth={2} />
@@ -131,7 +131,7 @@ export function LaunchVideo({ ready }: Props) {
           type="button"
           onClick={toggleSound}
           aria-label={muted ? "Unmute video" : "Mute video"}
-          className="glass-dark inline-flex h-12 w-12 items-center justify-center rounded-full text-white transition-transform duration-300 hover:scale-110"
+          className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-blue text-white transition-transform duration-300 hover:scale-110"
         >
           {muted ? (
             <VolumeX className="h-5 w-5" strokeWidth={2} />

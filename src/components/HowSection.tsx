@@ -7,21 +7,21 @@ const steps = [
     title: "Upload",
     body: "Marked PDF, screenshot, rubric, or feedback.",
     image: "/icons/how-scan.png",
-    alt: "Scan a marked document",
+    alt: "Upload a marked exam",
   },
   {
     number: "02",
     title: "Read the evidence",
     body: "Visible marks, rubric support, and uncertainty — kept separate.",
     image: "/icons/how-match.png",
-    alt: "Match marks against the rubric",
+    alt: "Read the evidence on the marked work",
   },
   {
     number: "03",
     title: "Pick a next step",
     body: "Clarify, appeal, study, or ask Mr Whale.",
     image: "/icons/how-checklist.png",
-    alt: "Checklist of next steps",
+    alt: "Pick a next step from the checklist",
   },
 ];
 
@@ -47,13 +47,13 @@ export function HowSection() {
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {steps.map((step, index) => (
             <SectionReveal key={step.number} delay={index * 0.08}>
-              <article className="hover-lift group flex h-full flex-col items-center rounded-[24px] border border-black/[0.08] bg-white p-7 text-center shadow-[0_12px_36px_rgba(9,9,11,0.05)]">
+              <article className="hover-lift group flex h-full flex-col items-center rounded-[24px] border border-blue/15 bg-white p-7 text-center shadow-[0_12px_36px_rgba(30,79,255,0.08)]">
                 <img
                   src={step.image}
                   alt={step.alt}
                   width={112}
                   height={112}
-                  className="h-28 w-28 rounded-[28px] object-contain shadow-[0_14px_30px_-12px_rgba(9,9,11,0.35)] transition-transform duration-300 group-hover:scale-105"
+                  className="h-28 w-28 rounded-[28px] object-contain shadow-[0_14px_30px_-12px_rgba(30,79,255,0.3)] transition-transform duration-300 group-hover:scale-105"
                 />
                 <p className="mt-6 font-ui text-[12px] font-bold uppercase tracking-[0.12em] text-blue">
                   Step {step.number}

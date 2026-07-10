@@ -62,9 +62,9 @@ export function Hero({ ready }: { ready: boolean }) {
         className="relative mx-auto w-full max-w-[820px]"
       >
         <motion.div variants={block}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue/20 bg-blue-wash px-4 py-2 font-ui text-[13px] font-semibold text-ink">
+          <span className="inline-flex items-center gap-2 rounded-full border border-blue/25 bg-blue-wash px-4 py-2 font-ui text-[13px] font-semibold text-ink">
             <span className="h-2 w-2 rounded-full bg-blue" />
-            Launching soon · Private beta · First 100 get Pro Max free
+            First 100 get Pro free for 1 year · Private beta
           </span>
         </motion.div>
 
@@ -99,7 +99,7 @@ export function Hero({ ready }: { ready: boolean }) {
         </motion.blockquote>
 
         <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[740px]">
-          <div className="glass-panel rounded-[22px] p-3 sm:p-4">
+          <div className="rounded-[22px] border border-blue/20 bg-white p-3 shadow-[0_18px_50px_-20px_rgba(30,79,255,0.2)] sm:p-4">
             <WaitlistForm
               source="hero"
               submitLabel="Join the waitlist"
