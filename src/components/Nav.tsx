@@ -39,20 +39,16 @@ export function Nav({ ready }: { ready: boolean }) {
             How it works
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#features" className="relative hidden sm:inline transition-colors hover:text-ink group">
-            Features
+          <a href="#product" className="relative hidden sm:inline transition-colors hover:text-ink group">
+            Product
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#resources" className="relative hidden sm:inline transition-colors hover:text-ink group">
-            Resources
+          <a href="#trust" className="relative hidden sm:inline transition-colors hover:text-ink group">
+            Trust
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#vision" className="relative hidden sm:inline transition-colors hover:text-ink group">
-            Vision
-            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
-          </a>
-          <a href="#faq" className="relative hidden sm:inline transition-colors hover:text-ink group">
-            FAQ
+          <a href="#supervisor" className="relative hidden sm:inline transition-colors hover:text-ink group">
+            Supervisor
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
           <a

@@ -1,195 +1,31 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Upload, Search, Send, GraduationCap, HeartHandshake } from "lucide-react";
-import { SectionReveal } from "./SectionReveal";
+import { FileUp, SearchCheck, Send } from "lucide-react";
 import { SectionHeader } from "./SectionHeader";
-import { cn } from "../lib/utils";
+import { SectionReveal } from "./SectionReveal";
 
-const studentSteps = [
-  {
-    id: "upload",
-    icon: Upload,
-    title: "Upload your graded work",
-    body: "Add your assignment, rubric, and any feedback. PDFs, docs, and screenshots all work.",
-    preview: { label: "Incoming files", items: ["Essay_2_graded.pdf", "Rubric_ENGL1A.pdf", "Comments.png"] },
-  },
-  {
-    id: "analyze",
-    icon: Search,
-    title: "See your recoverable points",
-    body: "Regrade scans every rubric line, flags points you may deserve, and shows what they could do to your grade.",
-    preview: { label: "Analysis output", items: ["Rubric gaps flagged", "GPA impact preview", "Case built automatically"] },
-  },
-  {
-    id: "send",
-    icon: Send,
-    title: "Decide your next step",
-    body: "Review a clear summary and optional professor-safe email draft. Nothing sends unless you choose to.",
-    preview: { label: "Ready when you are", items: ["Plain English case summary", "Respectful draft ready", "You control delivery"] },
-  },
-];
-
-const parentSteps = [
-  {
-    id: "photo",
-    icon: Upload,
-    title: "Photograph the marked test",
-    body: "Snap your child's graded test or assignment. No school login, no LMS access needed.",
-    preview: { label: "Incoming files", items: ["Midterm_photo.jpg", "Rubric_or_key.pdf", "Teacher_comments.png"] },
-  },
-  {
-    id: "review",
-    icon: Search,
-    title: "See exactly why points were lost",
-    body: "Parent Mode breaks down every deduction in plain English, so you know precisely what happened.",
-    preview: { label: "Deduction breakdown", items: ["Point-by-point review", "Pattern across subjects", "What was fair vs. unclear"] },
-  },
-  {
-    id: "prep",
-    icon: HeartHandshake,
-    title: "Walk into the conference ready",
-    body: "Get a conference prep sheet with the exact questions worth asking the teacher — no guesswork.",
-    preview: { label: "Conference prep sheet", items: ["3 questions to ask", "Evidence to bring up", "What to request"] },
-  },
-];
-
-const modes = [
-  { id: "student" as const, label: "For students", icon: GraduationCap, steps: studentSteps },
-  { id: "parent" as const, label: "For parents · Parent Mode", icon: HeartHandshake, steps: parentSteps },
+const steps = [
+  { icon: FileUp, number: "01", title: "Bring one marked exam", body: "Upload a marked PDF, image, screenshot, rubric, or feedback. Manual upload always works." },
+  { icon: SearchCheck, number: "02", title: "Read the evidence", body: "Regrade separates visible marks, rubric support, and uncertainty instead of guessing what happened." },
+  { icon: Send, number: "03", title: "Choose your next step", body: "Clarify the mark, prepare a respectful appeal, or add the pattern to your finals review plan." },
 ];
 
 export function HowSection() {
-  const [mode, setMode] = useState<"student" | "parent">("student");
-  const [active, setActive] = useState(0);
-
-  const current = modes.find((m) => m.id === mode)!;
-  const steps = current.steps;
-  const step = steps[active];
-
-  function switchMode(next: "student" | "parent") {
-    setMode(next);
-    setActive(0);
-  }
-
   return (
-    <section
-      id="how"
-      className="section-cream scroll-mt-[120px] border-y border-black/[0.05] py-[clamp(80px,10vw,128px)] sm:scroll-mt-[132px]"
-    >
+    <section id="how" className="scroll-mt-[120px] border-b border-black/[0.07] bg-cream py-[clamp(72px,9vw,116px)]">
       <div className="section-shell">
         <SectionReveal>
-          <SectionHeader
-            eyebrow="How it works"
-            title={
-              <>
-                Three steps to <span className="text-gradient-live">unlock points you earned.</span>
-              </>
-            }
-            description="No school login. No integrations. One engine, two modes — pick the one that's yours."
-          />
+          <SectionHeader eyebrow="How it works" title={<>One marked exam. <span className="text-blue">A clearer next step.</span></>} description="Regrade starts after the grade comes back — when you have real evidence and a real reason to understand it." />
         </SectionReveal>
-
-        <SectionReveal delay={0.05}>
-          <div className="glass mx-auto mt-8 inline-flex rounded-full p-1">
-            {modes.map((m) => (
-              <button
-                key={m.id}
-                type="button"
-                onClick={() => switchMode(m.id)}
-                className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-4 py-2 font-ui text-[13px] font-semibold transition-all duration-300",
-                  mode === m.id ? "bg-blue text-white shadow-sm" : "text-muted hover:text-ink"
-                )}
-              >
-                <m.icon className="h-3.5 w-3.5" strokeWidth={2.5} />
-                {m.label}
-              </button>
-            ))}
-          </div>
-        </SectionReveal>
-
-        <SectionReveal delay={0.08}>
-          <div className="mt-10">
-            <div className="flex flex-col gap-2.5 sm:flex-row sm:gap-3">
-              {steps.map((s, i) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  className={cn(
-                    "glass flex flex-1 items-center gap-3.5 rounded-xl px-5 py-4 text-left transition-all duration-300",
-                    active === i
-                      ? "border-blue/25 bg-white/55"
-                      : "surface-hover opacity-90 hover:opacity-100"
-                  )}
-                >
-                  <span
-                    className={cn(
-                      "grid h-10 w-10 shrink-0 place-items-center rounded-lg transition-colors",
-                      active === i ? "bg-blue text-white" : "bg-black/[0.04] text-muted"
-                    )}
-                  >
-                    <s.icon className="h-[18px] w-[18px]" strokeWidth={2} />
-                  </span>
-                  <span>
-                    <span className="block text-[12px] font-semibold uppercase tracking-[0.08em] text-faint">
-                      Step {i + 1}
-                    </span>
-                    <span className="block text-[16px] font-semibold tracking-[-0.02em] text-ink">
-                      {s.title}
-                    </span>
-                  </span>
-                </button>
-              ))}
-            </div>
-
-            <div className="relative mt-4 h-0.5 overflow-hidden rounded-full bg-black/[0.06]">
-              <motion.div
-                className="absolute inset-y-0 left-0 bg-blue"
-                animate={{ width: `${((active + 1) / steps.length) * 100}%` }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={mode + step.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="glass-panel mt-7 grid gap-8 rounded-2xl p-8 sm:p-10 lg:grid-cols-[1fr_320px] lg:gap-12"
-              >
-                <div>
-                  <h3 className="font-display text-[clamp(1.5rem,2.8vw,2rem)] font-semibold tracking-[-0.02em] text-ink">
-                    {step.title}
-                  </h3>
-                  <p className="mt-4 max-w-[520px] text-[17px] leading-[1.7] text-muted">{step.body}</p>
-                </div>
-
-                <div className="rounded-xl border border-black/[0.06] bg-white p-6">
-                  <p className="mb-4 text-[13px] font-semibold uppercase tracking-[0.08em] text-faint">
-                    {step.preview.label}
-                  </p>
-                  <ul className="space-y-2.5">
-                    {step.preview.items.map((item, i) => (
-                      <motion.li
-                        key={item}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.06, duration: 0.3 }}
-                        className="flex items-center gap-2.5 rounded-lg border border-black/[0.06] bg-white px-4 py-3 text-[15px] font-semibold text-ink"
-                      >
-                        <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-blue" />
-                        {item}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </SectionReveal>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {steps.map((step, index) => (
+            <SectionReveal key={step.number} delay={index * 0.06}>
+              <article className="h-full rounded-2xl border border-black/[0.08] bg-white p-7 shadow-[0_10px_30px_rgba(9,9,11,0.04)]">
+                <div className="flex items-start justify-between"><span className="font-ui text-[13px] font-bold tracking-[0.09em] text-blue">{step.number}</span><span className="grid h-10 w-10 place-items-center rounded-xl bg-blue/[0.08] text-blue"><step.icon className="h-5 w-5" /></span></div>
+                <h3 className="mt-9 text-[22px] font-semibold tracking-[-0.03em] text-ink">{step.title}</h3>
+                <p className="mt-3 text-[16px] leading-relaxed text-muted">{step.body}</p>
+              </article>
+            </SectionReveal>
+          ))}
+        </div>
       </div>
     </section>
   );

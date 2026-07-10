@@ -1,175 +1,101 @@
-import { useRef, useState, useEffect } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { TrendingUp } from "lucide-react";
-import { useReducedMotion } from "../hooks/useReducedMotion";
+import { useEffect, useState } from "react";
+import type { FormEvent } from "react";
+import { CheckCircle2, ClipboardCheck, GraduationCap, MessageCircle, Send } from "lucide-react";
+import { SectionHeader } from "./SectionHeader";
+import { SectionReveal } from "./SectionReveal";
 import { cn } from "../lib/utils";
 
-const gaps = [
-  {
-    id: "evidence",
-    label: "Evidence & sources",
-    text: "Full credit for enough sources. Fewer were cited than the rubric required — points you may recover.",
-    detail: "Criterion 3 · Source count requirement",
-  },
-  {
-    id: "structure",
-    label: "Structure",
-    text: "The same intro issue was deducted twice, under Structure and again under Clarity.",
-    detail: "Criteria 5 + 6 · Duplicate penalty on one issue",
-  },
-  {
-    id: "formatting",
-    label: "Formatting",
-    text: "Docked for style. The syllabus allows more than one accepted format.",
-    detail: "Criterion 7 · Syllabus allows either format",
-  },
-];
+const modes = [
+  { id: "appeal", label: "Appeal", title: "Evidence before escalation.", description: "Turn a confusing deduction into a clear, respectful question grounded in the assignment.", labelText: "Potential issue", question: "Could you help me ask about the evidence deduction?", answer: "The rubric awards four points for evidence. Your paper includes two cited sources, but the comment does not say why the full deduction was applied. Ask for clarification before requesting a regrade.", icon: ClipboardCheck },
+  { id: "understand", label: "Understand", title: "See the grade, not just the number.", description: "Read visible marks, rubric rows, and feedback together — with uncertainty called out honestly.", labelText: "Question review", question: "Why did I lose points on question 4?", answer: "Your main idea is clear. The marker’s note points to the explanation after the second quote, not the quote itself. That is a useful skill to practise before the final.", icon: MessageCircle },
+  { id: "clarify", label: "Clarify", title: "Ask the right question first.", description: "When the evidence is incomplete, Regrade helps you request the detail you need without assuming an error.", labelText: "Clarification", question: "What should I ask my teacher about this mark?", answer: "Ask how the deduction maps to the evidence criterion and whether the missing explanation is the only reason for the score. Keep the question specific to this item.", icon: CheckCircle2 },
+  { id: "finals", label: "Finals Prep", title: "Turn past marks into your next study plan.", description: "Use recurring patterns across marked exams to decide what deserves attention before finals.", labelText: "Pattern found", question: "What should I practise before the final?", answer: "Focus on linking evidence back to your claim. This pattern appears in two marked exams, so begin with a short explanation drill and check it off when it feels solid.", icon: GraduationCap },
+] as const;
 
-const line = {
-  hidden: { opacity: 0, x: -16 },
-  show: (i: number) => ({
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] as const },
-  }),
-};
+type ModeId = typeof modes[number]["id"];
 
 export function ProductShowcase() {
-  const reduced = useReducedMotion();
-  const wrapRef = useRef<HTMLDivElement>(null);
-  const inView = useInView(wrapRef, { once: true, margin: "-80px" });
-  const [active, setActive] = useState(gaps[0].id);
-  const selected = gaps.find((g) => g.id === active)!;
+  const [mode, setMode] = useState<ModeId>("appeal");
+  const [message, setMessage] = useState<string>(modes[0].question);
+  const [sent, setSent] = useState<string>(modes[0].question);
+  const [loading, setLoading] = useState(false);
+  const [typed, setTyped] = useState("");
+  const selected = modes.find((item) => item.id === mode)!;
 
   useEffect(() => {
-    if (reduced || !inView) return;
-    const timer = setInterval(() => {
-      setActive((prev) => {
-        const idx = gaps.findIndex((g) => g.id === prev);
-        return gaps[(idx + 1) % gaps.length].id;
-      });
-    }, 4200);
-    return () => clearInterval(timer);
-  }, [reduced, inView]);
+    setMessage(selected.question);
+    setSent(selected.question);
+    setLoading(true);
+    setTyped("");
+    const start = window.setTimeout(() => {
+      let index = 0;
+      const timer = window.setInterval(() => {
+        index += 2;
+        setTyped(selected.answer.slice(0, index));
+        if (index >= selected.answer.length) {
+          window.clearInterval(timer);
+          setLoading(false);
+        }
+      }, 16);
+    }, 680);
+    return () => window.clearTimeout(start);
+  }, [selected]);
+
+  function submit(event: FormEvent) {
+    event.preventDefault();
+    const value = message.trim();
+    if (!value) return;
+    setSent(value);
+    setLoading(true);
+    setTyped("");
+    window.setTimeout(() => {
+      let index = 0;
+      const timer = window.setInterval(() => {
+        index += 2;
+        setTyped(selected.answer.slice(0, index));
+        if (index >= selected.answer.length) {
+          window.clearInterval(timer);
+          setLoading(false);
+        }
+      }, 16);
+    }, 680);
+  }
 
   return (
-    <div ref={wrapRef} className="section-shell relative">
-      <motion.div
-        initial={reduced ? false : { opacity: 0, scale: 0.98 }}
-        animate={inView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="glass-panel mx-auto max-w-[980px] overflow-hidden rounded-[24px] text-left"
-        aria-label="Preview of a Regrade analysis"
-      >
-        <div className="flex items-center gap-3 border-b border-black/[0.06] bg-white px-5 py-3.5">
-          <div className="flex gap-1.5">
-            <i className="block h-2 w-2 rounded-full bg-[#ff5f57]" />
-            <i className="block h-2 w-2 rounded-full bg-[#febc2e]" />
-            <i className="block h-2 w-2 rounded-full bg-[#28c840]" />
-          </div>
-          <div className="mx-auto max-w-[260px] flex-1 rounded-md border border-black/[0.08] bg-cream px-3 py-1.5 text-center font-ui text-[12px] font-semibold text-muted">
-            app.regradeapp.tech
-          </div>
-        </div>
-
-        <div className="grid lg:grid-cols-[1fr_260px]">
-          <div className="border-b border-black/[0.05] bg-white p-7 lg:border-b-0 lg:border-r lg:p-9">
-            <motion.p
-              custom={0}
-              variants={line}
-              initial="hidden"
-              animate={inView ? "show" : "hidden"}
-              className="mb-2 font-ui text-[12px] font-bold uppercase tracking-[0.08em] text-blue"
-            >
-              Sample rubric scan
-            </motion.p>
-            <motion.div
-              custom={1}
-              variants={line}
-              initial="hidden"
-              animate={inView ? "show" : "hidden"}
-              className="mb-5 flex items-baseline justify-between gap-3"
-            >
-              <span className="text-[19px] font-bold tracking-[-0.02em] text-ink">
-                Essay 2 · Rhetorical Analysis
-              </span>
-            </motion.div>
-            <motion.div
-              custom={2}
-              variants={line}
-              initial="hidden"
-              animate={inView ? "show" : "hidden"}
-              className="mb-5 rounded-lg border border-blue/20 bg-blue/[0.06] px-4 py-3 text-[14px] font-semibold text-blue-deep"
-            >
-              Rubric gaps flagged across 3 criteria
-            </motion.div>
-            <div className="flex flex-col gap-2.5">
-              {gaps.map((g, i) => (
-                <motion.button
-                  key={g.id}
-                  type="button"
-                  custom={i + 3}
-                  variants={line}
-                  initial="hidden"
-                  animate={inView ? "show" : "hidden"}
-                  onClick={() => setActive(g.id)}
-                  className={cn(
-                    "rounded-xl border px-5 py-3.5 text-left transition-colors duration-300",
-                    active === g.id
-                      ? "border-blue/25 bg-white shadow-[inset_3px_0_0_0_#1e4fff]"
-                      : "border-black/[0.06] bg-white hover:border-blue/15 hover:bg-blue/[0.03]"
-                  )}
-                >
-                  <div className="mb-1 flex items-center justify-between gap-2">
-                    <span className="text-[14px] font-bold text-ink">{g.label}</span>
-                  </div>
-                  <p className="text-[14px] leading-relaxed text-muted">{g.text}</p>
-                </motion.button>
+    <section id="product" className="scroll-mt-[120px] bg-paper py-[clamp(72px,9vw,116px)]">
+      <div className="section-shell">
+        <SectionReveal>
+          <SectionHeader eyebrow="One product, four modes" title={<>Appeals are the reason to download. <span className="text-blue">Understanding is what makes them stronger.</span></>} description="Every mode starts with the same marked work. The next step changes with the evidence — not with four separate assistants." />
+        </SectionReveal>
+        <SectionReveal delay={0.06}>
+          <div className="mt-10 overflow-hidden rounded-[24px] border border-black/[0.1] bg-white shadow-[0_18px_55px_rgba(9,9,11,0.08)]">
+            <div className="flex gap-1 overflow-x-auto border-b border-black/[0.08] bg-[#fbfcff] px-3 py-3 sm:px-5">
+              {modes.map((item) => (
+                <button key={item.id} type="button" onClick={() => setMode(item.id)} className={cn("shrink-0 rounded-lg px-4 py-2 font-ui text-[13px] font-semibold transition-colors", mode === item.id ? "bg-blue text-white" : "text-muted hover:bg-blue/[0.06] hover:text-ink")}>
+                  {item.label}
+                </button>
               ))}
             </div>
-          </div>
-
-          <div className="flex flex-col gap-3.5 border-t border-black/[0.05] bg-white p-6 lg:border-t-0 lg:p-7">
-            <span className="font-ui text-[12px] font-bold uppercase tracking-[0.07em] text-blue">
-              Case summary
-            </span>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, x: 12 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -8 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="rounded-lg border border-black/[0.06] bg-cream p-4"
-              >
-                <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-blue">
-                  Selected gap
-                </p>
-                <p className="mt-1.5 text-[14px] font-semibold leading-relaxed text-ink">
-                  {selected.detail}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-            <div className="flex items-center gap-3 rounded-lg border border-black/[0.06] bg-cream p-4">
-              <div className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-blue/10 text-blue">
-                <TrendingUp className="h-4 w-4" strokeWidth={2} />
+            <div className="grid lg:grid-cols-[.88fr_1.12fr]">
+              <div className="border-b border-black/[0.08] bg-[#fafbfe] p-7 lg:border-b-0 lg:border-r lg:p-9">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue/[0.09] text-blue"><selected.icon className="h-5 w-5" /></div>
+                <p className="mt-7 font-ui text-[12px] font-bold uppercase tracking-[0.1em] text-blue">{selected.labelText}</p>
+                <h3 className="mt-3 font-display text-[clamp(2rem,3vw,2.75rem)] font-semibold leading-[1.08] tracking-[-0.04em] text-ink">{selected.title}</h3>
+                <p className="mt-4 max-w-[430px] text-[17px] leading-relaxed text-muted">{selected.description}</p>
+                <div className="mt-8 rounded-xl border border-black/[0.08] bg-white p-4"><p className="font-ui text-[12px] font-bold uppercase tracking-[0.08em] text-muted">Evidence in view</p><p className="mt-2 text-[14px] font-semibold leading-relaxed text-ink">Rubric: “Explain how evidence supports the claim.”</p><p className="mt-1 text-[14px] leading-relaxed text-muted">Teacher note: “Explain the link after quote two.”</p></div>
               </div>
-              <div>
-                <div className="text-[14px] font-bold text-ink">See your projected grade</div>
-                <div className="text-[12px] font-medium text-muted">Updates instantly as gaps are found</div>
+              <div className="flex min-h-[450px] flex-col p-6 sm:p-8">
+                <div className="flex items-center justify-between"><span className="font-ui text-[12px] font-bold uppercase tracking-[0.09em] text-muted">Mr. Whale · beside the work</span><span className="rounded-full bg-green/[0.1] px-3 py-1 font-ui text-[11px] font-bold text-green">Evidence-linked</span></div>
+                <div className="mt-7 flex flex-1 flex-col gap-5">
+                  <div className="flex justify-end"><div className="max-w-[80%] rounded-2xl rounded-br-md bg-blue px-4 py-3 text-[15px] leading-relaxed text-white">{sent}</div></div>
+                  <div className="flex items-end gap-2.5"><span className="grid h-9 w-9 shrink-0 place-items-center text-[26px] animate-whale" role="img" aria-label="Mr Whale">🐋</span><div className="max-w-[84%] rounded-2xl rounded-bl-md border border-black/[0.09] bg-white px-4 py-3 text-[15px] leading-relaxed text-ink shadow-sm">{loading ? <span className="inline-flex gap-1 px-1 py-1" aria-label="Mr Whale is typing"><i className="typing-dot" /><i className="typing-dot" /><i className="typing-dot" /></span> : typed}</div></div>
+                </div>
+                <form onSubmit={submit} className="mt-6 flex gap-2 border-t border-black/[0.07] pt-5"><input value={message} onChange={(event) => setMessage(event.target.value)} aria-label="Ask Mr Whale about the mark" className="min-w-0 flex-1 rounded-xl border border-black/[0.12] bg-white px-4 py-3 text-[14px] text-ink outline-none transition focus:border-blue focus:ring-2 focus:ring-blue/15" /><button type="submit" className="btn-pro grid h-11 w-11 shrink-0 place-items-center rounded-xl" aria-label="Send message"><Send className="h-4 w-4" /></button></form>
               </div>
             </div>
-            <button
-              type="button"
-              tabIndex={-1}
-              aria-hidden
-              className="btn-pro mt-auto rounded-xl py-3 text-[14px]"
-            >
-              Draft appeal
-            </button>
           </div>
-        </div>
-      </motion.div>
-    </div>
+        </SectionReveal>
+      </div>
+    </section>
   );
 }

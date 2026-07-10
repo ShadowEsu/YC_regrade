@@ -24,21 +24,17 @@ export function CTASection() {
         aria-hidden
       />
 
-      <div className="section-shell relative flex min-h-[min(88vh,920px)] items-center py-[clamp(96px,14vw,160px)]">
+      <div className="section-shell relative flex items-center py-[clamp(76px,10vw,112px)]">
         <SectionReveal className="w-full">
           <div className="mx-auto max-w-[760px] text-center">
             <p className="mb-5 font-ui text-[13px] font-semibold uppercase tracking-[0.14em] text-[#9db5ff]">
               Early access
             </p>
             <h2 className="font-display text-[clamp(2.35rem,5.5vw,3.75rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-white">
-              The first{" "}
-              <span className="text-white">{REGRADE_CONFIG.waitlistDisplayMax}</span> students get{" "}
-              <span className="text-[#9db5ff]">Pro Max free</span> for{" "}
-              <span className="text-blue">1 year</span>.
+              Bring one marked exam. Leave with a <span className="text-[#9db5ff]">clearer next step</span>.
             </h2>
             <p className="mx-auto mt-6 max-w-[560px] font-ui text-[clamp(17px,2.2vw,20px)] leading-[1.65] text-white/65">
-              Enter your name and school email. We notify you when your invite is ready. Nothing
-              else, ever.
+              Join the waitlist for early access to Regrade. The first {REGRADE_CONFIG.waitlistDisplayMax} students receive Pro Max free for one year.
             </p>
 
             <div className="mx-auto mt-11 w-full max-w-[620px]">

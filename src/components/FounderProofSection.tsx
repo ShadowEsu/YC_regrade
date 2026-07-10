@@ -26,10 +26,10 @@ export function FounderProofSection() {
               case by hand. Same upload through Regrade took eight minutes and surfaced the same
               gaps — with a line-by-line breakdown and a draft email ready to send.{" "}
               <a
-                href="#resources"
+                href="#trust"
                 className="font-medium text-blue underline decoration-blue/30 underline-offset-2 transition-colors hover:decoration-blue"
               >
-                See how universities handle grade appeals
+                See Regrade&apos;s evidence standards
               </a>
               .
             </p>

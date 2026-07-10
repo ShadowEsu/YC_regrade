@@ -6,16 +6,15 @@ const columns = [
     title: "Product",
     links: [
       { label: "How it works", href: "/#how" },
-      { label: "Features", href: "/#features" },
-      { label: "Regrade 2.0 vision", href: "/#vision" },
-      { label: "Grade appeal resources", href: "/#resources" },
+      { label: "Appeal, Understand & Finals", href: "/#product" },
+      { label: "Trust and evidence", href: "/#trust" },
+      { label: "Supervisor private beta", href: "/#supervisor" },
       { label: "Join waitlist", href: "/#waitlist" },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "FAQ", href: "/#faq" },
       { label: "Founder proof", href: "/#proof" },
       { label: "regradeteam@gmail.com", href: "mailto:regradeteam@gmail.com" },
     ],
@@ -40,7 +39,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-[#00236f] via-[#1a4fd6] to-[#1e4fff] text-white">
+    <footer className="relative overflow-hidden bg-[#0d1d42] text-white">
       <div
         className="pointer-events-none absolute -left-24 top-0 h-[320px] w-[320px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.12)_0%,transparent_68%)]"
         aria-hidden
@@ -61,10 +60,9 @@ export function Footer() {
               <span className="font-brand text-[30px] font-semibold text-white">Regrade</span>
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
-              Every student deserves an advocate. Parent Mode for families. The accountability layer
-              for grading.{" "}
-              <a href="/#resources" className="text-white/70 underline decoration-white/25 underline-offset-2 transition-colors hover:text-white hover:decoration-white/50">
-                See grade appeal resources
+              Understand your grade. Learn from it. Make the strongest appeal.{" "}
+              <a href="/#trust" className="text-white/70 underline decoration-white/25 underline-offset-2 transition-colors hover:text-white hover:decoration-white/50">
+                See how Regrade handles evidence
               </a>
               .
             </p>

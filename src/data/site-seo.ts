@@ -2,11 +2,11 @@ import { FAQ_ITEMS } from "./faqs";
 
 export const SITE_URL = "https://regradeapp.tech";
 export const SITE_NAME = "Regrade";
-export const SITE_TAGLINE = "Every grade can go higher";
+export const SITE_TAGLINE = "Understand your grade. Make the strongest appeal.";
 export const SITE_DESCRIPTION =
-  "Regrade scans your graded work against the rubric, finds recoverable points, and shows your projected new score. iOS app for grade appeals and regrade requests — launching globally.";
+  "Regrade helps students understand marked work, ask the right question, prepare evidence-led appeals, and turn past exam feedback into targeted finals preparation.";
 export const OG_DESCRIPTION =
-  "Scan your graded work, find recoverable points, and see what they could do to your GPA. First 100 get Pro Max free for 1 year.";
+  "Understand marked work, prepare an evidence-led appeal, and turn past feedback into a better finals plan.";
 export const OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export const FOUNDER = {
