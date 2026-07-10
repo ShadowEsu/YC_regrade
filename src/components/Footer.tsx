@@ -7,7 +7,7 @@ const columns = [
     links: [
       { label: "How it works", href: "/#how" },
       { label: "Review, Appeal, Study, Coach", href: "/#product" },
-      { label: "Trust and evidence", href: "/#trust" },
+      { label: "Connections", href: "/#connections" },
       { label: "Supervisor private beta", href: "/#supervisor" },
       { label: "Join waitlist", href: "/#waitlist" },
     ],
@@ -15,6 +15,7 @@ const columns = [
   {
     title: "Support",
     links: [
+      { label: "Trust and evidence", href: "/#trust" },
       { label: "Founder note", href: "/#proof" },
       { label: "regradeteam@gmail.com", href: "mailto:regradeteam@gmail.com" },
     ],

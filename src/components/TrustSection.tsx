@@ -1,54 +1,66 @@
-import type { LucideIcon } from "lucide-react";
-import { Send, ClipboardCheck, MessageCircle, Lock } from "lucide-react";
 import { SectionReveal } from "./SectionReveal";
-import { SectionHeader } from "./SectionHeader";
 
-const items: { icon: LucideIcon; title: string; body: string }[] = [
+const trust = [
   {
-    icon: Send,
-    title: "You send everything",
-    body: "Nothing leaves your inbox unless you hit send.",
+    title: "Clear evidence",
+    body: "Marks, rubric, and uncertainty stay distinct.",
+    image: "/icons/trust-evidence.png",
+    alt: "Clear evidence icon",
   },
   {
-    icon: ClipboardCheck,
-    title: "Evidence only",
-    body: "Rubric, syllabus, your work. No opinions.",
+    title: "Honest uncertainty",
+    body: "Unclear marks are flagged — never invented.",
+    image: "/icons/trust-uncertainty.png",
+    alt: "Honest uncertainty icon",
   },
   {
-    icon: MessageCircle,
-    title: "Tone-checked",
-    body: "Respectful drafts. Accusatory ones don't ship.",
-  },
-  {
-    icon: Lock,
-    title: "Private & deletable",
-    body: "We never contact your school. Delete anytime.",
+    title: "You stay in control",
+    body: "You review every draft. Nothing sends itself.",
+    image: "/icons/trust-control.png",
+    alt: "You stay in control icon",
   },
 ];
 
 export function TrustSection() {
   return (
-    <section className="section-cream border-y border-black/[0.05] py-[clamp(80px,10vw,128px)]">
+    <section
+      id="trust"
+      className="scroll-mt-[120px] border-y border-black/[0.07] bg-cream py-[clamp(64px,8vw,96px)]"
+    >
       <div className="section-shell">
         <SectionReveal>
-          <SectionHeader
-            eyebrow="Professor-safe by design"
-            title="Built to be taken seriously."
-            description="Short, evidence-based, and always from you."
-          />
+          <div className="mx-auto max-w-[640px] text-center">
+            <p className="font-ui text-[12px] font-bold uppercase tracking-[0.12em] text-blue">
+              Trust · private beta
+            </p>
+            <h2 className="mt-4 font-display text-[clamp(2.2rem,4vw,3.4rem)] font-semibold leading-[1.08] tracking-[-0.04em] text-ink">
+              Evidence first.{" "}
+              <span className="text-gradient-live">You decide.</span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-[480px] text-[17px] leading-relaxed text-muted">
+              Regrade does not decide if a grade is “fair.” It helps you read what is visible and ask
+              a clearer question.
+            </p>
+          </div>
         </SectionReveal>
 
-        <div className="mt-12 grid gap-3 sm:grid-cols-2">
-          {items.map((item, i) => (
-            <SectionReveal key={item.title} delay={i * 0.05}>
-              <div className="card-pro surface-hover h-full p-6">
-                <div className="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-blue/[0.08] text-blue">
-                  <item.icon className="h-[18px] w-[18px]" strokeWidth={2} />
-                </div>
-                <h3 className="mb-1.5 font-display text-[18px] font-semibold tracking-[-0.02em] text-ink">
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
+          {trust.map((item, index) => (
+            <SectionReveal key={item.title} delay={index * 0.07}>
+              <div className="hover-lift flex h-full flex-col items-center rounded-[24px] border border-black/[0.08] bg-white p-7 text-center shadow-[0_12px_36px_rgba(9,9,11,0.05)]">
+                <img
+                  src={item.image}
+                  alt={item.alt}
+                  width={96}
+                  height={96}
+                  className="h-24 w-24 rounded-[24px] object-contain shadow-[0_12px_28px_-10px_rgba(9,9,11,0.35)]"
+                />
+                <h3 className="mt-6 text-[18px] font-semibold tracking-[-0.02em] text-ink">
                   {item.title}
                 </h3>
-                <p className="text-[15px] leading-snug text-muted">{item.body}</p>
+                <p className="mt-2 max-w-[220px] text-[15px] leading-relaxed text-muted">
+                  {item.body}
+                </p>
               </div>
             </SectionReveal>
           ))}

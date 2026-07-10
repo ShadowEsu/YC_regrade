@@ -34,17 +34,17 @@ export function Nav({ ready }: { ready: boolean }) {
         >
           <RegradeLogo variant="wordmark" size={44} />
         </a>
-        <div className="flex items-center gap-6 text-[15px] font-medium text-muted sm:gap-7">
+        <div className="flex items-center gap-5 text-[15px] font-medium text-muted sm:gap-6">
           <a href="#how" className="relative hidden sm:inline transition-colors hover:text-ink group">
-            How it works
+            How
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#product" className="relative hidden md:inline transition-colors hover:text-ink group">
-            Product
+          <a href="#connections" className="relative hidden md:inline transition-colors hover:text-ink group">
+            Connections
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#trust" className="relative hidden lg:inline transition-colors hover:text-ink group">
-            Trust
+          <a href="#supervisor" className="relative hidden lg:inline transition-colors hover:text-ink group">
+            Supervisor
             <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
           <a

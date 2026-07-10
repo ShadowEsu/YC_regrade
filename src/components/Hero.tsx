@@ -64,7 +64,7 @@ export function Hero({ ready }: { ready: boolean }) {
         <motion.div variants={block}>
           <span className="inline-flex items-center gap-2 rounded-full border border-blue/20 bg-blue-wash px-4 py-2 font-ui text-[13px] font-semibold text-ink">
             <span className="h-2 w-2 rounded-full bg-blue" />
-            Launching soon · First 100 get Pro Max free
+            Launching soon · Private beta · First 100 get Pro Max free
           </span>
         </motion.div>
 

@@ -20,7 +20,7 @@ export function CTASection() {
         <SectionReveal className="w-full">
           <div className="mx-auto max-w-[720px] text-center">
             <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue/30 bg-blue/15 px-4 py-1.5 font-ui text-[12px] font-bold uppercase tracking-[0.12em] text-[#ffb08a]">
-              Waitlist
+              Waitlist · private beta
             </p>
             <h2 className="font-display text-[clamp(2.35rem,5.2vw,3.5rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-white">
               Bring one marked exam.

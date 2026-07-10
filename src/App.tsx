@@ -8,7 +8,9 @@ import { LaunchVideo } from "./components/LaunchVideo";
 import { Hero } from "./components/Hero";
 import { HowSection } from "./components/HowSection";
 import { ProductShowcase } from "./components/ProductShowcase";
-import { TrustSupervisorSection } from "./components/TrustSupervisorSection";
+import { ConnectionsSection } from "./components/ConnectionsSection";
+import { TrustSection } from "./components/TrustSection";
+import { SupervisorSection } from "./components/SupervisorSection";
 import { FounderProofSection } from "./components/FounderProofSection";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
@@ -37,7 +39,9 @@ export default function App() {
           <Hero ready={ready} />
           <HowSection />
           <ProductShowcase />
-          <TrustSupervisorSection />
+          <ConnectionsSection />
+          <TrustSection />
+          <SupervisorSection />
           <FounderProofSection />
           <CTASection />
         </main>
