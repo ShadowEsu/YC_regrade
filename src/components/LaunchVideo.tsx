@@ -17,14 +17,37 @@ export function LaunchVideo({ ready }: Props) {
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !ready) return;
+
     video.currentTime = 0;
     video.muted = false;
+    setMuted(false);
+
+    let gestureEvents: string[] = [];
+    const unmuteOnGesture = () => {
+      const el = videoRef.current;
+      if (!el) return;
+      el.muted = false;
+      setMuted(false);
+      if (el.paused) el.play().catch(() => {});
+    };
+
     video.play().catch(() => {
-      // Browser blocked autoplay with sound — fall back to muted autoplay.
+      // Browser blocked autoplay with sound — fall back to muted autoplay,
+      // then unmute the instant the visitor interacts with the page at all
+      // (scroll, click, tap, keypress), which browsers allow.
       video.muted = true;
       setMuted(true);
       video.play().catch(() => {});
+
+      gestureEvents = ["pointerdown", "keydown", "touchstart", "wheel"];
+      gestureEvents.forEach((evt) =>
+        window.addEventListener(evt, unmuteOnGesture, { once: true, passive: true })
+      );
     });
+
+    return () => {
+      gestureEvents.forEach((evt) => window.removeEventListener(evt, unmuteOnGesture));
+    };
   }, [ready]);
 
   function toggleSound() {
