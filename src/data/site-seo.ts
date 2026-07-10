@@ -36,15 +36,15 @@ export const KEYWORDS = [
 
 export const HOW_TO_STEPS = [
   {
-    name: "Bring One Marked Exam",
-    text: "Upload a marked PDF, image, screenshot, rubric, or feedback. Manual upload always works.",
+    name: "Connect your student up",
+    text: "Or bring the marked work in — upload a marked PDF, image, screenshot, rubric, or feedback. Manual upload always works.",
   },
   {
-    name: "Read the evidence",
+    name: "Regrade reads the evidence",
     text: "Regrade separates visible marks, rubric support, and uncertainty instead of guessing what happened.",
   },
   {
-    name: "Choose your next step",
+    name: "Choose what to do next",
     text: "Clarify the mark, prepare a respectful appeal, ask Mr Whale, or add the pattern to your Study plan. Nothing sends unless you choose to.",
   },
 ] as const;

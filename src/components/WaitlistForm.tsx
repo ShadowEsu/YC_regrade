@@ -75,7 +75,7 @@ export function WaitlistForm({
       ? "border border-white/25 bg-[#0b1a4a]/45 text-white placeholder:text-white/50 focus:border-[#9db5ff] focus:ring-[#9db5ff]/25"
       : variant === "offer"
         ? "border border-white/40 bg-[#0b1a4a]/35 text-white placeholder:text-white/55 focus:border-white/70 focus:ring-white/20"
-        : "border border-blue/25 bg-blue-wash text-ink placeholder:text-faint"
+        : "border border-black/10 bg-paper text-ink placeholder:text-faint shadow-sm"
   );
 
   const buttonClass = cn(

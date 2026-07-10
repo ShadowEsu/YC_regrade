@@ -9,10 +9,10 @@ const plans = [
     name: "Free",
     price: "$0",
     period: "forever",
-    blurb: "Try one essay and one test, or one exam and one recheck.",
+    blurb: "Enough to try a few marked exams and ask Mr Whale the basics.",
     featured: false,
     features: [
-      "2 exams / month",
+      "3 marked exams / month",
       "25 Mr Whale messages / month",
       "Manual upload only",
       "Study checklist included",
@@ -26,8 +26,8 @@ const plans = [
     blurb: "One serious student’s monthly workload — without uploading every homework page.",
     featured: true,
     features: [
-      "30 exams / month",
-      "300 Mr Whale messages / month",
+      "10 marked exams / month",
+      "50 Mr Whale messages / month",
       "Full Study mode",
       "Full appeal drafting",
       "Connectors",
@@ -41,8 +41,8 @@ const plans = [
     blurb: "Meaningfully powerful for heavy use, families, and priority runs.",
     featured: false,
     features: [
-      "100 exams / month",
-      "600 Mr Whale messages / month",
+      "30 marked exams / month",
+      "100 Mr Whale messages / month",
       "Auto Mode",
       "Priority processing",
       "Parent / supervisor linking",
@@ -79,10 +79,9 @@ export function PricingSection() {
             <SectionReveal key={plan.name} delay={index * 0.06}>
               <article
                 className={cn(
-                  "group flex h-full flex-col rounded-[28px] border border-blue/20 bg-blue-wash p-7 transition-all duration-300 sm:p-8",
-                  "opacity-70 brightness-95",
-                  "hover:z-10 hover:scale-[1.03] hover:border-blue hover:bg-[#e0e8ff] hover:opacity-100 hover:brightness-110 hover:shadow-[0_28px_60px_-20px_rgba(30,79,255,0.4)]",
-                  plan.featured && "border-blue/40 opacity-85"
+                  "group flex h-full flex-col rounded-[28px] border border-black/10 bg-paper p-7 transition-all duration-300 sm:p-8",
+                  "hover:z-10 hover:scale-[1.02] hover:border-blue/40 hover:shadow-[0_24px_50px_-24px_rgba(30,79,255,0.28)]",
+                  plan.featured && "border-blue/35 shadow-[0_16px_40px_-28px_rgba(30,79,255,0.35)]"
                 )}
               >
                 {plan.featured && (

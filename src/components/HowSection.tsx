@@ -4,10 +4,10 @@ import { SectionReveal } from "./SectionReveal";
 const steps = [
   {
     number: "01",
-    title: "Bring the marked work in",
-    body: "Upload a PDF or screenshot, or connect a class platform when it is ready.",
+    title: "Connect your student up",
+    body: "Or bring the marked work in — upload a PDF or screenshot anytime.",
     image: "/icons/how-scan.png",
-    alt: "Bring marked work into Regrade",
+    alt: "Connect your student account or bring marked work in",
   },
   {
     number: "02",
@@ -47,7 +47,7 @@ export function HowSection() {
         <div className="mt-12 grid gap-5 md:grid-cols-3">
           {steps.map((step, index) => (
             <SectionReveal key={step.number} delay={index * 0.08}>
-              <article className="hover-lift group flex h-full flex-col items-center rounded-[24px] border border-blue/20 bg-blue-wash p-7 text-center">
+              <article className="hover-lift group flex h-full flex-col items-center rounded-[24px] border border-blue/15 bg-paper p-7 text-center">
                 <img
                   src={step.image}
                   alt={step.alt}

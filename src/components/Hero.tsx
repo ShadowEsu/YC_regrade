@@ -99,15 +99,13 @@ export function Hero({ ready }: { ready: boolean }) {
         </motion.blockquote>
 
         <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[740px]">
-          <div className="rounded-[22px] border border-blue/20 bg-blue-wash p-3 sm:p-4">
-            <WaitlistForm
-              source="hero"
-              submitLabel="Get early access"
-              variant="light"
-              layout="inline"
-              size="lg"
-            />
-          </div>
+          <WaitlistForm
+            source="hero"
+            submitLabel="Get early access"
+            variant="light"
+            layout="inline"
+            size="lg"
+          />
         </motion.div>
 
         <motion.div variants={block} className="mt-5">
