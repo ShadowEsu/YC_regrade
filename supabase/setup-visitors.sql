@@ -4,7 +4,8 @@
 create table if not exists public.site_visitors (
   visitor_id uuid primary key,
   first_path text not null default '/',
-  first_seen_at timestamptz not null default timezone('utc', now())
+  first_seen_at timestamptz not null default timezone('utc', now()),
+  last_seen_at timestamptz not null default timezone('utc', now())
 );
 
 alter table public.site_visitors enable row level security;
@@ -22,9 +23,10 @@ security definer
 set search_path to 'public'
 as $$
 begin
-  insert into public.site_visitors (visitor_id, first_path)
-  values (p_visitor_id, coalesce(nullif(trim(p_path), ''), '/'))
-  on conflict (visitor_id) do nothing;
+  insert into public.site_visitors (visitor_id, first_path, last_seen_at)
+  values (p_visitor_id, coalesce(nullif(trim(p_path), ''), '/'), timezone('utc', now()))
+  on conflict (visitor_id) do update
+  set last_seen_at = timezone('utc', now());
 end;
 $$;
 
@@ -60,3 +62,25 @@ $$;
 
 grant execute on function public.register_visitor(uuid, text) to anon;
 grant execute on function public.get_visitor_stats() to anon;
+
+create or replace function public.get_live_visitor_count()
+returns json
+language plpgsql
+security definer
+set search_path to 'public'
+as $$
+declare
+  v_live bigint;
+begin
+  select count(*)::bigint into v_live
+  from public.site_visitors
+  where last_seen_at >= timezone('utc', now()) - interval '3 minutes';
+
+  return json_build_object(
+    'live', v_live,
+    'updated_at', timezone('utc', now())
+  );
+end;
+$$;
+
+grant execute on function public.get_live_visitor_count() to anon;

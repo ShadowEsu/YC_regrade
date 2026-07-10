@@ -18,6 +18,11 @@ export type VisitorStats = {
   updated_at: string;
 };
 
+export type LiveVisitorStats = {
+  live: number;
+  updated_at: string;
+};
+
 async function supabaseRpc<T>(fn: string, body: Record<string, unknown>): Promise<T> {
   const res = await fetch(`${REGRADE_CONFIG.supabaseUrl}/rest/v1/rpc/${fn}`, {
     method: "POST",
@@ -46,6 +51,15 @@ export async function registerVisitor(): Promise<void> {
 export async function getVisitorStats(): Promise<VisitorStats | null> {
   try {
     return await supabaseRpc<VisitorStats>("get_visitor_stats", {});
+  } catch {
+    return null;
+  }
+}
+
+export async function getLiveVisitorCount(): Promise<number | null> {
+  try {
+    const stats = await supabaseRpc<LiveVisitorStats>("get_live_visitor_count", {});
+    return stats.live ?? null;
   } catch {
     return null;
   }

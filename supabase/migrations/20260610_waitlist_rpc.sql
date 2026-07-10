@@ -57,3 +57,4 @@ GRANT EXECUTE ON FUNCTION public.join_waitlist(text, text) TO anon;
 GRANT EXECUTE ON FUNCTION public.get_waitlist_stats() TO anon;
 GRANT EXECUTE ON FUNCTION public.register_visitor(uuid, text) TO anon;
 GRANT EXECUTE ON FUNCTION public.get_visitor_stats() TO anon;
+GRANT EXECUTE ON FUNCTION public.get_live_visitor_count() TO anon;
