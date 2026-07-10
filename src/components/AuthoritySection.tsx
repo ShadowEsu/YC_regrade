@@ -1,20 +1,54 @@
-import { ExternalLink, BookOpen } from "lucide-react";
+import { ExternalLink, BookOpen, Landmark, Globe } from "lucide-react";
 import { AUTHORITY_REFERENCES } from "../data/site-seo";
 import { SectionReveal } from "./SectionReveal";
 import { SectionHeader } from "./SectionHeader";
+
+function referenceBadge(ref: { title: string; source: string }) {
+  if (ref.title === "Grade point average") {
+    return (
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue/[0.08] font-display text-[13px] font-bold text-blue transition-colors group-hover:bg-blue/[0.12]">
+        4.0
+      </span>
+    );
+  }
+  if (ref.source === "Wikipedia") {
+    return (
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue/[0.08] text-blue transition-colors group-hover:bg-blue/[0.12]">
+        <Globe className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
+      </span>
+    );
+  }
+  if (ref.source === "Instructure") {
+    return (
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue/[0.08] text-blue transition-colors group-hover:bg-blue/[0.12]">
+        <BookOpen className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
+      </span>
+    );
+  }
+  return (
+    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue/[0.08] text-blue transition-colors group-hover:bg-blue/[0.12]">
+      <Landmark className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
+    </span>
+  );
+}
 
 export function AuthoritySection() {
   return (
     <section
       id="resources"
-      className="scroll-mt-[120px] border-t border-black/[0.06] bg-white py-[clamp(64px,8vw,96px)] sm:scroll-mt-[132px]"
+      className="relative scroll-mt-[120px] overflow-hidden border-t border-black/[0.06] bg-[linear-gradient(160deg,var(--color-paper)_0%,var(--color-blue-wash)_50%,var(--color-paper)_100%)] bg-animated-gradient py-[clamp(64px,8vw,96px)] sm:scroll-mt-[132px]"
       aria-labelledby="resources-heading"
     >
       <div className="section-shell">
         <SectionReveal>
           <SectionHeader
             eyebrow="Grade appeal resources"
-            title="Built on how schools actually handle regrades."
+            title={
+              <>
+                Built on how schools actually{" "}
+                <span className="text-gradient-live">handle regrades.</span>
+              </>
+            }
             description="Grade reviews are a standard academic right at universities worldwide. Regrade helps you prepare the evidence those policies require — rubric, syllabus, and graded work in one place."
           />
         </SectionReveal>
@@ -51,11 +85,9 @@ export function AuthoritySection() {
                   href={ref.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full gap-4 rounded-xl border border-black/[0.06] bg-cream/50 p-5 transition-colors hover:border-blue/20 hover:bg-blue-soft/40"
+                  className="group hover-lift flex h-full gap-4 rounded-xl border border-white/60 bg-white/35 p-5 backdrop-blur-md transition-colors hover:border-blue/20 hover:bg-white/50"
                 >
-                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-blue/[0.08] text-blue transition-colors group-hover:bg-blue/[0.12]">
-                    <BookOpen className="h-[18px] w-[18px]" strokeWidth={2} aria-hidden />
-                  </div>
+                  {referenceBadge(ref)}
                   <div className="min-w-0 flex-1">
                     <p className="font-display text-[15px] font-semibold leading-snug tracking-[-0.02em] text-ink group-hover:text-blue">
                       {ref.title}

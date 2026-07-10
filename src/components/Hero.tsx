@@ -28,9 +28,22 @@ type Props = {
 export function Hero({ ready }: Props) {
   return (
     <header
-      id="top"
-      className="relative box-border flex min-h-[100dvh] flex-col items-center justify-center bg-gradient-to-b from-blue-soft via-[#f5f3ef] to-[#f8f6f3] px-6 pb-8 pt-[var(--site-header)] text-center"
+      className="relative box-border flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-[linear-gradient(120deg,#eef2ff_0%,#dce7ff_25%,#f3efff_50%,#dfeaff_75%,#eef2ff_100%)] bg-animated-gradient px-6 pb-8 pt-10 text-center"
     >
+      <div
+        className="pointer-events-none absolute -left-32 top-10 h-[420px] w-[420px] rounded-full bg-blue/20 blur-[100px] animate-blob"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-24 top-1/3 h-[380px] w-[380px] rounded-full bg-[#8b6bff]/15 blur-[100px] animate-blob-slow"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 left-1/3 h-[320px] w-[320px] rounded-full bg-blue-muted/20 blur-[100px] animate-blob"
+        aria-hidden
+        style={{ animationDelay: "-4s" }}
+      />
+
       <motion.div
         initial="hidden"
         animate={ready ? "show" : "hidden"}
@@ -38,10 +51,10 @@ export function Hero({ ready }: Props) {
           hidden: {},
           show: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
         }}
-        className="mx-auto w-full max-w-[860px]"
+        className="relative mx-auto w-full max-w-[860px]"
       >
-        <motion.div variants={block}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue/20 bg-white/80 px-4 py-2 font-ui text-[13px] font-semibold text-ink shadow-[0_1px_2px_rgba(9,9,11,0.04)]">
+        <motion.div variants={block} className="animate-breathe-slow">
+          <span className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 font-ui text-[13px] font-semibold text-ink">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue opacity-50" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-blue" />
@@ -56,7 +69,7 @@ export function Hero({ ready }: Props) {
         >
           Every grade can go higher.
           <br />
-          <span className="text-blue">Regrade shows you how.</span>
+          <span className="text-gradient-live">Regrade shows you how.</span>
         </motion.h1>
 
         <motion.p
@@ -103,9 +116,12 @@ export function Hero({ ready }: Props) {
               e.preventDefault();
               scrollToId("#how");
             }}
-            className="font-ui text-[15px] font-semibold text-blue transition-colors hover:text-blue-deep"
+            className="group font-ui text-[15px] font-semibold text-blue transition-colors hover:text-blue-deep"
           >
-            See how it works →
+            See how it works{" "}
+            <span className="inline-block transition-transform duration-300 group-hover:translate-x-1.5">
+              →
+            </span>
           </a>
         </motion.div>
       </motion.div>

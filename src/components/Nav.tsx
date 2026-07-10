@@ -29,26 +29,31 @@ export function Nav({ ready }: { ready: boolean }) {
       <div className="section-shell flex h-14 items-center justify-between">
         <a
           href="#top"
-          className="flex items-center text-[16px] font-semibold tracking-[-0.02em] text-ink"
+          className="flex items-center transition-transform duration-300 hover:scale-105"
           aria-label="Regrade home"
         >
-          <RegradeLogo variant="wordmark" size={30} />
+          <RegradeLogo variant="mark" size={42} />
         </a>
         <div className="flex items-center gap-7 text-[15px] font-medium text-muted">
-          <a href="#how" className="hidden sm:inline transition-colors hover:text-ink">
+          <a href="#how" className="relative hidden sm:inline transition-colors hover:text-ink group">
             How it works
+            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#features" className="hidden sm:inline transition-colors hover:text-ink">
+          <a href="#features" className="relative hidden sm:inline transition-colors hover:text-ink group">
             Features
+            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#resources" className="hidden sm:inline transition-colors hover:text-ink">
+          <a href="#resources" className="relative hidden sm:inline transition-colors hover:text-ink group">
             Resources
+            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#vision" className="hidden sm:inline transition-colors hover:text-ink">
+          <a href="#vision" className="relative hidden sm:inline transition-colors hover:text-ink group">
             Vision
+            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
-          <a href="#faq" className="hidden sm:inline transition-colors hover:text-ink">
+          <a href="#faq" className="relative hidden sm:inline transition-colors hover:text-ink group">
             FAQ
+            <span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-blue transition-all duration-300 group-hover:w-full" />
           </a>
           <a
             href="#waitlist"
@@ -56,7 +61,7 @@ export function Nav({ ready }: { ready: boolean }) {
               e.preventDefault();
               scrollToId("#waitlist");
             }}
-            className="btn-pro inline-flex h-10 items-center rounded-xl px-5 text-[14px]"
+            className="btn-pro inline-flex h-10 items-center rounded-xl px-5 text-[14px] transition-transform duration-300 hover:scale-105"
           >
             Join waitlist
           </a>

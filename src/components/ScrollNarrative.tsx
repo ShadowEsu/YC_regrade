@@ -90,7 +90,7 @@ export function ScrollNarrative() {
         <div className="section-shell text-center">
           {beats.map((b) => (
             <div key={b.line} className="mb-10 last:mb-0">
-              <h2 className="font-display text-[clamp(1.75rem,4vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-ink">
+              <h2 className="text-gradient-live font-display text-[clamp(1.75rem,4vw,2.75rem)] font-semibold leading-[1.1] tracking-[-0.02em]">
                 {b.line}
               </h2>
               <p className="mt-3 text-[16px] text-muted">{b.sub}</p>
@@ -120,9 +120,7 @@ export function ScrollNarrative() {
                 ref={(el) => {
                   wordsRef.current[i] = el;
                 }}
-                className={`narrative-word font-display text-[clamp(2rem,5.5vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.025em] text-ink ${
-                  i === beats.length - 1 ? "text-gradient" : ""
-                }`}
+                className="narrative-word text-gradient-live font-display text-[clamp(2rem,5.5vw,3.5rem)] font-semibold leading-[1.08] tracking-[-0.025em]"
                 style={{ opacity: i === 0 ? undefined : 0 }}
               >
                 {b.line}
@@ -140,11 +138,11 @@ export function ScrollNarrative() {
           ))}
         </div>
 
-        <div className="absolute bottom-10 left-1/2 w-32 -translate-x-1/2">
-          <div className="h-px overflow-hidden rounded-full bg-black/[0.08]">
+        <div className="absolute left-0 right-0 top-0 z-10">
+          <div className="h-1 w-full overflow-hidden bg-black/[0.06]">
             <div
               ref={progressRef}
-              className="h-full origin-left bg-blue"
+              className="h-full w-full origin-left bg-gradient-to-r from-blue via-blue-muted to-blue"
               style={{ transform: "scaleX(0)" }}
             />
           </div>

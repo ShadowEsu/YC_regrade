@@ -5,16 +5,14 @@ import { Preloader } from "./components/Preloader";
 import { YCBanner } from "./components/YCBanner";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { FeaturesSection } from "./components/FeaturesSection";
 import { ScrollNarrative } from "./components/ScrollNarrative";
 import { ProductShowcase } from "./components/ProductShowcase";
 import { SocialProofBar } from "./components/SocialProofBar";
 import { LMSMarquee } from "./components/LMSMarquee";
 import { LaunchHypeSection } from "./components/LaunchHypeSection";
-import { ProblemSection } from "./components/ProblemSection";
+import { LaunchVideo } from "./components/LaunchVideo";
 import { GradingSystemsSection } from "./components/GradingSystemsSection";
 import { HowSection } from "./components/HowSection";
-import { AIEnginesSection } from "./components/AIEnginesSection";
 import { CompareSection } from "./components/CompareSection";
 import { StatsBand } from "./components/StatsBand";
 import { FounderQuote } from "./components/FounderQuote";
@@ -44,12 +42,12 @@ export default function App() {
           className={ready ? "opacity-100" : "opacity-0"}
           style={{ transition: "opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1)" }}
         >
+          <LaunchVideo ready={ready} />
           <Hero ready={ready} />
+          <ScrollNarrative />
           <LaunchHypeSection />
           <HowSection />
-          <FeaturesSection />
           <VisionSection />
-          <ScrollNarrative />
           <section className="section-paper pb-[clamp(56px,7vw,88px)] pt-2">
             <ProductShowcase />
           </section>
@@ -57,9 +55,7 @@ export default function App() {
             <SocialProofBar />
           </div>
           <LMSMarquee />
-          <ProblemSection />
           <GradingSystemsSection />
-          <AIEnginesSection />
           <CompareSection />
           <FounderProofSection />
           <StatsBand />

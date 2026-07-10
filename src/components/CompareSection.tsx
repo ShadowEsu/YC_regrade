@@ -57,7 +57,8 @@ export function CompareSection() {
               Why not just use ChatGPT?
             </p>
             <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
-              ChatGPT gives general advice. Regrade checks your actual grade.
+              ChatGPT gives general advice.{" "}
+              <span className="text-gradient-live">Regrade checks your actual grade.</span>
             </h2>
             <p className="mt-4 text-[17px] leading-[1.65] text-muted">
               A chatbot does not know your rubric, your professor&apos;s comments, or which three

@@ -33,7 +33,7 @@ export const REGRADE_CONFIG = {
     import.meta.env.VITE_SUPABASE_KEY ||
     windowConfig.supabaseAnonKey ||
     defaultSupabaseKey,
-  waitlistDisplayCount: 15,
+  waitlistDisplayCount: 50,
   waitlistDisplayMax: 100,
   demoVideoUrl: import.meta.env.VITE_DEMO_VIDEO_URL ?? "",
   calendlyUrl: "https://calendly.com/prestonjaysusanto/regrade-interview-rounds",

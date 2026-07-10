@@ -7,7 +7,7 @@ export function FounderQuote() {
     <section className="section-cream border-t border-black/[0.05] py-[clamp(80px,10vw,128px)]">
       <div className="section-shell">
         <SectionReveal>
-          <div className="relative mx-auto max-w-[780px] overflow-hidden rounded-2xl border border-black/[0.06] bg-white px-8 py-10 sm:px-12 sm:py-12">
+          <div className="card-pro relative mx-auto max-w-[780px] overflow-hidden px-8 py-10 sm:px-12 sm:py-12">
             <div
               className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-[radial-gradient(circle,rgba(30,79,255,0.1)_0%,transparent_70%)]"
               aria-hidden

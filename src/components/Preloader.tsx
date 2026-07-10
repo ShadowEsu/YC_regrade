@@ -32,12 +32,18 @@ export function Preloader({ onDone }: { onDone: () => void }) {
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 }}
-            className="flex items-center"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex items-center justify-center"
           >
-            <RegradeLogo variant="wordmark" size={36} />
+            <div
+              className="animate-glow-pulse pointer-events-none absolute h-24 w-24 rounded-full bg-blue/20 blur-2xl"
+              aria-hidden
+            />
+            <div className="animate-breathe relative">
+              <RegradeLogo variant="mark" size={64} />
+            </div>
           </motion.div>
         </motion.div>
       )}

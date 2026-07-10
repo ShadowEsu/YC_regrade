@@ -10,7 +10,7 @@ export function FounderProofSection() {
   return (
     <section
       id="proof"
-      className="scroll-mt-[var(--site-header)] border-y border-black/[0.05] bg-white py-[clamp(56px,8vw,88px)]"
+      className="scroll-mt-[var(--site-header)] border-y border-black/[0.05] bg-[linear-gradient(150deg,var(--color-paper)_0%,var(--color-blue-wash)_60%,var(--color-paper)_100%)] py-[clamp(56px,8vw,88px)]"
     >
       <div className="section-shell">
         <SectionReveal>
@@ -19,7 +19,7 @@ export function FounderProofSection() {
               Real result · Founder&apos;s own grade
             </p>
             <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
-              I used Regrade on my own work before shipping it.
+              I used Regrade on <span className="text-gradient-live">my own work</span> before shipping it.
             </h2>
             <p className="mt-4 text-[17px] leading-[1.65] text-muted">
               One rubric line was counted twice on a final essay. I spent four hours building the

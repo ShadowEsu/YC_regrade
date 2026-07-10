@@ -67,15 +67,15 @@ export function WaitlistForm({
   }
 
   const inputClass = cn(
-    "w-full rounded-xl border px-4 tracking-[-0.01em] outline-none transition-colors",
+    "w-full rounded-xl border px-4 tracking-[-0.01em] outline-none backdrop-blur-md transition-colors",
     fieldHeight,
     fieldText,
     "focus:border-blue/45 focus:ring-2 focus:ring-blue/12",
     variant === "dark"
       ? "border-white/12 bg-white/[0.08] text-white placeholder:text-white/40"
       : variant === "offer"
-        ? "border-white/25 bg-white/[0.97] text-ink placeholder:text-faint focus:border-white focus:ring-white/20"
-        : "border-black/[0.1] bg-white text-ink placeholder:text-faint"
+        ? "border-white/35 bg-white/20 text-white placeholder:text-white/50 focus:border-white/70 focus:ring-white/20"
+        : "border-white/70 bg-white/40 text-ink placeholder:text-faint"
   );
 
   const buttonClass = cn(

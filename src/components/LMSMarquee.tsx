@@ -127,9 +127,8 @@ const platforms: Platform[] = [
 function PlatformChip({ platform }: { platform: Platform }) {
   return (
     <div
-      className="flex h-[84px] shrink-0 items-center justify-center rounded-2xl border px-8 shadow-[0_2px_12px_rgba(9,9,11,0.04)] transition-transform duration-300 hover:scale-[1.03]"
+      className="glass flex h-[84px] shrink-0 items-center justify-center rounded-2xl px-8 transition-transform duration-300 hover:scale-[1.03]"
       style={{
-        background: platform.bg,
         borderColor: platform.border,
       }}
     >

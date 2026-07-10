@@ -1,4 +1,5 @@
 import { REGRADE_CONFIG } from "../lib/site-config";
+import { RegradeLogo } from "./RegradeLogo";
 
 const columns = [
   {
@@ -52,14 +53,12 @@ export function Footer() {
       <div className="section-shell relative py-16 sm:py-20">
         <div className="flex flex-col gap-14 lg:flex-row lg:items-start lg:justify-between lg:gap-20">
           <div className="max-w-[360px]">
-            <a href="/#top" className="inline-block">
-              <img
-                src="/logo-wordmark.png"
-                alt="Regrade"
-                className="h-11 w-auto brightness-0 invert sm:h-12"
-                width={180}
-                height={48}
-              />
+            <a
+              href="/#top"
+              className="inline-flex items-center gap-3 transition-transform duration-300 hover:scale-105"
+            >
+              <RegradeLogo variant="mark" size={52} className="brightness-0 invert" />
+              <span className="font-brand text-[30px] font-semibold text-white">Regrade</span>
             </a>
             <p className="mt-6 font-display text-[clamp(17px,2vw,19px)] font-medium leading-[1.6] tracking-[-0.01em] text-white/85">
               Every student deserves an advocate. Parent Mode for families. The accountability layer

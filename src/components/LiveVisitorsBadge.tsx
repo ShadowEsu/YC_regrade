@@ -15,7 +15,7 @@ export function LiveVisitorsBadge() {
       aria-live="polite"
       aria-label={`${visitorCount} site visitors`}
     >
-      <div className="flex items-center gap-2 rounded-full border border-black/[0.06] bg-paper/90 px-3 py-1.5 text-[11px] font-medium text-muted shadow-sm backdrop-blur-md">
+      <div className="glass flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-medium text-muted">
         <span className="inline-flex h-2 w-2 shrink-0 rounded-full bg-green" />
         <span className="tabular-nums text-ink">
           {visitorCount} <span className="text-muted">visited</span>

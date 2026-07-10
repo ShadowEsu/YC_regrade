@@ -13,7 +13,7 @@ function RegionCard({ region, compact = false }: { region: GradingRegion; compac
   return (
     <article
       className={cn(
-        "flex shrink-0 items-center gap-4 rounded-2xl border border-black/[0.06] bg-white shadow-[0_8px_30px_rgba(30,79,255,0.06)]",
+        "card-pro hover-lift flex shrink-0 items-center gap-4",
         compact ? "w-full p-4 sm:p-5" : "w-[min(88vw,340px)] p-5"
       )}
     >
@@ -68,7 +68,11 @@ export function GradingSystemsSection() {
         <SectionReveal>
           <SectionHeader
             eyebrow="Global from day one"
-            title="Built for every grading system."
+            title={
+              <>
+                Built for <span className="text-gradient-live">every grading system.</span>
+              </>
+            }
             description="Rubric-first. Works globally. Does not convert between scales."
           />
         </SectionReveal>
@@ -85,7 +89,7 @@ export function GradingSystemsSection() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by country or system (e.g. ATAR, GPA, IB)"
               aria-label="Search grading systems by country or system name"
-              className="h-12 w-full rounded-xl border border-black/[0.08] bg-white pl-11 pr-4 font-ui text-[15px] text-ink outline-none transition-colors placeholder:text-faint focus:border-blue/35 focus:ring-2 focus:ring-blue/10"
+              className="h-12 w-full rounded-xl border border-white/70 bg-white/45 pl-11 pr-4 font-ui text-[15px] text-ink outline-none backdrop-blur-md transition-colors placeholder:text-faint focus:border-blue/35 focus:bg-white/65 focus:ring-2 focus:ring-blue/10"
             />
           </div>
         </SectionReveal>
