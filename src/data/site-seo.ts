@@ -5,7 +5,7 @@ export const SITE_DESCRIPTION =
   "Regrade helps students inspect marked work, understand what happened, prepare evidence-led appeals when appropriate, and turn marked exams into better finals preparation — with Mr Whale as a calm guide beside the work.";
 export const OG_DESCRIPTION =
   "Know what happened on your grade. Know what to do next. Understand, Review, Appeal, and Coach — powered by OpenAI.";
-export const OG_IMAGE = `${SITE_URL}/logo.png?v=3`;
+export const OG_IMAGE = `${SITE_URL}/logo.png?v=4`;
 
 export const FOUNDER = {
   name: "Preston Jay Susanto",
