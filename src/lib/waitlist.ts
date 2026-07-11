@@ -35,6 +35,30 @@ function saveLocalBackup(signup: WaitlistSignup) {
   }
 }
 
+async function notifyByEmail(signup: WaitlistSignup) {
+  const notifyEmail = REGRADE_CONFIG.waitlistEmail;
+  if (!notifyEmail) return;
+
+  await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(notifyEmail)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      name: signup.name,
+      email: signup.email,
+      source: signup.source,
+      signedUpAt: signup.signedUpAt,
+      message: `${signup.name} joined the Regrade waitlist from ${signup.source}.`,
+      _subject: `New Regrade waitlist signup — ${signup.name}`,
+      _template: "table",
+      _captcha: "false",
+      _replyto: signup.email,
+    }),
+  });
+}
+
 export async function joinWaitlist(
   name: string,
   email: string,
@@ -53,11 +77,11 @@ export async function joinWaitlist(
   const signup: WaitlistSignup = {
     name: trimmedName,
     email: trimmedEmail,
-    source,
+    source: source || "hero",
     signedUpAt: new Date().toISOString(),
   };
 
-  const sourceWithName = `${source || "hero"} · ${trimmedName}`;
+  const sourceWithName = `${signup.source} · ${trimmedName}`;
 
   try {
     const res = await fetch(`${REGRADE_CONFIG.supabaseUrl}/rest/v1/rpc/join_waitlist`, {
@@ -80,6 +104,13 @@ export async function joinWaitlist(
     }
 
     saveLocalBackup(signup);
+
+    if (!data.duplicate) {
+      void notifyByEmail(signup).catch(() => {
+        // Email notify is best effort. Signup already saved in Supabase.
+      });
+    }
+
     return {
       ok: true,
       duplicate: Boolean(data.duplicate),
