@@ -8,16 +8,14 @@
   "theme_color": "#1e4fff",
   "icons": [
     {
-      "src": "/regrade-icon-192.png?v=5",
+      "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
-      "src": "/regrade-icon-512.png?v=5",
+      "src": "/android-chrome-512x512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ]
 }
