@@ -13,8 +13,8 @@ const icon = "h-10 w-10 sm:h-12 sm:w-12 object-contain";
 
 const connectors: Connector[] = [
   { name: "Google Classroom", logo: "/logos/google-classroom.svg", aliases: ["google", "classroom", "gclassroom"] },
-  { name: "Canvas", logo: "/logos/canvas-lms.svg", aliases: ["instructure", "canvas lms"] },
-  { name: "Gradescope", logo: "/logos/gradescope.png", aliases: ["grade scope"] },
+  { name: "Canvas", logo: "/logos/canvas-lms.png", aliases: ["instructure", "canvas lms"] },
+  { name: "Gradescope", logo: "/logos/gradescope.png", logoClass: "h-8 w-auto max-w-[160px] sm:h-10 object-contain", aliases: ["grade scope"] },
   { name: "Moodle", logo: "/logos/moodle.svg" },
   { name: "Blackboard", logo: "/logos/blackboard.png", logoClass: `${icon} rounded-[22%] object-cover`, aliases: ["bb", "blackboard learn"] },
   { name: "Brightspace", logo: "/logos/brightspace.png", aliases: ["d2l", "desire2learn", "desire to learn"] },

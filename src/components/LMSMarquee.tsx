@@ -26,7 +26,7 @@ const nunito = "Nunito, ui-sans-serif, system-ui, sans-serif";
 const platforms: Platform[] = [
   {
     name: "Canvas",
-    logo: "/logos/canvas.png",
+    logo: "/logos/canvas-lms.png",
     logoClassName: "h-8 w-auto max-w-[160px]",
     bg: "#fff",
     border: "rgba(231, 36, 41, 0.14)",
