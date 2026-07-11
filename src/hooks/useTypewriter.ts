@@ -16,14 +16,14 @@ export function useTypewriter(text: string, speed = 42, delay = 600) {
     setOutput("");
     setDone(false);
     let i = 0;
-    let interval: ReturnType<typeof setInterval>;
+    let interval: ReturnType<typeof setInterval> | undefined;
 
     const timeout = setTimeout(() => {
       interval = setInterval(() => {
         i += 1;
         setOutput(text.slice(0, i));
         if (i >= text.length) {
-          clearInterval(interval);
+          if (interval) clearInterval(interval);
           setDone(true);
         }
       }, speed);
@@ -31,7 +31,7 @@ export function useTypewriter(text: string, speed = 42, delay = 600) {
 
     return () => {
       clearTimeout(timeout);
-      clearInterval(interval);
+      if (interval) clearInterval(interval);
     };
   }, [text, speed, delay, reduced]);
 

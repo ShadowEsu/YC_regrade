@@ -1,5 +1,3 @@
-import { FAQ_ITEMS } from "./faqs";
-
 export const SITE_URL = "https://regradeapp.tech";
 export const SITE_NAME = "Regrade";
 export const SITE_TAGLINE = "Understand your grade. Learn from it. Make the strongest appeal.";
@@ -185,19 +183,6 @@ export function buildJsonLdGraph() {
     })),
   };
 
-  const faqPage = {
-    "@type": "FAQPage",
-    "@id": `${SITE_URL}/#faq`,
-    mainEntity: FAQ_ITEMS.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.a,
-      },
-    })),
-  };
-
   const breadcrumb = {
     "@type": "BreadcrumbList",
     "@id": `${SITE_URL}/#breadcrumb`,
@@ -213,6 +198,6 @@ export function buildJsonLdGraph() {
 
   return {
     "@context": "https://schema.org",
-    "@graph": [organization, website, webPage, software, howTo, faqPage, breadcrumb],
+    "@graph": [organization, website, webPage, software, howTo, breadcrumb],
   };
 }
