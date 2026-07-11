@@ -12,6 +12,16 @@ export type WaitlistSignup = {
 export type WaitlistResult = {
   ok: boolean;
   error?: string;
+  duplicate?: boolean;
+  position?: number;
+};
+
+type JoinWaitlistResponse = {
+  ok?: boolean;
+  duplicate?: boolean;
+  position?: number;
+  total?: number;
+  error?: string;
 };
 
 function saveLocalBackup(signup: WaitlistSignup) {
@@ -47,40 +57,34 @@ export async function joinWaitlist(
     signedUpAt: new Date().toISOString(),
   };
 
-  const subject = `Regrade waitlist — ${trimmedName} (${trimmedEmail})`;
+  const sourceWithName = `${source || "hero"} · ${trimmedName}`;
 
   try {
-    const res = await fetch(
-      `https://formsubmit.co/ajax/${encodeURIComponent(REGRADE_CONFIG.waitlistEmail)}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          name: trimmedName,
-          email: trimmedEmail,
-          source,
-          _subject: subject,
-          _template: "table",
-          _captcha: "false",
-        }),
-      }
-    );
+    const res = await fetch(`${REGRADE_CONFIG.supabaseUrl}/rest/v1/rpc/join_waitlist`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        apikey: REGRADE_CONFIG.supabaseAnonKey,
+        Authorization: `Bearer ${REGRADE_CONFIG.supabaseAnonKey}`,
+      },
+      body: JSON.stringify({
+        p_email: trimmedEmail,
+        p_source: sourceWithName,
+      }),
+    });
 
-    const data = (await res.json().catch(() => null)) as { success?: string } | null;
+    const data = (await res.json().catch(() => null)) as JoinWaitlistResponse | null;
 
-    if (!res.ok) {
-      return { ok: false, error: "network" };
-    }
-
-    if (data?.success === "false") {
-      return { ok: false, error: "network" };
+    if (!res.ok || !data || data.ok === false) {
+      return { ok: false, error: data?.error === "invalid_email" ? "invalid_email" : "network" };
     }
 
     saveLocalBackup(signup);
-    return { ok: true };
+    return {
+      ok: true,
+      duplicate: Boolean(data.duplicate),
+      position: typeof data.position === "number" ? data.position : undefined,
+    };
   } catch {
     return { ok: false, error: "network" };
   }
