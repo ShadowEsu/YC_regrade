@@ -37,6 +37,7 @@ export const REGRADE_CONFIG = {
   waitlistDisplayMax: 100,
   demoVideoUrl: import.meta.env.VITE_DEMO_VIDEO_URL ?? "",
   calendlyUrl: "https://calendly.com/prestonjaysusanto/regrade-interview-rounds",
-  founderLinkedIn: "",
+  founderLinkedIn: "https://www.linkedin.com/in/preston-jay-susanto",
+  contactEmail: "preston@regrade.org",
   founderGitHub: "",
 } as const;

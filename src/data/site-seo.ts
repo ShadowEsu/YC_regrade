@@ -16,7 +16,8 @@ export const FOUNDER = {
 export const SOCIAL = {
   instagram: "https://instagram.com/regrade_app",
   x: "https://x.com/regrade_app",
-  email: "mailto:regradeteam@gmail.com",
+  linkedin: "https://www.linkedin.com/in/preston-jay-susanto",
+  email: "mailto:preston@regrade.org",
 } as const;
 
 export const KEYWORDS = [
@@ -107,11 +108,11 @@ export function buildJsonLdGraph() {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      email: "regradeteam@gmail.com",
+      email: "preston@regrade.org",
       contactType: "customer support",
       availableLanguage: ["English"],
     },
-    sameAs: [SOCIAL.instagram, SOCIAL.x],
+    sameAs: [SOCIAL.instagram, SOCIAL.x, SOCIAL.linkedin],
   };
 
   const website = {

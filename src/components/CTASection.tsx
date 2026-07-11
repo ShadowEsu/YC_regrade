@@ -35,6 +35,26 @@ export function CTASection() {
               />
             </div>
 
+            <p className="mx-auto mt-5 max-w-[480px] font-ui text-[13px] leading-relaxed text-white/55">
+              Questions?{" "}
+              <a
+                href="mailto:preston@regrade.org"
+                className="text-[#9db5ff] underline-offset-2 transition-colors hover:text-white hover:underline"
+              >
+                preston@regrade.org
+              </a>
+              {" · "}
+              Updates and CS jobs on{" "}
+              <a
+                href={REGRADE_CONFIG.founderLinkedIn}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#9db5ff] underline-offset-2 transition-colors hover:text-white hover:underline"
+              >
+                LinkedIn
+              </a>
+            </p>
+
             <div className="mx-auto mt-9 flex max-w-[420px] justify-center gap-8 text-center">
               <div>
                 <p className="font-display text-[1.5rem] font-semibold text-white">

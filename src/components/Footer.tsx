@@ -18,7 +18,7 @@ const columns = [
     links: [
       { label: "Trust and evidence", href: "/#trust" },
       { label: "Founder note", href: "/#proof" },
-      { label: "regradeteam@gmail.com", href: "mailto:regradeteam@gmail.com" },
+      { label: "preston@regrade.org", href: "mailto:preston@regrade.org" },
     ],
   },
   {
@@ -31,6 +31,7 @@ const columns = [
   {
     title: "Connect",
     links: [
+      { label: "LinkedIn · updates & CS jobs", href: REGRADE_CONFIG.founderLinkedIn, external: true },
       { label: "Instagram", href: "https://instagram.com/regrade_app", external: true },
       { label: "X", href: "https://x.com/regrade_app", external: true },
       { label: "Book an interview", href: REGRADE_CONFIG.calendlyUrl, external: true },

@@ -1,4 +1,5 @@
 import { SectionReveal } from "./SectionReveal";
+import { REGRADE_CONFIG } from "../lib/site-config";
 
 export function FounderProofSection() {
   return (
@@ -27,6 +28,30 @@ export function FounderProofSection() {
                 <p className="text-[14px] font-semibold text-ink">Preston Susanto</p>
                 <p className="text-[13px] text-muted">Founder · EECS student</p>
               </div>
+            </div>
+
+            <div className="mx-auto mt-8 max-w-[480px] space-y-3 text-[15px] leading-relaxed text-muted">
+              <p>
+                Questions?{" "}
+                <a
+                  href="mailto:preston@regrade.org"
+                  className="font-semibold text-blue transition-colors hover:text-blue-deep"
+                >
+                  preston@regrade.org
+                </a>
+              </p>
+              <p>
+                I post Regrade updates and CS job openings on{" "}
+                <a
+                  href={REGRADE_CONFIG.founderLinkedIn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-blue transition-colors hover:text-blue-deep"
+                >
+                  LinkedIn
+                </a>
+                .
+              </p>
             </div>
           </div>
         </SectionReveal>
