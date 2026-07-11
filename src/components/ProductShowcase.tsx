@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -130,7 +130,6 @@ export function ProductShowcase() {
   const [thread, setThread] = useState<ChatItem[]>([]);
   const [scriptIndex, setScriptIndex] = useState(0);
   const [pairKey, setPairKey] = useState(0);
-  const bottomRef = useRef<HTMLDivElement>(null);
   const selected = features.find((item) => item.id === mode)!;
   const showChat = selected.panel === "chat";
 
@@ -187,10 +186,6 @@ export function ProductShowcase() {
       timers.forEach((id) => window.clearTimeout(id));
     };
   }, [mode, showChat]);
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
-  }, [thread]);
 
   function submit(event: FormEvent) {
     event.preventDefault();
@@ -422,7 +417,6 @@ export function ProductShowcase() {
                         </AnimatePresence>
                       </motion.div>
                     </AnimatePresence>
-                    <div ref={bottomRef} />
                   </div>
                   <form
                     onSubmit={submit}
