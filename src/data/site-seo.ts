@@ -1,10 +1,13 @@
+import { FAQ_ITEMS } from "./faqs";
+
 export const SITE_URL = "https://regradeapp.tech";
 export const SITE_NAME = "Regrade";
-export const SITE_TAGLINE = "Understand your grade. Learn from it. Make the strongest appeal.";
+export const SITE_TAGLINE = "Grade appeal app for marked exams and rubric reviews";
+export const SITE_TITLE = "Regrade — Grade Appeal App for Students";
 export const SITE_DESCRIPTION =
-  "Regrade helps students inspect marked work, understand what happened, prepare evidence-led appeals when appropriate, and turn marked exams into better finals preparation — with Mr Whale as a calm guide beside the work.";
+  "Upload a marked exam. Regrade checks it against the rubric, helps you understand the grade, and drafts an evidence-led appeal when appropriate. Private beta waitlist open.";
 export const OG_DESCRIPTION =
-  "Know what happened on your grade. Know what to do next. Understand, Review, Appeal, and Coach — powered by OpenAI.";
+  "Grade appeal helper for students. Understand marked exams, review rubric deductions, and draft respectful appeals — with Mr Whale beside the work.";
 export const OG_IMAGE = `${SITE_URL}/logo.png`;
 
 export const FOUNDER = {
@@ -21,16 +24,17 @@ export const SOCIAL = {
 } as const;
 
 export const KEYWORDS = [
-  "grade appeal",
+  "grade appeal app",
+  "how to appeal a grade",
   "marked exam review",
   "rubric checker",
+  "student grade appeal",
   "evidence-led appeal",
-  "finals prep from marked exams",
-  "Mr Whale",
-  "student grade review",
   "professor appeal email",
-  "assignment rubric",
   "academic appeal",
+  "assignment rubric review",
+  "Mr Whale",
+  "Regrade",
 ].join(", ");
 
 export const HOW_TO_STEPS = [
@@ -93,18 +97,21 @@ export function buildJsonLdGraph() {
     "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     name: SITE_NAME,
+    alternateName: ["Regrade App", "regradeapp"],
     url: SITE_URL,
     logo: {
       "@type": "ImageObject",
       url: OG_IMAGE,
-      width: 512,
-      height: 512,
+      width: 1024,
+      height: 1024,
     },
+    image: OG_IMAGE,
     description: SITE_DESCRIPTION,
     founder: {
       "@type": "Person",
       name: FOUNDER.name,
       jobTitle: FOUNDER.jobTitle,
+      sameAs: [SOCIAL.linkedin],
     },
     contactPoint: {
       "@type": "ContactPoint",
@@ -120,6 +127,7 @@ export function buildJsonLdGraph() {
     "@id": `${SITE_URL}/#website`,
     url: SITE_URL,
     name: SITE_NAME,
+    alternateName: "Regrade App",
     description: SITE_DESCRIPTION,
     publisher: { "@id": `${SITE_URL}/#organization` },
     inLanguage: "en-US",
@@ -129,7 +137,7 @@ export function buildJsonLdGraph() {
     "@type": "WebPage",
     "@id": `${SITE_URL}/#webpage`,
     url: SITE_URL,
-    name: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    name: SITE_TITLE,
     description: SITE_DESCRIPTION,
     isPartOf: { "@id": `${SITE_URL}/#website` },
     about: { "@id": `${SITE_URL}/#software` },
@@ -141,6 +149,7 @@ export function buildJsonLdGraph() {
       "@type": "SpeakableSpecification",
       cssSelector: ["h1", "[data-speakable='hero-subhead']"],
     },
+    dateModified: "2026-07-12",
   };
 
   const software = {
@@ -160,27 +169,41 @@ export function buildJsonLdGraph() {
     url: SITE_URL,
     author: { "@id": `${SITE_URL}/#organization` },
     featureList: [
-      "Review Studio evidence map",
-      "Evidence-led appeal drafting",
-      "Review history from marked exams",
+      "Marked exam and rubric review",
+      "Evidence-led grade appeal drafting",
+      "Review history from past exams",
       "Mr Whale academic coach",
       "Consent-first Supervisor access",
     ],
     screenshot: OG_IMAGE,
+    keywords: KEYWORDS,
   };
 
   const howTo = {
     "@type": "HowTo",
     "@id": `${SITE_URL}/#howto`,
-    name: "How to understand a marked exam with Regrade",
+    name: "How to review a marked exam and prepare a grade appeal with Regrade",
     description:
-      "Upload marked work to read the evidence, prepare a respectful appeal when appropriate, and review mistakes from past exams.",
+      "Upload marked work to read the evidence, prepare a respectful grade appeal when appropriate, and review mistakes from past exams.",
     step: HOW_TO_STEPS.map((step, i) => ({
       "@type": "HowToStep",
       position: i + 1,
       name: step.name,
       text: step.text,
       url: `${SITE_URL}/#how`,
+    })),
+  };
+
+  const faqPage = {
+    "@type": "FAQPage",
+    "@id": `${SITE_URL}/#faq`,
+    mainEntity: FAQ_ITEMS.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
     })),
   };
 
@@ -199,6 +222,6 @@ export function buildJsonLdGraph() {
 
   return {
     "@context": "https://schema.org",
-    "@graph": [organization, website, webPage, software, howTo, breadcrumb],
+    "@graph": [organization, website, webPage, software, howTo, faqPage, breadcrumb],
   };
 }

@@ -9,10 +9,10 @@ import { Hero } from "./components/Hero";
 import { HowSection } from "./components/HowSection";
 import { ProductShowcase } from "./components/ProductShowcase";
 import { ConnectionsSection } from "./components/ConnectionsSection";
-import { TrustSection } from "./components/TrustSection";
 import { SupervisorSection } from "./components/SupervisorSection";
 import { PricingSection } from "./components/PricingSection";
 import { FounderProofSection } from "./components/FounderProofSection";
+import { FAQ } from "./components/FAQ";
 import { CTASection } from "./components/CTASection";
 import { Footer } from "./components/Footer";
 import { SeoSchema } from "./components/SeoSchema";
@@ -37,14 +37,14 @@ export default function App() {
           style={{ transition: "opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1)" }}
         >
           <LaunchVideo ready={ready} />
-          <ConnectionsSection />
           <Hero ready={ready} />
+          <ConnectionsSection />
           <HowSection />
           <ProductShowcase />
           <SupervisorSection />
           <PricingSection />
-          <TrustSection />
           <FounderProofSection />
+          <FAQ />
           <CTASection />
         </main>
         <Footer />

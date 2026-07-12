@@ -10,7 +10,7 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="scroll-mt-[120px] bg-[#f8f6f3] pb-[clamp(80px,10vw,128px)] pt-[clamp(64px,8vw,96px)] sm:scroll-mt-[132px]">
+    <section id="faq" className="scroll-mt-[120px] border-b border-black/[0.07] bg-paper pb-[clamp(64px,8vw,96px)] pt-[clamp(56px,7vw,80px)] sm:scroll-mt-[132px]">
       <div className="section-shell">
         <SectionReveal>
           <SectionHeader eyebrow="FAQ" title="Common questions." />

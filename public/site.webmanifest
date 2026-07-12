@@ -1,7 +1,7 @@
 {
   "name": "Regrade",
   "short_name": "Regrade",
-  "description": "Understand your grade. Learn from it. Make the strongest appeal.",
+  "description": "Grade appeal app for students — marked exam review, rubric checks, and evidence-led appeals.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#1e4fff",
