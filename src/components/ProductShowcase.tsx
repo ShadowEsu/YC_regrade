@@ -60,7 +60,7 @@ const features = [
     description: "Ask about a mark in plain language. One focused follow-up at a time.",
     labelText: "Ask Mr Whale",
     icon: MessageCircle,
-    image: "/logo-mark-app.png",
+    image: "/logo-mark.png",
     imageAlt: "Coach with Mr Whale",
     panel: "chat" as const,
   },

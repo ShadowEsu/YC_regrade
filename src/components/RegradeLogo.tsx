@@ -27,46 +27,27 @@ export function RegradeLogo({
   }
 
   if (variant === "wordmark") {
-    if (invert) {
-      return (
-        <span className={cn("inline-flex items-center gap-2.5", className)}>
-          <img
-            src="/logo-mark-clear.png"
-            alt=""
-            aria-hidden
-            width={size}
-            height={size}
-            className="shrink-0 object-contain"
-            style={{ width: size, height: size }}
-          />
-          <span
-            className="font-brand font-semibold leading-none tracking-[-0.02em] text-white"
-            style={{ fontSize: Math.round(size * 0.72) }}
-          >
-            Regrade
-          </span>
-        </span>
-      );
-    }
-
     return (
       <img
         src="/logo-wordmark.png"
         alt="Regrade"
-        width={Math.round(size * 2.6)}
+        width={Math.round(size * 3.4)}
         height={size}
-        className={cn("shrink-0 object-contain object-left", className)}
-        style={{ height: size, width: "auto", maxWidth: Math.round(size * 3.2) }}
+        className={cn(
+          "shrink-0 object-contain object-left",
+          invert ? "rounded-2xl bg-paper/95 px-2.5 py-1.5" : null,
+          className
+        )}
+        style={{
+          height: size,
+          width: "auto",
+          maxWidth: Math.round(size * 4.2),
+        }}
       />
     );
   }
 
-  const markSrc =
-    variant === "app"
-      ? "/logo-mark-app.png"
-      : invert
-        ? "/logo-mark-clear.png"
-        : "/logo-mark-clear.png";
+  const markSrc = variant === "app" ? "/logo-mark-app.png" : "/logo-mark.png";
 
   return (
     <img
