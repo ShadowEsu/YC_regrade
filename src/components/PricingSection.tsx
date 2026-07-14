@@ -4,105 +4,122 @@ import { scrollToId } from "../lib/scroll";
 import { REGRADE_CONFIG } from "../lib/site-config";
 import { cn } from "../lib/utils";
 
+const spotsLeft =
+  REGRADE_CONFIG.waitlistDisplayMax - REGRADE_CONFIG.waitlistDisplayCount;
+
 const plans = [
   {
     name: "Free",
     price: "$0",
     period: "forever",
-    blurb: "Enough to try a few marked exams and ask Mr Whale the basics.",
+    blurb: "Start here. When you begin using Regrade, you get Plus free for 2 months.",
     featured: false,
+    isPro: false,
+    isPlus: false,
+    badge: "2 months Plus free",
     features: [
       "3 marked exams / month",
       "25 Mr Whale messages / month",
       "Manual upload only",
-      "Review checklist included",
-      "No Auto Mode",
+      "Review checklist",
+      "Plus trial unlocks when you start",
     ],
   },
   {
-    name: "Student Pack",
-    price: "$9.99",
-    period: "/ month",
-    blurb: "One serious student’s monthly workload — without uploading every homework page.",
+    name: "Plus",
+    price: "$6.99",
+    period: "/ mo",
+    blurb: "A serious student’s monthly workload — first 2 months free when you start.",
     featured: true,
+    isPro: false,
+    isPlus: true,
+    badge: "2 months free trial",
     features: [
       "10 marked exams / month",
       "50 Mr Whale messages / month",
       "Full Review history",
-      "Full appealing agent",
+      "Appealing agent",
       "Connectors",
-      "History / library",
     ],
   },
   {
     name: "Pro",
-    price: "$19.99",
-    period: "/ month",
-    blurb: "Meaningfully powerful for heavy use, families, and priority runs.",
+    price: "$11.99",
+    period: "/ mo",
+    blurb: "Heavy use, families, and priority runs.",
     featured: false,
+    isPro: true,
+    isPlus: false,
+    badge: `Free for first ${REGRADE_CONFIG.waitlistDisplayMax}`,
     features: [
       "30 marked exams / month",
       "100 Mr Whale messages / month",
       "Auto Mode",
       "Priority processing",
       "Parent / supervisor linking",
-      "Advanced reports",
     ],
   },
 ];
 
 export function PricingSection() {
   return (
-    <section id="pricing" className="scroll-mt-[120px] border-b border-blue/10 bg-blue-soft py-[clamp(72px,10vw,120px)]">
+    <section
+      id="pricing"
+      className="scroll-mt-[120px] border-b border-blue/10 bg-blue-soft py-[clamp(56px,7vw,88px)]"
+    >
       <div className="section-shell">
         <SectionReveal>
-          <div className="mx-auto max-w-[760px] text-center">
-            <p className="font-ui text-[13px] font-bold uppercase tracking-[0.14em] text-blue">
+          <div className="mx-auto max-w-[640px] text-center">
+            <p className="font-ui text-[12px] font-bold uppercase tracking-[0.14em] text-blue">
               Pricing · private beta
             </p>
-            <h2 className="mt-4 font-display text-[clamp(2.4rem,5vw,3.6rem)] font-semibold leading-[1.05] tracking-[-0.035em] text-ink">
-              Simple plans.{" "}
-              <span className="text-gradient-live">Real monthly limits.</span>
+            <h2 className="mt-3 font-display text-[clamp(1.85rem,3.8vw,2.6rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
+              Simple plans. Real limits.
             </h2>
-            <p className="mx-auto mt-6 max-w-[560px] font-display text-[clamp(1.25rem,2.6vw,1.7rem)] font-semibold leading-[1.25] tracking-[-0.02em] text-ink">
-              First {REGRADE_CONFIG.waitlistDisplayMax} waitlist users get{" "}
-              <span className="text-blue">Pro free for 1 year.</span>
-            </p>
-            <p className="mx-auto mt-3 max-w-[520px] font-ui text-[15px] leading-relaxed text-muted">
-              Unused exam credits roll over for 1 month.
+            <p className="mx-auto mt-3 max-w-[520px] font-ui text-[14px] leading-relaxed text-muted">
+              Start on Free and get Plus for 2 months when you begin using Regrade. First{" "}
+              {REGRADE_CONFIG.waitlistDisplayMax} waitlist users get Pro free for 1 year.
             </p>
           </div>
         </SectionReveal>
 
-        <div className="mt-12 grid gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-3.5 lg:gap-4">
           {plans.map((plan, index) => (
-            <SectionReveal key={plan.name} delay={index * 0.06}>
+            <SectionReveal key={plan.name} delay={index * 0.05}>
               <article
                 className={cn(
-                  "group flex h-full flex-col rounded-[28px] border border-black/10 bg-paper p-7 transition-all duration-300 sm:p-8",
-                  "hover:z-10 hover:scale-[1.02] hover:border-blue/40 hover:shadow-[0_24px_50px_-24px_rgba(30,79,255,0.28)]",
-                  plan.featured && "border-blue/35 shadow-[0_16px_40px_-28px_rgba(30,79,255,0.35)]"
+                  "flex h-full flex-col rounded-2xl border bg-paper p-5 transition-all duration-300 sm:p-5",
+                  plan.featured
+                    ? "border-blue/40 shadow-[0_14px_36px_-22px_rgba(30,79,255,0.4)] ring-1 ring-blue/20"
+                    : "border-black/10 hover:border-blue/30"
                 )}
               >
-                {plan.featured && (
-                  <span className="mb-4 inline-flex w-fit rounded-full bg-blue px-3 py-1 font-ui text-[11px] font-bold uppercase tracking-[0.08em] text-white">
-                    Most popular
+                {plan.badge && (
+                  <span
+                    className={cn(
+                      "mb-2.5 inline-flex w-fit rounded-full px-2.5 py-0.5 font-ui text-[10px] font-bold uppercase tracking-[0.08em]",
+                      plan.isPlus || plan.featured
+                        ? "bg-blue text-white"
+                        : "bg-blue-wash text-blue"
+                    )}
+                  >
+                    {plan.badge}
                   </span>
                 )}
-                <h3 className="text-[22px] font-semibold tracking-[-0.02em] text-ink group-hover:text-blue">
+                <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-ink">
                   {plan.name}
                 </h3>
-                <p className="mt-3 flex items-baseline gap-1">
-                  <span className="font-display text-[3rem] font-semibold leading-none tracking-[-0.04em] text-ink">
+                <p className="mt-2 flex items-baseline gap-1">
+                  <span className="font-display text-[1.85rem] font-semibold leading-none tracking-[-0.04em] text-ink">
                     {plan.price}
                   </span>
-                  <span className="font-ui text-[14px] text-muted">{plan.period}</span>
+                  <span className="font-ui text-[12px] text-muted">{plan.period}</span>
                 </p>
-                <p className="mt-4 text-[15px] leading-relaxed text-muted">{plan.blurb}</p>
-                <ul className="mt-6 flex-1 space-y-3">
+                <p className="mt-2.5 text-[13px] leading-snug text-muted">{plan.blurb}</p>
+                <ul className="mt-4 flex-1 space-y-2">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2.5 text-[15px] text-ink-2">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-blue" strokeWidth={2.5} />
+                    <li key={feature} className="flex items-start gap-2 text-[13px] text-ink-2">
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-blue" strokeWidth={2.5} />
                       {feature}
                     </li>
                   ))}
@@ -111,13 +128,17 @@ export function PricingSection() {
                   type="button"
                   onClick={() => scrollToId("#waitlist")}
                   className={cn(
-                    "mt-8 inline-flex h-14 items-center justify-center rounded-xl px-5 text-[16px] font-bold transition-all duration-300",
-                    plan.featured
-                      ? "btn-pro"
-                      : "border border-blue/30 bg-paper text-blue group-hover:bg-blue group-hover:text-white"
+                    "mt-5 inline-flex min-h-11 items-center justify-center rounded-xl px-3 py-2.5 text-center font-bold transition-all duration-300",
+                    plan.isPro || plan.isPlus
+                      ? "btn-pro text-[12px] leading-snug sm:text-[13px]"
+                      : "border border-blue/30 bg-paper text-[13px] text-blue hover:bg-blue hover:text-white"
                   )}
                 >
-                  Join waitlist
+                  {plan.isPro
+                    ? `Join waitlist · ${spotsLeft} left for free Pro`
+                    : plan.isPlus
+                      ? "Join waitlist · 2 months Plus free"
+                      : "Join waitlist"}
                 </button>
               </article>
             </SectionReveal>

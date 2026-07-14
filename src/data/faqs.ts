@@ -27,7 +27,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   },
   {
     q: "What does it cost?",
-    a: "Free during the private beta. The first 100 waitlist members receive Pro free for 1 year at launch.",
+    a: "Free to start. When you begin using Regrade, you get Plus free for 2 months, then $6.99/month. Pro is $11.99/month. The first 100 waitlist members receive Pro free for 1 year at launch.",
   },
   {
     q: "What do I need to use it?",
