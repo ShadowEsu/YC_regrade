@@ -1,8 +1,19 @@
-import { Check } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { Check, ChevronDown } from "lucide-react";
 import { SectionReveal } from "./SectionReveal";
 import { scrollToId } from "../lib/scroll";
 import { REGRADE_CONFIG } from "../lib/site-config";
 import { cn } from "../lib/utils";
+import {
+  CURRENCY_OPTIONS,
+  CURRENCY_REGIONS,
+  FALLBACK_RATES,
+  type CurrencyCode,
+  fetchExchangeRates,
+  formatMoney,
+  loadSavedCurrency,
+  saveCurrency,
+} from "../lib/currency";
 
 const spotsLeft =
   REGRADE_CONFIG.waitlistDisplayMax - REGRADE_CONFIG.waitlistDisplayCount;
@@ -10,7 +21,7 @@ const spotsLeft =
 const plans = [
   {
     name: "Free",
-    price: "$0",
+    usdAmount: 0,
     period: "forever",
     blurb: "Start here. When you begin using Regrade, you get Plus free for 2 months.",
     featured: false,
@@ -27,7 +38,7 @@ const plans = [
   },
   {
     name: "Plus",
-    price: "$6.99",
+    usdAmount: 6.99,
     period: "/ mo",
     blurb: "A serious student’s monthly workload — first 2 months free when you start.",
     featured: true,
@@ -44,7 +55,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "$11.99",
+    usdAmount: 11.99,
     period: "/ mo",
     blurb: "Heavy use, families, and priority runs.",
     featured: false,
@@ -62,6 +73,34 @@ const plans = [
 ];
 
 export function PricingSection() {
+  const [currency, setCurrency] = useState<CurrencyCode>("USD");
+  const [rates, setRates] = useState(FALLBACK_RATES);
+
+  useEffect(() => {
+    setCurrency(loadSavedCurrency());
+    let cancelled = false;
+    fetchExchangeRates().then((next) => {
+      if (!cancelled) setRates(next);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const groupedOptions = useMemo(
+    () =>
+      CURRENCY_REGIONS.map((region) => ({
+        region,
+        options: CURRENCY_OPTIONS.filter((option) => option.region === region),
+      })).filter((group) => group.options.length > 0),
+    []
+  );
+
+  function onCurrencyChange(next: CurrencyCode) {
+    setCurrency(next);
+    saveCurrency(next);
+  }
+
   return (
     <section
       id="pricing"
@@ -80,6 +119,40 @@ export function PricingSection() {
               Start on Free and get Plus for 2 months when you begin using Regrade. First{" "}
               {REGRADE_CONFIG.waitlistDisplayMax} waitlist users get Pro free for 1 year.
             </p>
+
+            <div className="mx-auto mt-6 flex max-w-[340px] flex-col items-center gap-2">
+              <label
+                htmlFor="pricing-currency"
+                className="font-ui text-[11px] font-bold uppercase tracking-[0.12em] text-blue"
+              >
+                Currency
+              </label>
+              <div className="relative w-full">
+                <select
+                  id="pricing-currency"
+                  value={currency}
+                  onChange={(e) => onCurrencyChange(e.target.value as CurrencyCode)}
+                  className="h-12 w-full appearance-none rounded-2xl border border-blue/25 bg-paper px-4 pr-11 text-left font-ui text-[14px] font-semibold text-ink shadow-[0_10px_28px_-18px_rgba(30,79,255,0.45)] outline-none transition-colors focus:border-blue"
+                >
+                  {groupedOptions.map((group) => (
+                    <optgroup key={group.region} label={group.region}>
+                      {group.options.map((option) => (
+                        <option key={option.code} value={option.code}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ))}
+                </select>
+                <ChevronDown
+                  className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-blue"
+                  aria-hidden
+                />
+              </div>
+              <p className="font-ui text-[12px] text-muted">
+                Prices convert from USD · approximate live rates
+              </p>
+            </div>
           </div>
         </SectionReveal>
 
@@ -109,9 +182,9 @@ export function PricingSection() {
                 <h3 className="text-[17px] font-semibold tracking-[-0.02em] text-ink">
                   {plan.name}
                 </h3>
-                <p className="mt-2 flex items-baseline gap-1">
-                  <span className="font-display text-[1.85rem] font-semibold leading-none tracking-[-0.04em] text-ink">
-                    {plan.price}
+                <p className="mt-2 flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5">
+                  <span className="font-display text-[clamp(1.45rem,4vw,1.85rem)] font-semibold leading-none tracking-[-0.04em] text-ink">
+                    {formatMoney(plan.usdAmount, currency, rates)}
                   </span>
                   <span className="font-ui text-[12px] text-muted">{plan.period}</span>
                 </p>
