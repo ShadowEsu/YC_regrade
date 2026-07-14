@@ -20,9 +20,26 @@ export function CTASection() {
             <h2 className="font-display text-[clamp(2.1rem,4.5vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
               <span className="text-gradient-live">Bring One Marked Exam.</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-[480px] font-ui text-[15px] leading-relaxed text-white/75 sm:text-[16px]">
-              2 months Plus free trial when you start. First{" "}
-              {REGRADE_CONFIG.waitlistDisplayMax} users get Pro free for 1 year. Powered by OpenAI.
+            <div className="mx-auto mt-6 grid max-w-[560px] gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3.5 text-left backdrop-blur-sm">
+                <p className="font-ui text-[11px] font-bold uppercase tracking-[0.12em] text-[#9db5ff]">
+                  When you start
+                </p>
+                <p className="mt-1 font-display text-[clamp(1.25rem,3vw,1.55rem)] font-semibold leading-tight tracking-[-0.02em] text-white">
+                  2 months Plus free trial
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3.5 text-left backdrop-blur-sm">
+                <p className="font-ui text-[11px] font-bold uppercase tracking-[0.12em] text-[#9db5ff]">
+                  Waitlist offer
+                </p>
+                <p className="mt-1 font-display text-[clamp(1.25rem,3vw,1.55rem)] font-semibold leading-tight tracking-[-0.02em] text-white">
+                  First {REGRADE_CONFIG.waitlistDisplayMax} get Pro free for 1 year
+                </p>
+              </div>
+            </div>
+            <p className="mx-auto mt-4 max-w-[420px] font-ui text-[14px] leading-relaxed text-white/60">
+              Powered by OpenAI.
             </p>
 
             <div className="mx-auto mt-8 w-full max-w-[640px]">

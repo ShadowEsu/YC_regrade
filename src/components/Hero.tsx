@@ -35,11 +35,25 @@ export function Hero({ ready }: { ready: boolean }) {
         }}
         className="relative mx-auto w-full max-w-[820px]"
       >
-        <motion.div variants={block}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue/25 bg-blue-wash px-4 py-2 font-ui text-[13px] font-semibold text-ink">
-            <span className="h-2 w-2 rounded-full bg-blue" />
-            2 months Plus free trial · First 100 get Pro free for 1 year
-          </span>
+        <motion.div variants={block} className="mx-auto max-w-[720px]">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-blue/30 bg-blue px-5 py-4 text-left text-white shadow-[0_16px_40px_-20px_rgba(30,79,255,0.7)] sm:px-6 sm:py-5">
+              <p className="font-ui text-[12px] font-bold uppercase tracking-[0.14em] text-white/75">
+                When you start
+              </p>
+              <p className="mt-1.5 font-display text-[clamp(1.45rem,3.5vw,1.85rem)] font-semibold leading-[1.15] tracking-[-0.03em]">
+                2 months Plus free trial
+              </p>
+            </div>
+            <div className="rounded-2xl border border-blue/25 bg-blue-wash px-5 py-4 text-left sm:px-6 sm:py-5">
+              <p className="font-ui text-[12px] font-bold uppercase tracking-[0.14em] text-blue">
+                Waitlist offer
+              </p>
+              <p className="mt-1.5 font-display text-[clamp(1.45rem,3.5vw,1.85rem)] font-semibold leading-[1.15] tracking-[-0.03em] text-ink">
+                First 100 get Pro free for 1 year
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         <motion.h1

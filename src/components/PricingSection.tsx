@@ -115,10 +115,24 @@ export function PricingSection() {
             <h2 className="mt-3 font-display text-[clamp(1.85rem,3.8vw,2.6rem)] font-semibold leading-[1.1] tracking-[-0.03em] text-ink">
               Simple plans. Real limits.
             </h2>
-            <p className="mx-auto mt-3 max-w-[520px] font-ui text-[14px] leading-relaxed text-muted">
-              Start free. Get a 2 months Plus free trial when you begin using Regrade. First{" "}
-              {REGRADE_CONFIG.waitlistDisplayMax} waitlist users get Pro free for 1 year.
-            </p>
+            <div className="mx-auto mt-5 grid max-w-[560px] gap-3 sm:grid-cols-2">
+              <div className="rounded-2xl border border-blue/30 bg-blue px-4 py-3.5 text-white">
+                <p className="font-ui text-[11px] font-bold uppercase tracking-[0.12em] text-white/75">
+                  When you start
+                </p>
+                <p className="mt-1 font-display text-[clamp(1.2rem,2.8vw,1.45rem)] font-semibold leading-tight tracking-[-0.02em]">
+                  2 months Plus free trial
+                </p>
+              </div>
+              <div className="rounded-2xl border border-blue/20 bg-paper px-4 py-3.5">
+                <p className="font-ui text-[11px] font-bold uppercase tracking-[0.12em] text-blue">
+                  Waitlist offer
+                </p>
+                <p className="mt-1 font-display text-[clamp(1.2rem,2.8vw,1.45rem)] font-semibold leading-tight tracking-[-0.02em] text-ink">
+                  First {REGRADE_CONFIG.waitlistDisplayMax} get Pro free for 1 year
+                </p>
+              </div>
+            </div>
 
             <div className="mx-auto mt-6 flex max-w-[340px] flex-col items-center gap-2">
               <label
