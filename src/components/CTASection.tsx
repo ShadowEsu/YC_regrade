@@ -21,8 +21,8 @@ export function CTASection() {
               <span className="text-gradient-live">Bring One Marked Exam.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-[480px] font-ui text-[15px] leading-relaxed text-white/75 sm:text-[16px]">
-              First {REGRADE_CONFIG.waitlistDisplayMax} users get Pro free for 1 year. Powered by
-              OpenAI.
+              2 months Plus free trial when you start. First{" "}
+              {REGRADE_CONFIG.waitlistDisplayMax} users get Pro free for 1 year. Powered by OpenAI.
             </p>
 
             <div className="mx-auto mt-8 w-full max-w-[640px]">

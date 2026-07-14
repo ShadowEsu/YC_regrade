@@ -27,7 +27,7 @@ const plans = [
     featured: false,
     isPro: false,
     isPlus: false,
-    badge: "2 months Plus free",
+    badge: "2 months Plus free trial",
     features: [
       "3 marked exams / month",
       "25 Mr Whale messages / month",
@@ -40,11 +40,11 @@ const plans = [
     name: "Plus",
     usdAmount: 6.99,
     period: "/ mo",
-    blurb: "A serious student’s monthly workload — first 2 months free when you start.",
+    blurb: "A serious student’s monthly workload — 2 months Plus free trial when you start.",
     featured: true,
     isPro: false,
     isPlus: true,
-    badge: "2 months free trial",
+    badge: "2 months Plus free trial",
     features: [
       "10 marked exams / month",
       "50 Mr Whale messages / month",
@@ -116,7 +116,7 @@ export function PricingSection() {
               Simple plans. Real limits.
             </h2>
             <p className="mx-auto mt-3 max-w-[520px] font-ui text-[14px] leading-relaxed text-muted">
-              Start on Free and get Plus for 2 months when you begin using Regrade. First{" "}
+              Start free. Get a 2 months Plus free trial when you begin using Regrade. First{" "}
               {REGRADE_CONFIG.waitlistDisplayMax} waitlist users get Pro free for 1 year.
             </p>
 
@@ -210,7 +210,7 @@ export function PricingSection() {
                   {plan.isPro
                     ? `Join waitlist · ${spotsLeft} left for free Pro`
                     : plan.isPlus
-                      ? "Join waitlist · 2 months Plus free"
+                      ? "Join waitlist · 2 months Plus free trial"
                       : "Join waitlist"}
                 </button>
               </article>

@@ -54,7 +54,7 @@ export function Footer() {
               href="/#top"
               className="inline-flex items-center transition-transform duration-300 hover:scale-105"
             >
-              <RegradeLogo variant="wordmark" size={48} invert />
+              <RegradeLogo variant="wordmark" size={44} invert />
             </a>
             <p className="mt-5 font-display text-[17px] font-medium leading-[1.55] text-white/80">
               Understand your grade. Learn from it. Make the strongest appeal.

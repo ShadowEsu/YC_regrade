@@ -55,10 +55,7 @@ export function Nav({ ready }: { ready: boolean }) {
           aria-label="Regrade home"
           onClick={() => setOpen(false)}
         >
-          <RegradeLogo variant="mark" size={34} className="sm:hidden" />
-          <span className="hidden sm:inline-flex">
-            <RegradeLogo variant="wordmark" size={40} />
-          </span>
+          <RegradeLogo variant="wordmark" size={36} />
         </a>
 
         <div className="hidden items-center gap-5 text-[15px] font-medium text-muted md:flex md:gap-6">

@@ -42,7 +42,7 @@ export function Preloader({ onDone }: { onDone: () => void }) {
               aria-hidden
             />
             <div className="animate-breathe relative">
-              <RegradeLogo variant="app" size={64} />
+              <RegradeLogo variant="mark" size={64} />
             </div>
           </motion.div>
         </motion.div>
