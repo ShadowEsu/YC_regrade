@@ -211,9 +211,10 @@ export function PricingSection() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
-                  onClick={() => scrollToId("#download")}
+                <a
+                  href={REGRADE_CONFIG.webAppUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     "mt-5 inline-flex min-h-11 items-center justify-center rounded-xl px-3 py-2.5 text-center font-bold transition-all duration-300",
                     plan.isPro || plan.isPlus
@@ -222,10 +223,17 @@ export function PricingSection() {
                   )}
                 >
                   {plan.isPro
-                    ? `Download · ${spotsLeft} Pro spots via waitlist`
+                    ? `Open web app · ${spotsLeft} Pro spots via waitlist`
                     : plan.isPlus
-                      ? "Download · 2 months Plus free trial"
-                      : "Download v1.0.0"}
+                      ? "Open web app · 2 months Plus free trial"
+                      : "Open web app"}
+                </a>
+                <button
+                  type="button"
+                  onClick={() => scrollToId("#download")}
+                  className="mt-2 inline-flex min-h-9 items-center justify-center rounded-xl px-3 py-2 text-center font-ui text-[12px] font-semibold text-blue transition-colors hover:underline"
+                >
+                  Download desktop
                 </button>
               </article>
             </SectionReveal>

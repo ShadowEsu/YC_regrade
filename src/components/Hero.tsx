@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { WaitlistForm } from "./WaitlistForm";
 import { ScrollHint } from "./ScrollHint";
 import { scrollToId } from "../lib/scroll";
+import { REGRADE_CONFIG } from "../lib/site-config";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -85,13 +86,30 @@ export function Hero({ ready }: { ready: boolean }) {
           </footer>
         </motion.blockquote>
 
-        <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[740px]">
+        <motion.div variants={block} className="mx-auto mt-9 flex w-full max-w-[740px] flex-col items-center gap-4">
+          <a
+            href={REGRADE_CONFIG.webAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-pro inline-flex h-14 w-full max-w-[420px] items-center justify-center rounded-xl px-8 text-[17px] font-bold shadow-[0_14px_36px_-14px_rgba(30,79,255,0.65)] transition-transform duration-300 hover:scale-[1.02] sm:w-auto sm:min-w-[280px]"
+          >
+            Open Regrade
+          </a>
+          <p className="font-ui text-[14px] text-muted">
+            Use it in the browser — no download required.
+          </p>
+        </motion.div>
+
+        <motion.div variants={block} className="mx-auto mt-8 w-full max-w-[560px]">
+          <p className="mb-3 font-ui text-[12px] font-semibold uppercase tracking-[0.12em] text-muted">
+            Or join the waitlist for Pro offers
+          </p>
           <WaitlistForm
             source="hero"
             submitLabel="Get early access"
             variant="light"
             layout="inline"
-            size="lg"
+            size="md"
           />
         </motion.div>
 

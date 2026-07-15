@@ -3,8 +3,14 @@ import { SectionReveal } from "./SectionReveal";
 import { REGRADE_CONFIG } from "../lib/site-config";
 
 export function DownloadSection() {
-  const { appVersion, downloadMacArm64, downloadMacIntel, downloadWindows, releaseNotesUrl } =
-    REGRADE_CONFIG;
+  const {
+    appVersion,
+    downloadMacArm64,
+    downloadMacIntel,
+    downloadWindows,
+    releaseNotesUrl,
+    webAppUrl,
+  } = REGRADE_CONFIG;
 
   return (
     <section
@@ -21,8 +27,20 @@ export function DownloadSection() {
               Download Regrade for Mac or Windows
             </h2>
             <p className="mx-auto mt-5 max-w-[560px] font-ui text-[clamp(16px,2vw,18px)] leading-[1.65] text-muted">
-              Install the desktop app, sign in, and start reviewing marked exams. Unsigned beta
-              builds may need a right-click Open the first time on Mac.
+              Optional desktop install if you prefer a native app. Unsigned beta builds may need a
+              right-click Open the first time on Mac.
+            </p>
+            <p className="mx-auto mt-4 max-w-[560px] font-ui text-[15px] leading-[1.6] text-ink">
+              You can also{" "}
+              <a
+                href={webAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-blue underline-offset-2 transition-colors hover:underline"
+              >
+                use Regrade in the browser
+              </a>{" "}
+              with no install.
             </p>
           </div>
         </SectionReveal>
@@ -62,6 +80,9 @@ export function DownloadSection() {
             </a>
             {" · "}
             Version {appVersion}
+          </p>
+          <p className="mx-auto mt-3 max-w-[560px] text-center font-ui text-[13px] text-muted">
+            iOS / Android coming
           </p>
         </SectionReveal>
       </div>

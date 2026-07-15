@@ -5,6 +5,7 @@ const columns = [
   {
     title: "Product",
     links: [
+      { label: "Open web app", href: REGRADE_CONFIG.webAppUrl, external: true },
       { label: "How it works", href: "/#how" },
       { label: "Understand, Review, Appeal, Coach", href: "/#product" },
       { label: "Connections", href: "/#connections" },

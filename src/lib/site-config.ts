@@ -35,6 +35,7 @@ export const REGRADE_CONFIG = {
     defaultSupabaseKey,
   waitlistDisplayCount: 50,
   waitlistDisplayMax: 100,
+  webAppUrl: "https://app.regradeapp.tech",
   demoVideoUrl: import.meta.env.VITE_DEMO_VIDEO_URL ?? "",
   calendlyUrl: "https://calendly.com/prestonjaysusanto/regrade-interview-rounds",
   founderLinkedIn: "https://www.linkedin.com/in/preston-jay-susanto",
