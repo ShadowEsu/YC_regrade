@@ -213,7 +213,7 @@ export function PricingSection() {
                 </ul>
                 <button
                   type="button"
-                  onClick={() => scrollToId("#waitlist")}
+                  onClick={() => scrollToId("#download")}
                   className={cn(
                     "mt-5 inline-flex min-h-11 items-center justify-center rounded-xl px-3 py-2.5 text-center font-bold transition-all duration-300",
                     plan.isPro || plan.isPlus
@@ -222,10 +222,10 @@ export function PricingSection() {
                   )}
                 >
                   {plan.isPro
-                    ? `Join waitlist · ${spotsLeft} left for free Pro`
+                    ? `Download · ${spotsLeft} Pro spots via waitlist`
                     : plan.isPlus
-                      ? "Join waitlist · 2 months Plus free trial"
-                      : "Join waitlist"}
+                      ? "Download · 2 months Plus free trial"
+                      : "Download v1.0.0"}
                 </button>
               </article>
             </SectionReveal>

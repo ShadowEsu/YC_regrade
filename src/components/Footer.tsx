@@ -9,6 +9,7 @@ const columns = [
       { label: "Understand, Review, Appeal, Coach", href: "/#product" },
       { label: "Connections", href: "/#connections" },
       { label: "Pricing", href: "/#pricing" },
+      { label: "Download desktop", href: "/#download" },
       { label: "Supervisor private beta", href: "/#supervisor" },
       { label: "Join waitlist", href: "/#waitlist" },
     ],

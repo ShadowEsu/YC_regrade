@@ -39,5 +39,13 @@ export const REGRADE_CONFIG = {
   calendlyUrl: "https://calendly.com/prestonjaysusanto/regrade-interview-rounds",
   founderLinkedIn: "https://www.linkedin.com/in/preston-jay-susanto",
   contactEmail: "preston@regrade.org",
+  appVersion: "1.0.0",
+  downloadMacArm64:
+    "https://github.com/ShadowEsu/Regrade_True/releases/download/v1.0.0/Regrade-1.0.0-arm64.dmg",
+  downloadMacIntel:
+    "https://github.com/ShadowEsu/Regrade_True/releases/download/v1.0.0/Regrade-1.0.0-x64.dmg",
+  downloadWindows:
+    "https://github.com/ShadowEsu/Regrade_True/releases/download/v1.0.0/Regrade-Setup-1.0.0.exe",
+  releaseNotesUrl: "https://github.com/ShadowEsu/Regrade_True/releases/tag/v1.0.0",
   founderGitHub: "",
 } as const;

@@ -10,6 +10,7 @@ const links = [
   { label: "Connections", href: "#connections" },
   { label: "Review Studio", href: "#product" },
   { label: "Pricing", href: "#pricing" },
+  { label: "Download", href: "#download" },
   { label: "Supervisor", href: "#supervisor" },
 ];
 
@@ -74,14 +75,14 @@ export function Nav({ ready }: { ready: boolean }) {
             </a>
           ))}
           <a
-            href="#waitlist"
+            href="#download"
             onClick={(e) => {
               e.preventDefault();
-              goTo("#waitlist");
+              goTo("#download");
             }}
             className="btn-pro inline-flex h-12 items-center rounded-xl px-7 text-[15px] font-bold shadow-[0_10px_28px_-8px_rgba(30,79,255,0.7)] transition-transform duration-300 hover:scale-105"
           >
-            Join waitlist
+            Download v1.0.0
           </a>
         </div>
 
@@ -120,14 +121,14 @@ export function Nav({ ready }: { ready: boolean }) {
                 </a>
               ))}
               <a
-                href="#waitlist"
+                href="#download"
                 onClick={(e) => {
                   e.preventDefault();
-                  goTo("#waitlist");
+                  goTo("#download");
                 }}
                 className="btn-pro mt-2 inline-flex h-12 items-center justify-center rounded-xl px-6 text-[15px] font-bold"
               >
-                Join waitlist
+                Download v1.0.0
               </a>
             </div>
           </motion.div>
