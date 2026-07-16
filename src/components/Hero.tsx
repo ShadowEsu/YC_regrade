@@ -71,7 +71,7 @@ export function Hero({ ready }: { ready: boolean }) {
           className="mx-auto mt-5 max-w-[560px] font-ui text-[clamp(18px,2.2vw,21px)] leading-[1.6] text-muted"
         >
           Upload a marked exam. Understand it. Practise the weak spots. Appeal only when the
-          evidence supports it.
+          evidence supports it. App is in final private beta — downloads coming soon.
         </motion.p>
 
         <motion.blockquote

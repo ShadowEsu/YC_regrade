@@ -10,6 +10,7 @@ const links = [
   { label: "Connections", href: "#connections" },
   { label: "Review Studio", href: "#product" },
   { label: "Pricing", href: "#pricing" },
+  { label: "Download", href: "#download" },
   { label: "Supervisor", href: "#supervisor" },
 ];
 

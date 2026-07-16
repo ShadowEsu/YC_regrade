@@ -8,10 +8,13 @@ export function StickyCTA() {
   useEffect(() => {
     const onScroll = () => {
       const pastHero = window.scrollY > window.innerHeight * 0.7;
+      const download = document.getElementById("download");
+      const downloadTop = download?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+      const nearDownload = downloadTop < window.innerHeight * 0.85;
       const waitlist = document.getElementById("waitlist");
       const waitlistTop = waitlist?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
       const nearWaitlist = waitlistTop < window.innerHeight * 0.85;
-      setVisible(pastHero && !nearWaitlist);
+      setVisible(pastHero && !nearDownload && !nearWaitlist);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -34,7 +37,7 @@ export function StickyCTA() {
               e.preventDefault();
               scrollToId("#waitlist");
             }}
-            className="btn-pro flex h-12 items-center justify-center rounded-2xl px-6 text-[15px] font-bold shadow-[0_18px_40px_-12px_rgba(30,79,255,0.65)] sm:h-14 sm:min-w-[220px] sm:px-7 sm:text-[16px]"
+            className="btn-pro flex h-12 items-center justify-center rounded-2xl px-6 text-[15px] font-bold shadow-[0_18px_40px_-12px_rgba(30,79,255,0.65)] sm:h-14 sm:min-w-[260px] sm:px-7 sm:text-[16px]"
           >
             Join waitlist for onboarding
           </a>

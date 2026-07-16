@@ -225,7 +225,14 @@ export function PricingSection() {
                     ? `Join waitlist · ${spotsLeft} left for free Pro`
                     : plan.isPlus
                       ? "Join waitlist · 2 months Plus free trial"
-                      : "Join waitlist"}
+                      : "Join waitlist for onboarding"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => scrollToId("#download")}
+                  className="mt-2 inline-flex min-h-9 cursor-default items-center justify-center rounded-xl px-3 py-2 text-center font-ui text-[12px] font-semibold text-muted"
+                >
+                  Downloads coming soon
                 </button>
               </article>
             </SectionReveal>
