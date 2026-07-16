@@ -1,5 +1,6 @@
 import { SectionReveal } from "./SectionReveal";
 import { WaitlistForm } from "./WaitlistForm";
+import { DownloadComingSoon } from "./DownloadComingSoon";
 import { REGRADE_CONFIG } from "../lib/site-config";
 
 const spotsLeft =
@@ -15,11 +16,15 @@ export function CTASection() {
         <SectionReveal className="w-full">
           <div className="mx-auto max-w-[700px] text-center">
             <p className="mb-3 font-ui text-[12px] font-bold uppercase tracking-[0.14em] text-[#9db5ff]">
-              Waitlist · private beta
+              Final private beta · downloads coming soon
             </p>
             <h2 className="font-display text-[clamp(2.1rem,4.5vw,3rem)] font-semibold leading-[1.1] tracking-[-0.03em]">
-              <span className="text-gradient-live">Bring One Marked Exam.</span>
+              <span className="text-gradient-live">See the final onboarding first.</span>
             </h2>
+            <p className="mx-auto mt-4 max-w-[520px] font-ui text-[15px] leading-relaxed text-white/75 sm:text-[16px]">
+              Join the waitlist for a chance to experience the app onboarding in its production-ready
+              final bits — before Windows and desktop downloads open.
+            </p>
             <div className="mx-auto mt-6 grid max-w-[560px] gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-white/20 bg-white/10 px-4 py-3.5 text-left backdrop-blur-sm">
                 <p className="font-ui text-[11px] font-bold uppercase tracking-[0.12em] text-[#9db5ff]">
@@ -45,11 +50,15 @@ export function CTASection() {
             <div className="mx-auto mt-8 w-full max-w-[640px]">
               <WaitlistForm
                 source="offer"
-                submitLabel="Get early access"
+                submitLabel="Join waitlist for onboarding access"
                 variant="dark"
                 layout="inline"
                 size="lg"
               />
+            </div>
+
+            <div className="mx-auto mt-8 w-full max-w-[640px]">
+              <DownloadComingSoon tone="dark" showWaitlistCta={false} />
             </div>
 
             <p className="mx-auto mt-5 max-w-[480px] font-ui text-[13px] leading-relaxed text-white/55">

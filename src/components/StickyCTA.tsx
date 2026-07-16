@@ -36,7 +36,7 @@ export function StickyCTA() {
             }}
             className="btn-pro flex h-12 items-center justify-center rounded-2xl px-6 text-[15px] font-bold shadow-[0_18px_40px_-12px_rgba(30,79,255,0.65)] sm:h-14 sm:min-w-[220px] sm:px-7 sm:text-[16px]"
           >
-            Join the waitlist
+            Join waitlist for onboarding
           </a>
         </motion.div>
       )}

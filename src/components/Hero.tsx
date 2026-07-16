@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { WaitlistForm } from "./WaitlistForm";
+import { DownloadComingSoon } from "./DownloadComingSoon";
 import { ScrollHint } from "./ScrollHint";
 import { scrollToId } from "../lib/scroll";
 
@@ -88,11 +89,18 @@ export function Hero({ ready }: { ready: boolean }) {
         <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[740px]">
           <WaitlistForm
             source="hero"
-            submitLabel="Get early access"
+            submitLabel="Join waitlist for onboarding access"
             variant="light"
             layout="inline"
             size="lg"
           />
+          <p className="mt-3 font-ui text-[14px] leading-relaxed text-muted">
+            Get a chance to see the app onboarding in its final production-ready private beta.
+          </p>
+        </motion.div>
+
+        <motion.div variants={block} className="mx-auto mt-7 w-full max-w-[740px]">
+          <DownloadComingSoon />
         </motion.div>
 
         <motion.div variants={block} className="mt-5">
