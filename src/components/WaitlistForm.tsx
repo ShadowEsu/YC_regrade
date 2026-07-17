@@ -14,9 +14,6 @@ type Props = {
   size?: "md" | "lg";
 };
 
-const SUCCESS_MESSAGE =
-  "You're on the list — we'll email you when your invite is ready.";
-
 export function WaitlistForm({
   source,
   submitLabel = "Join waitlist",
@@ -31,17 +28,27 @@ export function WaitlistForm({
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const [honeypot, setHoneypot] = useState("");
+  const [position, setPosition] = useState<number | undefined>();
+  const [duplicate, setDuplicate] = useState(false);
+
+  const successMessage = duplicate
+    ? "You're already on the list — we'll email you when your invite is ready."
+    : position
+      ? `You're #${position} on the list — we'll email you when your invite is ready.`
+      : "You're on the list — we'll email you when your invite is ready.";
+
   const { output: typedSuccess, done: typingDone } = useTypewriter(
-    success ? SUCCESS_MESSAGE : "",
+    success ? successMessage : "",
     28,
     200
   );
 
-  const inline = layout === "inline";
   const large = size === "lg";
-  const fieldHeight = large ? "h-14" : "h-12";
-  const fieldText = large ? "text-[18px]" : "text-[16px]";
-  const buttonText = large ? "text-[17px]" : "text-[15px]";
+  // Always stack for large forms so the email field stays full width on laptops
+  const stacked = layout === "stacked" || large;
+  const fieldHeight = large ? "h-16" : "h-14";
+  const fieldText = large ? "text-[20px]" : "text-[17px]";
+  const buttonText = large ? "text-[18px]" : "text-[16px]";
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -55,6 +62,8 @@ export function WaitlistForm({
     const result = await joinWaitlist(name, email, source);
 
     if (result.ok) {
+      setDuplicate(Boolean(result.duplicate));
+      setPosition(result.position);
       setSuccess(true);
       setLoading(false);
       return;
@@ -67,7 +76,7 @@ export function WaitlistForm({
   }
 
   const inputClass = cn(
-    "w-full rounded-xl border px-4 tracking-[-0.01em] outline-none transition-colors",
+    "w-full min-w-0 rounded-2xl border px-5 tracking-[-0.01em] outline-none transition-colors",
     fieldHeight,
     fieldText,
     "focus:border-blue/55 focus:ring-2 focus:ring-blue/15",
@@ -79,13 +88,12 @@ export function WaitlistForm({
   );
 
   const buttonClass = cn(
-    "shrink-0 cursor-pointer rounded-xl px-7 font-ui font-bold tracking-[-0.02em] transition-all duration-300",
+    "w-full shrink-0 cursor-pointer rounded-2xl px-8 font-ui font-bold tracking-[-0.02em] transition-all duration-300",
     fieldHeight,
     buttonText,
     "disabled:cursor-not-allowed disabled:opacity-50",
-    inline ? "w-full sm:w-auto" : "w-full",
     variant === "dark"
-      ? "btn-pro px-8 shadow-[0_12px_32px_-10px_rgba(30,79,255,0.8)]"
+      ? "btn-pro shadow-[0_12px_32px_-10px_rgba(30,79,255,0.8)]"
       : "btn-pro"
   );
 
@@ -95,18 +103,18 @@ export function WaitlistForm({
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
         className={cn(
-          "flex gap-3 rounded-lg border px-5 py-4 text-left",
+          "flex gap-3 rounded-2xl border px-5 py-5 text-left",
           variant === "dark"
             ? "border-emerald-400/25 bg-emerald-500/12"
             : "border-emerald-200 bg-emerald-50"
         )}
       >
-        <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600" strokeWidth={2.5} />
+        <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-600" strokeWidth={2.5} />
         <div>
-          <p className="text-[15px] font-semibold text-emerald-900">
-            {typingDone ? "You're on the list" : "Submitting…"}
+          <p className="text-[17px] font-semibold text-emerald-900">
+            {typingDone ? (duplicate ? "Already on the list" : "You're on the list") : "Submitting…"}
           </p>
-          <p className="typewriter-cursor mt-1 text-[14px] leading-relaxed text-emerald-800/90">
+          <p className="typewriter-cursor mt-1 text-[15px] leading-relaxed text-emerald-800/90">
             {typedSuccess}
           </p>
         </div>
@@ -115,10 +123,14 @@ export function WaitlistForm({
   }
 
   return (
-    <div className={inline ? "w-full" : undefined}>
+    <div className="w-full">
       <form
         onSubmit={handleSubmit}
-        className={cn(inline ? "flex flex-col gap-2.5 sm:flex-row sm:items-center" : "space-y-2.5")}
+        className={cn(
+          stacked
+            ? "flex w-full flex-col gap-3"
+            : "flex w-full flex-col gap-3 sm:flex-row sm:items-stretch"
+        )}
       >
         <input
           type="text"
@@ -138,7 +150,7 @@ export function WaitlistForm({
           autoComplete="name"
           aria-label="Full name"
           required
-          className={cn(inputClass, inline && (large ? "sm:max-w-[240px]" : "sm:max-w-[200px]"))}
+          className={cn(inputClass, !stacked && "sm:w-[34%] sm:min-w-[220px]")}
         />
         <input
           type="email"
@@ -148,18 +160,21 @@ export function WaitlistForm({
           autoComplete="email"
           aria-label="Email address"
           required
-          className={cn(inputClass, inline && "sm:flex-1")}
+          className={cn(inputClass, !stacked && "sm:min-w-[280px] sm:flex-1")}
         />
-        <button type="submit" disabled={loading} className={buttonClass}>
+        <button type="submit" disabled={loading} className={cn(buttonClass, !stacked && "sm:w-auto sm:min-w-[200px]")}>
           {loading ? "Joining…" : submitLabel}
         </button>
       </form>
       {error && (
         <p
           className={cn(
-            "mt-2.5 text-[14px] font-medium",
-            inline ? "text-center sm:text-left" : "",
-            variant === "dark" ? "text-rose-300" : variant === "offer" ? "text-rose-200" : "text-rose-500"
+            "mt-3 text-[15px] font-medium",
+            variant === "dark"
+              ? "text-rose-300"
+              : variant === "offer"
+                ? "text-rose-200"
+                : "text-rose-500"
           )}
           role="alert"
         >

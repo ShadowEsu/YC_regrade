@@ -86,12 +86,12 @@ export function Hero({ ready }: { ready: boolean }) {
           </footer>
         </motion.blockquote>
 
-        <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[740px]">
+        <motion.div variants={block} className="mx-auto mt-9 w-full max-w-[820px]">
           <WaitlistForm
             source="hero"
             submitLabel="Join waitlist for onboarding access"
             variant="light"
-            layout="inline"
+            layout="stacked"
             size="lg"
           />
           <p className="mt-3 font-ui text-[14px] leading-relaxed text-muted">

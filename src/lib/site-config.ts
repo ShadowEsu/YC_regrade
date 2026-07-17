@@ -25,6 +25,10 @@ export const REGRADE_CONFIG = {
     import.meta.env.VITE_WAITLIST_EMAIL ??
     windowConfig.waitlistEmail ??
     "regradeteam@gmail.com",
+  notifyEmails: [
+    "regradeteam@gmail.com",
+    "preston@regrade.org",
+  ] as const,
   supabaseUrl:
     import.meta.env.VITE_SUPABASE_URL ||
     windowConfig.supabaseUrl ||

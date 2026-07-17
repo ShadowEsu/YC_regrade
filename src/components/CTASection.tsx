@@ -47,12 +47,12 @@ export function CTASection() {
               Powered by OpenAI.
             </p>
 
-            <div className="mx-auto mt-8 w-full max-w-[640px]">
+            <div className="mx-auto mt-8 w-full max-w-[720px]">
               <WaitlistForm
                 source="offer"
                 submitLabel="Join waitlist for onboarding access"
                 variant="dark"
-                layout="inline"
+                layout="stacked"
                 size="lg"
               />
             </div>
